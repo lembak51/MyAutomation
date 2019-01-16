@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test suite" preserve-order="true">
+    <listeners>
+        <listener class-name="common.testHelper.FailureRetryListener"/>
+        <listener class-name="common.testHelper.TestListener"/>
+    </listeners>
+    <test name="Example test section name">
+        <parameter name = "browser" value="chrome"/>
+        <classes>
+            <class name="tests.ExampleTest">
+                <methods>
+                    <include name="loginWithValidCredentials"/>
+                    <include name="createUser"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

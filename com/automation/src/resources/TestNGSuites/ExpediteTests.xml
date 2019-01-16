@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Expedite Testes" preserve-order="true">
+    <listeners>
+        <listener class-name="common.testHelper.FailureRetryListener"/>
+        <listener class-name="common.testHelper.TestListener"/>
+    </listeners>
+
+    <test name="Admin Login Tests">
+        <classes>
+            <class name="tests.LoginTests">
+                <methods>
+                    <include name="loginWithValidCredentials"/>
+                    <include name="loginWithInInvalidUser"/>
+                    <include name="loginWithInInvalidPassword"/>
+                    <include name="logout"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Dispatcher Login Tests">
+        <classes>
+            <class name="tests.DispatcherLoginTests">
+                <methods>
+                    <include name="loginWithValidCredentials"/>
+                    <include name="loginWithInvalidUser"/>
+                    <include name="loginWithInvalidPassword"/>
+                    <include name="logout"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Vendor Login Tests">
+        <classes>
+            <class name="tests.VendorLoginTests">
+                <methods>
+                    <include name="loginWithValidCredentials"/>
+                    <include name="loginWithInvalidUser"/>
+                    <include name="loginWithInvalidPassword"/>
+                    <include name="logout"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Viewer Login Tests">
+        <classes>
+            <class name="tests.ViewerLoginTests">
+                <methods>
+                    <include name="loginWithValidCredentials"/>
+                    <include name="loginWithInvalidUser"/>
+                    <include name="loginWithInvalidPassword"/>
+                    <include name="logout"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="User Login Tests">
+        <classes>
+            <class name="tests.UserLoginTests">
+                <methods>
+                    <include name="loginWithValidCredentials"/>
+                    <include name="loginWithInvalidUser"/>
+                    <include name="loginWithInvalidPassword"/>
+                    <include name="logout"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Admin Account Settings Tests">
+        <classes>
+            <class name="tests.AdminTests">
+                <methods>
+                    <include name="createNewAdmin"/>
+                    <include name="createNewAdminLogin"/>
+                    <include name="createNewAdminLoginEdit"/>
+                    <include name="createNewAdminLoginDisabled"/>
+                    <include name="createNewAdminLoginReEnable"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Dispatcher Accounts Setting Test">
+        <classes>
+            <class name="tests.DispatcherAccountSettingTestes">
+                <methods>
+                    <include name="createNewDispatcher"/>
+                    <include name="createNewDispatcherLogin"/>
+                    <include name="createNewDispatcherEdit"/>
+                    <include name="createNewDispatcherDisabled"/>
+                    <include name="createNewDispatcherReEnable"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Vendor Account Setting Test">
+        <classes>
+            <class name="tests.VendorAccountSettingTests">
+                <methods>
+                    <include name="createNewVendor"/>
+                    <include name="createNewVendorLogin"/>
+                    <include name="createNewVendorEdit"/>
+                    <include name="createNewVendorDisabled"/>
+                    <include name="createNewVendorReEnable"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Viewer Account Setting Tests">
+        <classes>
+            <class name="tests.ViewerAccountSettingTest">
+                <methods>
+                    <include name="createNewViewer"/>
+                    <include name="createNewViewerLogin"/>
+                    <include name="createNewViewerEdit"/>
+                    <include name="createNewViewerDisabled"/>
+                    <include name="createNewViewerReEnable"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="User Account Setting Tests">
+        <classes>
+            <class name="tests.UserAccountSettingTests">
+                <methods>
+                    <include name="createNewUser"/>
+                    <include name="createNewUserLogin"/>
+                    <include name="createNewUserEdit"/>
+                    <include name="createNewUserDisabled"/>
+                    <include name="createNewUserReEnable"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Stop Section Tests">
+        <classes>
+            <class name="tests.StopSectionTests">
+                <methods>
+                    <include name="createNewStop"/>
+                    <include name="createNewStopEditName"/>
+                    <include name="createNewStopEditCoordinate"/>
+                    <include name="createNewStopSearch"/>
+                    <include name="createNewStopDelete"/>
+                    <include name="createNewStopWithoutName"/>
+                    <include name="createNewStopWithoutCoordinates"/>
+                    <include name="createNewStopLinkToStopsUsingId"/>
+                    <include name="createNewStopView"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Admin Driver Tests">
+        <classes>
+            <class name="tests.AdminDriverTests">
+                <methods>
+                    <include name="createNewDriver"/>
+                    <include name="createNewDriverEditName"/>
+                    <include name="createNewDriverEditPin"/>
+                    <include name="createNewDriverDelete"/>
+                    <include name="createNewDriverUnDelete"/>
+                    <include name="createNewDriverWithoutName"/>
+                    <include name="createNewDriverWithoutPin"/>
+                    <include name="createNewDriverAddProperties"/>
+                    <include name="createNewDriverAddPropertiesDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
