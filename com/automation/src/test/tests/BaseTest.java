@@ -8,9 +8,6 @@ import pages.*;
 
 public class BaseTest {
 
-    protected ExamplePage examplePage;
-    protected ExampleDashboardPage exampleDashboardPage;
-    protected ExampleAddNewUserPage exampleAddNewUserPage;
 
     public static WebDriver driver;
 
@@ -29,8 +26,5 @@ public class BaseTest {
     }
 
     private void initPages(){
-        examplePage = new ExamplePage(driver);
-        exampleDashboardPage = new ExampleDashboardPage(driver);
-        exampleAddNewUserPage = new ExampleAddNewUserPage(driver);
     }
 }
