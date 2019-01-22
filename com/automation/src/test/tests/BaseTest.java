@@ -7,14 +7,14 @@ import org.testng.annotations.BeforeTest;
 import pages.*;
 
 public class BaseTest {
-
+    protected LoginPages loginPage;
 
     public static WebDriver driver;
 
     @BeforeTest
     public void setupTestRun(){
         driver = new DriverFactory().getDriver();
-        initPages();
+        loginPage = new LoginPages(driver);
     }
 
     @AfterTest
@@ -26,5 +26,6 @@ public class BaseTest {
     }
 
     private void initPages(){
+
     }
 }

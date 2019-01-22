@@ -36,7 +36,7 @@ public class DriverFactory {
     }
 
     private void initChromeDriverPath(){
-        String chromeDriverPath = System.getProperty("user.dir")+  "/com/swanqa/automationCourses/src/test/resources/drivers";
+        String chromeDriverPath = System.getProperty("user.dir")+  "/com/automation/src/resources/drivers";
 
         if (Utils.getSystemName().contains("Win")) {
             chromeDriverPath += "/windows/chromedriver.exe";
@@ -49,7 +49,7 @@ public class DriverFactory {
     }
 
     private void initInternetExplorerDriverPath(){
-        String internetExplorerPath = System.getProperty("user.dir") + "/src/test/resources/drivers";
+        String internetExplorerPath = System.getProperty("user.dir") + "/com/automation/src/resources/drivers";
 
         if (Utils.getSystemName().contains("Win")) {
             internetExplorerPath += "/windows/IEDriverServer.exe";
