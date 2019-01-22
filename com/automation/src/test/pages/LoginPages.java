@@ -5,16 +5,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPages extends BasePage {
-    private static final PageElement emailField = new PageElement(
+    private static final PageElement usernameFld = new PageElement(
             "Email Field ",
             By.cssSelector("input[data-ng-model='username']"),
             true);
 
-    private static final PageElement passwordField = new PageElement(
+    private static final PageElement userpasswordFld = new PageElement(
             "Password Field ",
             By.cssSelector("input[data-ng-model='password']"),
             true);
-    private static final PageElement logiInButton = new PageElement(
+    private static final PageElement logiInBtn = new PageElement(
             "Log in button",
             By.cssSelector("button[ng-hide='loggingIn']"),
             true);
@@ -25,14 +25,14 @@ public class LoginPages extends BasePage {
 
     @Override
     public boolean pageIsDisplayed(){
-        waitToBeVisible(logiInButton);
+        waitToBeVisible(logiInBtn);
         return allRequiredElementDisplayed();
     }
 
-    public void fillEmailField(String userEmail){enterText(emailField,userEmail);}
-    public void fillPasswordField(String userPassword){enterText(passwordField,userPassword);}
+    public void fillEmailField(String userEmail){enterText(usernameFld,userEmail);}
+    public void fillPasswordField(String userPassword){enterText(userpasswordFld,userPassword);}
     public void clickLogIn(){
-        click(logiInButton);
+        click(logiInBtn);
     }
     public void makeLogin(String userEmail, String userPassword){
         this.fillEmailField(userEmail);

@@ -14,7 +14,7 @@ public class BaseTest {
     @BeforeTest
     public void setupTestRun(){
         driver = new DriverFactory().getDriver();
-        loginPage = new LoginPages(driver);
+        initPages();
     }
 
     @AfterTest
@@ -26,6 +26,6 @@ public class BaseTest {
     }
 
     private void initPages(){
-
+        loginPage = new LoginPages(driver);
     }
 }
