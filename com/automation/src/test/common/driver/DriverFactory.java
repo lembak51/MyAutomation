@@ -1,18 +1,46 @@
 package common.driver;
 
+import common.AppiumConfig;
 import common.ProjectConfig;
 import common.Utils;
+
+import io.appium.java_client.windows.WindowsDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class DriverFactory {
     private String browser;
     private WebDriver driver;
     private Logger log = Logger.getLogger(this.getClass().getSimpleName());
+    protected static WindowsDriver desktop_driver;
+
+    public static WindowsDriver getInstance(){
+        try {
+            desktop_driver = new WindowsDriver(new URL(AppiumConfig.getAppiumUrl()), getCapabilities());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return desktop_driver;
+    }
+
+    private static DesiredCapabilities getCapabilities(){
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", AppiumConfig.getPlatformName());
+        capabilities.setCapability("deviceName", AppiumConfig.getTestDeviceName());
+        capabilities.setCapability("platformVersion", AppiumConfig.getPlatformVersion());
+        capabilities.setCapability("app","C:\\Program Files (x86)\\Kerauno\\Bolt\\bolt.exe");
+        capabilities.setCapability("newCommandTimeout", 5000);
+        return capabilities;
+    }
 
     public DriverFactory(){
         this.browser = new ProjectConfig().getBrowser();
