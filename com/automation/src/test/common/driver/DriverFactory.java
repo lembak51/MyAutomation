@@ -1,6 +1,6 @@
 package common.driver;
 
-import common.AppiumConfig;
+
 import common.ProjectConfig;
 import common.Utils;
 
@@ -25,7 +25,7 @@ public class DriverFactory {
 
     public static WindowsDriver getInstance(){
         try {
-            desktop_driver = new WindowsDriver(new URL(AppiumConfig.getAppiumUrl()), getCapabilities());
+            desktop_driver = new WindowsDriver(new URL(ProjectConfig.getAppiumUrl()), getCapabilities());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -34,17 +34,18 @@ public class DriverFactory {
 
     private static DesiredCapabilities getCapabilities(){
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("platformName", AppiumConfig.getPlatformName());
-        capabilities.setCapability("deviceName", AppiumConfig.getTestDeviceName());
-        capabilities.setCapability("platformVersion", AppiumConfig.getPlatformVersion());
-        capabilities.setCapability("app","C:\\Program Files (x86)\\Kerauno\\Bolt\\bolt.exe");
+        capabilities.setCapability("deviceName", ProjectConfig.getTestDeviceName());
+        capabilities.setCapability("app", "C:\\Program Files (x86)\\Kerauno\\Bolt\\bolt.exe");
         capabilities.setCapability("newCommandTimeout", 5000);
         return capabilities;
     }
 
     public DriverFactory() throws MalformedURLException{
         this.browser = new ProjectConfig().getBrowser();
-        this.desktop_driver = new WindowsDriver(new URL(AppiumConfig.getAppiumUrl()), getCapabilities());
+    }
+
+    protected void switchToDesktopDriver() throws MalformedURLException{
+        desktop_driver = new WindowsDriver(new URL(ProjectConfig.getAppiumUrl()), getCapabilities());
     }
 
     public WebDriver getDriver(){
@@ -65,7 +66,7 @@ public class DriverFactory {
     }
 
     private void initChromeDriverPath(){
-        String chromeDriverPath = System.getProperty("user.dir")+  "/com/automation/src/resources/drivers";
+        String chromeDriverPath = System.getProperty("user.dir") + "/com/automation/src/resources/drivers";
 
         if (Utils.getSystemName().contains("Win")) {
             chromeDriverPath += "/windows/chromedriver.exe";

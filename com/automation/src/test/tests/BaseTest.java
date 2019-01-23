@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     protected LoginPages loginPage;
-    protected LoginDesktopPage loginDesktopPage;
+    protected DesktopLoginPage desktopLoginPage;
 
     public static WebDriver driver;
     public static WindowsDriver desktop_driver;
@@ -48,6 +48,6 @@ public class BaseTest {
 
     private void initPages(){
         loginPage = new LoginPages(driver);
-        loginDesktopPage = new LoginDesktopPage(getDriver());
+        desktopLoginPage = new DesktopLoginPage(getDriver());
     }
 }

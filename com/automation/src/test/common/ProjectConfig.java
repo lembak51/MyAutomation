@@ -12,6 +12,8 @@ public class ProjectConfig {
     private static String baseUser;
     private static String baseUserPassword;
     private static String browser;
+    private static String appiumUrl;
+    private static String testDeviceName;
 
 
     public static String getBaseUrl(){
@@ -42,6 +44,20 @@ public class ProjectConfig {
         return browser;
     }
 
+    public static String getAppiumUrl(){
+        if (appiumUrl == null) {
+            initProperties();
+        }
+        return appiumUrl;
+    }
+
+    public static String getTestDeviceName(){
+        if (testDeviceName == null) {
+            initProperties();
+        }
+        return testDeviceName;
+    }
+
     private static void initProperties(){
         try {
             File file;
@@ -55,11 +71,14 @@ public class ProjectConfig {
             Properties properties = new Properties();
             properties.load(fileInput);
             fileInput.close();
-
+            //web properties
             baseUrl = properties.getProperty("base_url");
             baseUser = properties.getProperty("base_user");
             baseUserPassword = properties.getProperty("base_user_password");
             browser = properties.getProperty("browser_name");
+            //desktop properties
+            testDeviceName = properties.getProperty("device_name");
+            appiumUrl = properties.getProperty("appium_url");
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

@@ -12,6 +12,5 @@ public class LoginTest extends BaseTest {
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed());
         loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);
-        loginDesktopPage.clickOnSignInButton();
     }
 }

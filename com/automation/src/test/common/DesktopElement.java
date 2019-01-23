@@ -2,19 +2,19 @@ package common;
 
 import org.openqa.selenium.By;
 
-public class AppElement {
+public class DesktopElement {
 
     public final String name;
     public final By locator;
     public final boolean required;
 
-    public AppElement(String name, By locator, boolean required){
+    public DesktopElement(String name, By locator, boolean required){
         this.name = name;
         this.locator = locator;
         this.required = required;
     }
 
-    public AppElement(String name, By locator){
+    public DesktopElement(String name, By locator){
         this(name, locator, false);
     }
 
