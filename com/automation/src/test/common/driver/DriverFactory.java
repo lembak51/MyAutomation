@@ -42,8 +42,9 @@ public class DriverFactory {
         return capabilities;
     }
 
-    public DriverFactory(){
+    public DriverFactory() throws MalformedURLException{
         this.browser = new ProjectConfig().getBrowser();
+        this.desktop_driver = new WindowsDriver(new URL(AppiumConfig.getAppiumUrl()), getCapabilities());
     }
 
     public WebDriver getDriver(){
