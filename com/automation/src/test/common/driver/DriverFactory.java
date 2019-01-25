@@ -21,7 +21,7 @@ public class DriverFactory {
     private String browser;
     private WebDriver driver;
     private Logger log = Logger.getLogger(this.getClass().getSimpleName());
-    protected static WindowsDriver desktop_driver;
+    private static WindowsDriver desktop_driver;
 
     public static WindowsDriver getInstance(){
         try {
@@ -42,8 +42,7 @@ public class DriverFactory {
 
     public DriverFactory() throws MalformedURLException{
         this.browser = new ProjectConfig().getBrowser();
-        this.desktop_driver = new WindowsDriver(new URL(ProjectConfig.getAppiumUrl()), getCapabilities());
-
+       // this.desktop_driver = new WindowsDriver(new URL(ProjectConfig.getAppiumUrl()), getCapabilities());
     }
 
     public WebDriver getDriver(){

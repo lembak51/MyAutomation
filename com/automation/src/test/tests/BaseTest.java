@@ -22,7 +22,7 @@ public class BaseTest {
     public static WindowsDriver desktop_driver;
 
     protected void switchToDesktopDriver(){
-        desktop_driver = getDriver();
+        desktop_driver = getDesktopDriver();
     }
 
     @BeforeTest
@@ -33,13 +33,11 @@ public class BaseTest {
 
     @AfterTest
     public void turnDown(){
-        if (driver != null) {
+        if (driver != null || desktop_driver != null) {
             driver.quit();
-            driver = null;
-        }
-        if (desktop_driver != null) {
             desktop_driver.quit();
             desktop_driver = null;
+            driver = null;
         }
     }
 
@@ -48,7 +46,7 @@ public class BaseTest {
         initPages();
     }
 
-    public WindowsDriver getDriver(){
+    public WindowsDriver getDesktopDriver(){
         if (desktop_driver == null) {
             desktop_driver = DriverFactory.getInstance();
             desktop_driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
@@ -58,8 +56,6 @@ public class BaseTest {
 
     private void initPages(){
         loginPage = new LoginPages(driver);
-        desktopLoginPage = new DesktopLoginPage(getDriver());
+        desktopLoginPage = new DesktopLoginPage(getDesktopDriver());
     }
-
-
 }

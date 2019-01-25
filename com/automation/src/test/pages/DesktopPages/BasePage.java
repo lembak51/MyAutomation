@@ -9,25 +9,25 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
-    public WindowsDriver driver;
+    public WindowsDriver desktop_driver;
     public boolean doLogging = true;
     protected Logger log;
 
     BasePage(WindowsDriver driver){
-        this.driver = driver;
+        this.desktop_driver = driver;
         if (log == null) {
             log = Logger.getLogger(this.getClass().getName());
         }
     }
 
     public BasePage(BasePage page){
-        this(page.driver);
+        this(page.desktop_driver);
         log = Logger.getLogger(page.getClass().getName());
     }
 
 
     public WebElement find(By element){
-        return this.driver.findElement(element);
+        return this.desktop_driver.findElement(element);
     }
 
     public WebElement find(DesktopElement element){
@@ -40,7 +40,7 @@ public abstract class BasePage {
     }
 
     public void waitToBeClickable(By element, int timeout){
-        WebDriverWait wait = new WebDriverWait(this.driver, timeout);
+        WebDriverWait wait = new WebDriverWait(this.desktop_driver, timeout);
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
