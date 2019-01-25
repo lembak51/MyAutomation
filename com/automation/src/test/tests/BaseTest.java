@@ -14,6 +14,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import static common.driver.DriverFactory.getCapabilities;
+
 public class BaseTest {
     protected LoginPages loginPage;
     protected DesktopLoginPage desktopLoginPage;
@@ -21,13 +23,14 @@ public class BaseTest {
     public static WebDriver driver;
     public static WindowsDriver desktop_driver;
 
-    protected void switchToDesktopDriver(){
-        desktop_driver = getDesktopDriver();
+    protected void switchToDesktopDriver() throws MalformedURLException{
+        this.desktop_driver = new WindowsDriver(new URL(ProjectConfig.getAppiumUrl()), getCapabilities());
     }
 
     @BeforeTest
     public void setupTestRun() throws MalformedURLException{
         driver = new DriverFactory().getDriver();
+        desktop_driver = getDesktopDriver();
         initPages();
     }
 
