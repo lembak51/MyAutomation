@@ -1,14 +1,17 @@
 package tests;
 
+import common.ProjectConfig;
 import common.driver.DriverFactory;
 import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
-import pages.*;
+import pages.DesktopPages.DesktopLoginPage;
+import pages.WebPages.LoginPages;
 
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
@@ -18,10 +21,13 @@ public class BaseTest {
     public static WebDriver driver;
     public static WindowsDriver desktop_driver;
 
+    protected void switchToDesktopDriver(){
+        desktop_driver = getDriver();
+    }
+
     @BeforeTest
     public void setupTestRun() throws MalformedURLException{
         driver = new DriverFactory().getDriver();
-        desktop_driver = getDriver();
         initPages();
     }
 
@@ -30,6 +36,10 @@ public class BaseTest {
         if (driver != null) {
             driver.quit();
             driver = null;
+        }
+        if (desktop_driver != null) {
+            desktop_driver.quit();
+            desktop_driver = null;
         }
     }
 
@@ -50,4 +60,6 @@ public class BaseTest {
         loginPage = new LoginPages(driver);
         desktopLoginPage = new DesktopLoginPage(getDriver());
     }
+
+
 }

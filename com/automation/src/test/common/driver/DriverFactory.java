@@ -32,7 +32,7 @@ public class DriverFactory {
         return desktop_driver;
     }
 
-    private static DesiredCapabilities getCapabilities(){
+    public static DesiredCapabilities getCapabilities(){
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", ProjectConfig.getTestDeviceName());
         capabilities.setCapability("app", "C:\\Program Files (x86)\\Kerauno\\Bolt\\bolt.exe");
@@ -42,10 +42,8 @@ public class DriverFactory {
 
     public DriverFactory() throws MalformedURLException{
         this.browser = new ProjectConfig().getBrowser();
-    }
+        this.desktop_driver = new WindowsDriver(new URL(ProjectConfig.getAppiumUrl()), getCapabilities());
 
-    protected void switchToDesktopDriver() throws MalformedURLException{
-        desktop_driver = new WindowsDriver(new URL(ProjectConfig.getAppiumUrl()), getCapabilities());
     }
 
     public WebDriver getDriver(){

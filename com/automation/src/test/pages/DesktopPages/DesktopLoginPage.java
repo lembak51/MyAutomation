@@ -1,10 +1,10 @@
-package pages;
+package pages.DesktopPages;
 
 import common.DesktopElement;
 import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.By;
 
-public class DesktopLoginPage extends BaseDesktopPage {
+public class DesktopLoginPage extends BasePage {
     private static final DesktopElement signInBtn = new DesktopElement(
             "Sing In button",
             By.name("Sign In"),
@@ -12,5 +12,9 @@ public class DesktopLoginPage extends BaseDesktopPage {
 
     public DesktopLoginPage(WindowsDriver driver){
         super(driver);
+    }
+    public void clickToSignInButton(){
+        waitToBeClickable(signInBtn);
+        click(signInBtn);
     }
 }

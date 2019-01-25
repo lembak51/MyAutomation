@@ -1,4 +1,4 @@
-package pages;
+package pages.DesktopPages;
 
 import common.DesktopElement;
 import io.appium.java_client.windows.WindowsDriver;
@@ -8,19 +8,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public abstract class BaseDesktopPage {
+public abstract class BasePage {
     public WindowsDriver driver;
     public boolean doLogging = true;
     protected Logger log;
 
-    public BaseDesktopPage(WindowsDriver driver){
+    BasePage(WindowsDriver driver){
         this.driver = driver;
         if (log == null) {
             log = Logger.getLogger(this.getClass().getName());
         }
     }
 
-    public BaseDesktopPage(BaseDesktopPage page){
+    public BasePage(BasePage page){
         this(page.driver);
         log = Logger.getLogger(page.getClass().getName());
     }
