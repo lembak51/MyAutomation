@@ -13,6 +13,7 @@ public class DesktopLoginPage extends BasePage {
     public DesktopLoginPage(WindowsDriver driver){
         super(driver);
     }
+
     public void clickToSignInButton(){
         waitToBeClickable(signInBtn);
         click(signInBtn);

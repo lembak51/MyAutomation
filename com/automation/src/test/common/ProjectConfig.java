@@ -3,7 +3,6 @@ package common;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -12,8 +11,10 @@ public class ProjectConfig {
     private static String baseUser;
     private static String baseUserPassword;
     private static String browser;
-    private static String appiumUrl;
+    private static String appiumIP;
+    private static String appiumPort;
     private static String testDeviceName;
+    private static String appPath;
 
 
     public static String getBaseUrl(){
@@ -45,10 +46,22 @@ public class ProjectConfig {
     }
 
     public static String getAppiumUrl(){
-        if (appiumUrl == null) {
+        String appiumUrl ="http://" + getAppiumIP() + ":" + getAppiumPort() + "/wd/hub";
+        return appiumUrl;
+    }
+
+    public static String getAppiumIP(){
+        if (appiumIP == null) {
             initProperties();
         }
-        return appiumUrl;
+        return appiumIP;
+    }
+
+    public static int getAppiumPort(){
+        if (appiumPort == null) {
+            initProperties();
+        }
+        return Integer.parseInt(appiumPort);
     }
 
     public static String getTestDeviceName(){
@@ -56,6 +69,13 @@ public class ProjectConfig {
             initProperties();
         }
         return testDeviceName;
+    }
+
+    public static String getAppPath(){
+        if (appPath == null) {
+            initProperties();
+        }
+        return appPath;
     }
 
     private static void initProperties(){
@@ -66,7 +86,6 @@ public class ProjectConfig {
             } else {
                 file = new File("ConfigProject.properties");
             }
-
             FileInputStream fileInput = new FileInputStream(file);
             Properties properties = new Properties();
             properties.load(fileInput);
@@ -78,10 +97,9 @@ public class ProjectConfig {
             browser = properties.getProperty("browser_name");
             //desktop properties
             testDeviceName = properties.getProperty("device_name");
-            appiumUrl = properties.getProperty("appium_url");
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            appiumIP = properties.getProperty("appium_IP");
+            appiumPort = properties.getProperty("appium_port");
+            appPath = properties.getProperty("app_path");
         } catch (IOException e) {
             e.printStackTrace();
         }
