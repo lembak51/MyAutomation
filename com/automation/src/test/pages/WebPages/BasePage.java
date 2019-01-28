@@ -1,4 +1,4 @@
-package pages.WebPages;
+package pages.webPages;
 
 import com.google.common.base.Function;
 import common.PageElement;

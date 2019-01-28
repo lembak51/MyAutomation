@@ -11,3 +11,5 @@ allure-results/
 # Maven
 target/
 test-output/
+
+ConfigProjectLocal.properties

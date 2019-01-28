@@ -6,8 +6,8 @@ import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import pages.DesktopPages.DesktopLoginPage;
-import pages.WebPages.LoginPages;
+import pages.desktopPages.DesktopLoginPage;
+import pages.webPages.LoginPages;
 
 
 public class BaseTest {
