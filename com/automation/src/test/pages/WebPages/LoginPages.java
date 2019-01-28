@@ -1,15 +1,15 @@
-package pages;
+package pages.WebPages;
 
 import common.PageElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.WebPages.BasePage;
 
 public class LoginPages extends BasePage {
     private static final PageElement usernameFld = new PageElement(
             "Email Field ",
             By.cssSelector("input[data-ng-model='username']"),
             true);
-
     private static final PageElement userpasswordFld = new PageElement(
             "Password Field ",
             By.cssSelector("input[data-ng-model='password']"),
@@ -29,11 +29,18 @@ public class LoginPages extends BasePage {
         return allRequiredElementDisplayed();
     }
 
-    public void fillEmailField(String userEmail){enterText(usernameFld,userEmail);}
-    public void fillPasswordField(String userPassword){enterText(userpasswordFld,userPassword);}
+    public void fillEmailField(String userEmail){
+        enterText(usernameFld, userEmail);
+    }
+
+    public void fillPasswordField(String userPassword){
+        enterText(userpasswordFld, userPassword);
+    }
+
     public void clickLogIn(){
         click(logiInBtn);
     }
+
     public void makeLogin(String userEmail, String userPassword){
         this.fillEmailField(userEmail);
         this.fillPasswordField(userPassword);

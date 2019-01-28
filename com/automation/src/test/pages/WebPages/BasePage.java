@@ -1,4 +1,4 @@
-package pages;
+package pages.WebPages;
 
 import com.google.common.base.Function;
 import common.PageElement;
@@ -19,7 +19,7 @@ public abstract class BasePage {
     protected Logger log;
 
 
-    public BasePage(WebDriver driver){
+    BasePage(WebDriver driver){
         this.driver = driver;
         log = Logger.getLogger(this.getClass().getCanonicalName());
     }
