@@ -1,9 +1,8 @@
-package pages.WebPages;
+package pages.webPages;
 
 import common.PageElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pages.WebPages.BasePage;
 
 public class LoginPages extends BasePage {
     private static final PageElement usernameFld = new PageElement(

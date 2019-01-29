@@ -1,4 +1,4 @@
-package pages.DesktopPages;
+package pages.desktopPages;
 
 import common.DesktopElement;
 import io.appium.java_client.windows.WindowsDriver;
@@ -37,11 +37,11 @@ abstract class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    protected void waitToBeClickable(By element) {
+    protected void waitToBeClickable(By element){
         this.waitToBeClickable(element, 30);
     }
 
-    protected void waitToBeClickable(DesktopElement element, int timeout) {
+    protected void waitToBeClickable(DesktopElement element, int timeout){
         this.waitToBeClickable(element.getLocator(), timeout);
     }
 

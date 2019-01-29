@@ -14,6 +14,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 
 import java.util.HashMap;
@@ -58,6 +59,14 @@ public class DriverFactory {
             initInternetExplorerDriverPath();
             setInternetExplorerCapabilities();
             driver = new InternetExplorerDriver(capabilities);
+        } else if (browser.equalsIgnoreCase("Firefox")) {
+            initFirefoxDriverPath();
+            setFirefoxCapabilities();
+            driver = new FirefoxDriver(capabilities);
+        } else if (browser.equalsIgnoreCase("Safari")) {
+            initSafariDriverPath();
+            setSafariCapabilities();
+            driver = new SafariDriver(capabilities);
         }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -77,11 +86,38 @@ public class DriverFactory {
             chromeDriverPath += "/linux/chromedriver";
         }
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-
     }
 
     /**
-     * initInternetExplorerDriverPath method initialize chrome driver on following OS
+     * initFirefoxDriverPath method initialize firefox driver on following OS
+     */
+    private void initFirefoxDriverPath(){
+        String firefoxDriverPath = System.getProperty("user.dir") + "/com/automation/src/resources/drivers";
+        if (Utils.getSystemName().contains("Win")) {
+            firefoxDriverPath += "/windows/geckodriver.exe";
+        } else if (Utils.getSystemName().contains("Mac")) {
+            firefoxDriverPath += "/mac/geckodriver";
+        } else {
+            log.info("I'm lazy to find a driver for Linux, and we do not even need it");
+        }
+        System.setProperty("webdriver.firefox.driver", firefoxDriverPath);
+    }
+
+    /**
+     * initSafariDriverPath method initialize safari driver on following OS
+     */
+    private void initSafariDriverPath(){
+        String safariDriverPath = System.getProperty("user.dir") + "/com/automation/src/resources/drivers";
+        if (Utils.getSystemName().contains("Mac")) {
+            safariDriverPath += "/mac/SafariDriver.safariextz";
+        } else {
+            log.info("Safari doesn't supported by Windows and Linux");
+        }
+        System.setProperty("webdriver.safari.driver", safariDriverPath);
+    }
+
+    /**
+     * initInternetExplorerDriverPath method initialize ie driver on following OS
      */
     private void initInternetExplorerDriverPath(){
         String internetExplorerPath = System.getProperty("user.dir") + "/com/automation/src/resources/drivers";
@@ -95,7 +131,6 @@ public class DriverFactory {
         }
         System.setProperty("webdriver.ie.driver", internetExplorerPath);
     }
-
 
     /**
      * setChromeCapabilities method set chrome capabilities to the web driver
@@ -125,7 +160,7 @@ public class DriverFactory {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         FirefoxProfile firefoxProfile = new FirefoxProfile();
 
-        firefoxProfile.setPreference("browser.autofocus",true);
+        firefoxProfile.setPreference("browser.autofocus", true);
         firefoxProfile.setPreference("dom.disable_open_during_load", false);
         capabilities.setCapability(FirefoxDriver.PROFILE, firefoxProfile);
         capabilities.setCapability("marionette", true);
@@ -145,7 +180,6 @@ public class DriverFactory {
         //TODO implementation to add commands to command lin from disable pop-up blocking
     }
 
-
     /**
      * setSafariCapabilities method set Safari capabilities to the web driver
      */
@@ -155,8 +189,8 @@ public class DriverFactory {
         SafariOptions safariOptions = new SafariOptions();
         safariOptions.setUseCleanSession(true);
 
-        capabilities.setCapability(SafariOptions.CAPABILITY,safariOptions);
-        capabilities.setCapability("autoAcceptAlerts",true);
+        capabilities.setCapability(SafariOptions.CAPABILITY, safariOptions);
+        capabilities.setCapability("autoAcceptAlerts", true);
         //TODO implementation to add commands to command line from disable pop-up blocking
     }
 

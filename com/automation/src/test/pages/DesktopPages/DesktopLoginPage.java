@@ -1,4 +1,4 @@
-package pages.DesktopPages;
+package pages.desktopPages;
 
 import common.DesktopElement;
 import io.appium.java_client.windows.WindowsDriver;
