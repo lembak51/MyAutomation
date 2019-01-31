@@ -4,14 +4,19 @@ import common.AppiumServerJava;
 import common.driver.DriverFactory;
 import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import pages.desktopPages.DesktopLoginPage;
-import pages.webPages.LoginPages;
+import pages.webPages.LoginPage;
 
+
+
+import pages.webPages.DashboardPage;
 
 public class BaseTest {
-    protected LoginPages loginPage;
+    protected LoginPage loginPage;
+    protected DashboardPage dashboardPage;
     protected DesktopLoginPage desktopLoginPage;
 
     public static WebDriver driver;
@@ -21,6 +26,12 @@ public class BaseTest {
     public void setupTestRun() {
         driver = new DriverFactory().getDriver();
         initPages();
+    }
+
+    @AfterMethod
+    public void logoutAfterTest(){
+        if(!loginPage.isLogInButtonDisplayed())
+            dashboardPage.logout();
     }
 
     @AfterTest
@@ -43,8 +54,8 @@ public class BaseTest {
     }
 
     private void initPages() {
-        loginPage = new LoginPages(driver);
-
+        loginPage = new LoginPage(driver);
+        dashboardPage = new DashboardPage(driver);
     }
 
     private void initDesktopPages() {

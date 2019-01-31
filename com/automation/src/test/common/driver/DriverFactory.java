@@ -98,9 +98,9 @@ public class DriverFactory {
         } else if (Utils.getSystemName().contains("Mac")) {
             firefoxDriverPath += "/mac/geckodriver";
         } else {
-            log.info("I'm lazy to find a driver for Linux, and we do not even need it");
+            log.info("Firefox we not supported by Linux");
         }
-        System.setProperty("webdriver.firefox.driver", firefoxDriverPath);
+        System.setProperty("webdriver.gecko.driver", firefoxDriverPath);
     }
 
     /**
