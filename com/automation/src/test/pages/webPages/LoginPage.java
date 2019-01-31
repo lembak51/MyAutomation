@@ -46,16 +46,16 @@ public class LoginPage extends BasePage {
     }
 
     public void makeLogin(String userEmail, String userPassword){
-        this.fillFieldUsername(userEmail);
-        this.fillFieldPassword(userPassword);
-        this.clickLogIn();
+        fillFieldUsername(userEmail);
+        fillFieldPassword(userPassword);
+        clickLogIn();
     }
 
     public void makeLoginWithRememberME(String userEmail, String userPassword){
-        this.fillFieldUsername(userEmail);
-        this.fillFieldPassword(userPassword);
+        fillFieldUsername(userEmail);
+        fillFieldPassword(userPassword);
         click(rememberMeChb);
-        this.clickLogIn();
+        clickLogIn();
     }
 
     public void loginWithEmptyField(){
