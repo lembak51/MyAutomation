@@ -72,8 +72,7 @@ public class LoginPage extends BasePage {
 
     public String getTextFromEmailField(){
         waitToBeVisible(usernameFld);
-        String UserEmail = getAttribute(usernameFld, "value");
-        return UserEmail;
+        return getAttribute(usernameFld, "value");
     }
 
     public boolean isLogInButtonDisplayed(){

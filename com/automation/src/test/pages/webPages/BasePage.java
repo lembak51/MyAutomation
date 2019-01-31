@@ -19,8 +19,6 @@ abstract class BasePage {
 
     private WebDriver driver;
     protected Logger log;
-
-
     BasePage(WebDriver driver){
         this.driver = driver;
         log = Logger.getLogger(this.getClass().getCanonicalName());
@@ -283,15 +281,6 @@ abstract class BasePage {
     public String getAttribute(PageElement element, String attribute) {
         return driver.findElement(element.locator).getAttribute(attribute);
     }
-
-    private PageElement loadElement = new PageElement(
-            "Load Element",
-            By.cssSelector("li[ng-show='loading']>div[class='loading']"),
-            false);
-    private PageElement photoElement = new PageElement(
-            "Photo in Profile Section",
-            By.cssSelector("img[class='img-circle img30_30']"),
-            false);
 
     public void waitUntilPageLoad() {
         try {

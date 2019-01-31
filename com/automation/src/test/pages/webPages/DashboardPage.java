@@ -31,6 +31,5 @@ public class DashboardPage extends BasePage {
         click(userProfileDdb);
         waitToBeClickable(logoutBtn);
         click(logoutBtn);
-
     }
 }
