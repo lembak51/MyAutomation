@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Expedite Testes" preserve-order="true">
+    <listeners>
+        <listener class-name="common.testHelper.FailureRetryListener"/>
+        <listener class-name="common.testHelper.TestListener"/>
+    </listeners>
+    <test name="Login Test">
+        <classes>
+            <class name="tests.LoginTest">
+                <methods>
+                    <include name="logInIncorrectPassword"/>
+                    <include name="logInWithoutRememberME"/>
+                    <include name="loginEmptyFields"/>
+                    <include name="logInViaRememberME"/>
+                    <include name="logInIncorrectEmail"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+</suite>
