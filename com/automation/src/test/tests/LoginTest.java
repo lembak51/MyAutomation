@@ -39,8 +39,6 @@ public class LoginTest extends BaseTest {
     public void logInIncorrectPassword(){
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed());
-        loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);
-        Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
         loginPage.makeLogin(Config.BASE_USERNAME, Config.INCORRECT_PASSWORD);//Replace step
         Assert.assertTrue(loginPage.alertText(), "Alert should be present with text");
         loginPage.acceptAlert();
