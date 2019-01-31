@@ -10,15 +10,16 @@ import org.openqa.selenium.support.ui.*;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-abstract class BasePage {
+public abstract class BasePage {
 
-    private WebDriver driver;
+    protected WebDriver driver;
     protected Logger log;
 
-    BasePage(WebDriver driver){
+    protected BasePage(WebDriver driver){
         this.driver = driver;
         log = Logger.getLogger(this.getClass().getCanonicalName());
     }
@@ -287,5 +288,39 @@ abstract class BasePage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+    public boolean isElementsSorted(PageElement arrowButton, PageElement element, String order){
+        ArrayList<String> obtainedList = new ArrayList<>();
+        List<WebElement> elementList = findAll(element);
+        for (WebElement we : elementList) {
+            //obtainedList.add(we.getText().toUpperCase());
+            obtainedList.add(we.getText());
+        }
+        if (order == "By asc") {
+            waitToBeClickable(arrowButton);
+            click(arrowButton);
+        } else if (order == "By desc") {
+            waitToBeClickable(arrowButton);
+            click(arrowButton);
+            click(arrowButton);
+        } else System.out.println("Please choose type of sort");
+        List<WebElement> elementList1 = findAll(element);
+        ArrayList<String> obtainedAfterClickList = new ArrayList<>();
+        for (WebElement we : elementList1) {
+            //obtainedAfterClickList.add(we.getText().toUpperCase());
+            obtainedAfterClickList.add(we.getText());
+        }
+        ArrayList<String> sortedList = new ArrayList<>();
+        for (String s : obtainedList) {
+            sortedList.add(s);
+        }
+        if (order == "By asc")
+            Collections.sort(sortedList);
+        else if (order == "By desc") Collections.sort(sortedList, Collections.reverseOrder());
+        else System.out.println("Please choose type of sort");
+        System.out.println(obtainedList);
+        System.out.println(obtainedAfterClickList);
+        System.out.println(sortedList);
+        return obtainedAfterClickList.equals(sortedList);
     }
 }
