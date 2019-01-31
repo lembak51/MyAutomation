@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
 
-    @Test(description = "SQE-292 Log in (without Remember Me option", priority = 1)
+    @Test(description = "SQE-292 Log in (without Remember Me option", priority = 2)
     public void logInWithoutRememberME(){
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
@@ -15,7 +15,7 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
     }
 
-    @Test(description = "SQE-298 Log in, (Empty fields)", priority = 2)
+    @Test(description = "SQE-298 Log in, (Empty fields)", priority = 3)
     public void loginEmptyFields(){
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
@@ -25,7 +25,7 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(loginPage.pageIsDisplayed(),"Login page should be displayed");
     }
 
-    @Test(description = "SQE-297 Log in (incorrect email)", priority = 3)
+    @Test(description = "SQE-297 Log in (incorrect email)", priority = 5)
     public void logInIncorrectEmail(){
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
@@ -35,7 +35,7 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login page should be displayed");
     }
 
-    @Test(description = "SQE-296 Log in (incorrect password)", priority = 4)
+    @Test(description = "SQE-296 Log in (incorrect password)", priority = 1)
     public void logInIncorrectPassword(){
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed());
@@ -45,7 +45,7 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login page should be displayed");
     }
 
-    @Test(description = "SQE-293 Log in (via Remember Me option", priority = 5)
+    @Test(description = "SQE-293 Log in (via Remember Me option", priority = 4)
     public void logInViaRememberME(){
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");

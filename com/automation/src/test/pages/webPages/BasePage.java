@@ -13,12 +13,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static common.Utils.sleep;
-
 abstract class BasePage {
 
     private WebDriver driver;
     protected Logger log;
+
     BasePage(WebDriver driver){
         this.driver = driver;
         log = Logger.getLogger(this.getClass().getCanonicalName());
@@ -27,16 +26,16 @@ abstract class BasePage {
     public abstract boolean pageIsDisplayed();
 
 
-    public String getText(PageElement pageElement) {
+    public String getText(PageElement pageElement){
         log.info("Getting text of element: " + pageElement.name);
         return this.find(pageElement).getText();
     }
 
-    public void enterText(PageElement pageElement, String text) {
+    public void enterText(PageElement pageElement, String text){
         this.enterText(pageElement, text, true);
     }
 
-    public void enterText(PageElement pageElement, String text, boolean clearField) {
+    public void enterText(PageElement pageElement, String text, boolean clearField){
         log.info("Entering text \"" + text + "\" to element: " + pageElement.name);
         this.find(pageElement).click();
         if (clearField) {
@@ -45,24 +44,24 @@ abstract class BasePage {
         this.find(pageElement).sendKeys(text);
     }
 
-    public void click(PageElement pageElement) {
+    public void click(PageElement pageElement){
         log.info("Clicking on element: " + pageElement.name);
         this.find(pageElement).click();
     }
 
-    public WebElement find(By element) {
+    public WebElement find(By element){
         return this.driver.findElement(element);
     }
 
-    public WebElement find(PageElement element) {
+    public WebElement find(PageElement element){
         return this.find(element.getLocator());
     }
 
-    public List<WebElement> findAll(By element) {
+    public List<WebElement> findAll(By element){
         return this.driver.findElements(element);
     }
 
-    public List<WebElement> findAll(PageElement element) {
+    public List<WebElement> findAll(PageElement element){
         return this.findAll(element.getLocator());
     }
 
@@ -71,7 +70,7 @@ abstract class BasePage {
      *
      * @return a list of all the elements in this object.
      */
-    public List<PageElement> getElements() {
+    public List<PageElement> getElements(){
         List<PageElement> elements = new ArrayList<PageElement>();
         for (Field field : this.getClass().getDeclaredFields()) {
             if (field.getType().getSimpleName().equals("PageElement")) {
@@ -92,7 +91,7 @@ abstract class BasePage {
      *
      * @return an array of the required elements on this page.
      */
-    public List<PageElement> getRequiredElements() {
+    public List<PageElement> getRequiredElements(){
         ArrayList<PageElement> requiredElements = new ArrayList<PageElement>();
         for (PageElement ele : this.getElements()) {
             if (ele.required) {
@@ -107,7 +106,7 @@ abstract class BasePage {
      *
      * @return all the elements in the array that were not visible.
      */
-    public ArrayList<PageElement> getMissingRequiredElements(List<PageElement> requiredElements) {
+    public ArrayList<PageElement> getMissingRequiredElements(List<PageElement> requiredElements){
         ArrayList<PageElement> elements = new ArrayList<PageElement>(requiredElements);
         for (PageElement ele : requiredElements) {
             if (this.isElementPresent(ele)) {
@@ -119,12 +118,12 @@ abstract class BasePage {
         return elements;
     }
 
-    protected boolean allRequiredElementDisplayed() {
+    protected boolean allRequiredElementDisplayed(){
         log.info("Checking if all required elements present on page");
         return this.getMissingRequiredElements(this.getRequiredElements()).isEmpty();
     }
 
-    public boolean isElementPresent(By element) {
+    public boolean isElementPresent(By element){
         boolean elementFound;
         try {
             this.find(element);
@@ -135,7 +134,7 @@ abstract class BasePage {
         return elementFound;
     }
 
-    public boolean isElementPresent(PageElement element) {
+    public boolean isElementPresent(PageElement element){
         return this.isElementPresent(element.getLocator());
     }
 
@@ -145,27 +144,27 @@ abstract class BasePage {
      * @param element the By object representing the element to wait for.
      * @param timeout the length of time in seconds to wait, as an integer.
      */
-    public void waitToBeVisible(final By element, int timeout) {
+    public void waitToBeVisible(final By element, int timeout){
         Wait<WebDriver> wait = new FluentWait<WebDriver>(this.driver)
                 .withTimeout(timeout, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS)
                 .ignoreAll(Arrays.asList(ElementNotVisibleException.class, NoSuchElementException.class, StaleElementReferenceException.class, WebDriverException.class));
         wait.until(new Function<WebDriver, WebElement>() {
-            public WebElement apply(WebDriver input) {
+            public WebElement apply(WebDriver input){
                 return input.findElement(element);
             }
         });
     }
 
-    public void waitToBeVisible(By element) {
+    public void waitToBeVisible(By element){
         this.waitToBeVisible(element, 30);
     }
 
-    public void waitToBeVisible(PageElement element, int timeout) {
+    public void waitToBeVisible(PageElement element, int timeout){
         this.waitToBeVisible(element.getLocator(), timeout);
     }
 
-    public void waitToBeVisible(PageElement element) {
+    public void waitToBeVisible(PageElement element){
         this.waitToBeVisible(element.getLocator(), 30);
     }
 
@@ -175,21 +174,21 @@ abstract class BasePage {
      * @param element the By object representing the element to wait for.
      * @param timeout the length of time in seconds to wait, as an integer.
      */
-    public void waitToBeInvisible(By element, int timeout) {
+    public void waitToBeInvisible(By element, int timeout){
         WebDriverWait wait = new WebDriverWait(this.driver, timeout);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(element));
     }
 
-    public void waitToBeInvisible(By element) {
+    public void waitToBeInvisible(By element){
         this.waitToBeInvisible(element, 60);
     }
 
-    public void waitToBeInvisible(PageElement element, int timeout) {
+    public void waitToBeInvisible(PageElement element, int timeout){
         log.info("Wait to be invisible " + element.name + " ...");
         this.waitToBeInvisible(element.getLocator(), timeout);
     }
 
-    public void waitToBeInvisible(PageElement element) {
+    public void waitToBeInvisible(PageElement element){
         this.waitToBeInvisible(element.getLocator(), 60);
     }
 
@@ -199,20 +198,20 @@ abstract class BasePage {
      * @param element the By object representing the element to wait for.
      * @param timeout the length of time in seconds to wait, as an integer.
      */
-    public void waitToBeClickable(By element, int timeout) {
+    public void waitToBeClickable(By element, int timeout){
         WebDriverWait wait = new WebDriverWait(this.driver, timeout);
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void waitToBeClickable(By element) {
+    public void waitToBeClickable(By element){
         this.waitToBeClickable(element, 30);
     }
 
-    public void waitToBeClickable(PageElement element, int timeout) {
+    public void waitToBeClickable(PageElement element, int timeout){
         this.waitToBeClickable(element.getLocator(), timeout);
     }
 
-    public void waitToBeClickable(PageElement element) {
+    public void waitToBeClickable(PageElement element){
         this.waitToBeClickable(element.getLocator(), 30);
     }
 
@@ -222,36 +221,36 @@ abstract class BasePage {
      * @param element the By object representing the element to wait for.
      * @param timeout the length of time in seconds to wait, as an integer.
      */
-    public void waitToBePresent(By element, int timeout) {
+    public void waitToBePresent(By element, int timeout){
         WebDriverWait wait = new WebDriverWait(this.driver, timeout);
         wait.until(ExpectedConditions.presenceOfElementLocated(element));
     }
 
-    public void waitToBePresent(By element) {
+    public void waitToBePresent(By element){
         this.waitToBePresent(element, 30);
     }
 
-    public void waitToBePresent(PageElement element, int timeout) {
+    public void waitToBePresent(PageElement element, int timeout){
         this.waitToBePresent(element.getLocator(), timeout);
     }
 
-    public void waitToBePresent(PageElement element) {
+    public void waitToBePresent(PageElement element){
         this.waitToBePresent(element.getLocator(), 30);
     }
 
-    public void selectFromSelectBox(PageElement selectBox, String value) {
+    public void selectFromSelectBox(PageElement selectBox, String value){
         log.info("Selecting \"" + value + "\" from: " + selectBox.name);
         Select dropdown = new Select(find(selectBox));
         dropdown.selectByVisibleText(value);
     }
 
-    public void selectFromDropdown(WebElement dropdown) {
+    public void selectFromDropdown(WebElement dropdown){
         Select listDropdown = new Select(dropdown);
         List<WebElement> list = listDropdown.getOptions();
         listDropdown.selectByIndex(Utils.getRandomInteger(list.size()));
     }
 
-    public void waitToBeAlertPresent(int timeout ) {
+    public void waitToBeAlertPresent(int timeout){
         try {
             WebDriverWait wait = new WebDriverWait(driver, timeout);
             wait.until(ExpectedConditions.alertIsPresent());
@@ -259,6 +258,7 @@ abstract class BasePage {
             log.info("No Alert Present");
         }
     }
+
     public String getTextFromAlert(){
         Alert alert = driver.switchTo().alert();
         String alertText = alert.getText();
@@ -267,8 +267,7 @@ abstract class BasePage {
     }
 
 
-
-    public void acceptAlert() {
+    public void acceptAlert(){
         driver.switchTo().alert().accept();
     }
 
@@ -278,11 +277,11 @@ abstract class BasePage {
      * @param element   the By object representing the element to wait for.
      * @param attribute attribute of the element
      */
-    public String getAttribute(PageElement element, String attribute) {
+    public String getAttribute(PageElement element, String attribute){
         return driver.findElement(element.locator).getAttribute(attribute);
     }
 
-    public void waitUntilPageLoad() {
+    public void waitUntilPageLoad(){
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

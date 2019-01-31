@@ -9,11 +9,11 @@
         <classes>
             <class name="tests.LoginTest">
                 <methods>
+                    <include name="logInIncorrectPassword"/>
                     <include name="logInWithoutRememberME"/>
                     <include name="loginEmptyFields"/>
-                    <include name="logInIncorrectEmail"/>
-                    <include name="logInIncorrectPassword"/>
                     <include name="logInViaRememberME"/>
+                    <include name="logInIncorrectEmail"/>
                 </methods>
             </class>
         </classes>
