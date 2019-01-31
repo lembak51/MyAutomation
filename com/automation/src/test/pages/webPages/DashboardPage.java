@@ -14,6 +14,10 @@ public class DashboardPage extends BasePage {
             "Logout button",
             By.cssSelector("a[ng-click='logout()']"),
             false);
+    private static final PageElement phonebookBtn = new PageElement(
+            "Phonebook button",
+            By.cssSelector("li[ng-show='user.navigation.pages_phonebook']"),
+            true);
 
     public DashboardPage(WebDriver driver){
         super(driver);
@@ -31,5 +35,10 @@ public class DashboardPage extends BasePage {
         click(userProfileDdb);
         waitToBeClickable(logoutBtn);
         click(logoutBtn);
+    }
+
+    public void openPhonebookPage(){
+        waitToBeClickable(phonebookBtn);
+        click(phonebookBtn);
     }
 }
