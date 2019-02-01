@@ -5,12 +5,12 @@ import common.PageElement;
 import common.Utils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.*;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 abstract class BasePage {
@@ -286,6 +286,19 @@ abstract class BasePage {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Switch between tab in browser
+     * @param numberTab the Integer object representing the tab
+     */
+    public void switchToTab(int numberTab){
+        try {
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(numberTab));
+    }catch (NegativeArraySizeException e){
+            log.info("New tab not open");
         }
     }
 }

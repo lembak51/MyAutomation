@@ -9,15 +9,15 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import pages.desktopPages.DesktopLoginPage;
 import pages.webPages.LoginPage;
-
-
-
+import pages.webPages.ReleaseNotesPage;
 import pages.webPages.DashboardPage;
+
 
 public class BaseTest {
     protected LoginPage loginPage;
     protected DashboardPage dashboardPage;
     protected DesktopLoginPage desktopLoginPage;
+    protected ReleaseNotesPage releaseNotesPage;
 
     public static WebDriver driver;
     public static WindowsDriver desktop_driver;
@@ -56,6 +56,7 @@ public class BaseTest {
     private void initPages() {
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);
+        releaseNotesPage = new ReleaseNotesPage(driver);
     }
 
     private void initDesktopPages() {
