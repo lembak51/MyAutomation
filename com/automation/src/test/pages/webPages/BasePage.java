@@ -293,8 +293,7 @@ public abstract class BasePage {
         ArrayList<String> obtainedList = new ArrayList<>();
         List<WebElement> elementList = findAll(element);
         for (WebElement we : elementList) {
-            //obtainedList.add(we.getText().toUpperCase());
-            obtainedList.add(we.getText());
+            obtainedList.add(we.getText().toUpperCase());
         }
         if (order == "By asc") {
             waitToBeClickable(arrowButton);
@@ -307,8 +306,7 @@ public abstract class BasePage {
         List<WebElement> elementList1 = findAll(element);
         ArrayList<String> obtainedAfterClickList = new ArrayList<>();
         for (WebElement we : elementList1) {
-            //obtainedAfterClickList.add(we.getText().toUpperCase());
-            obtainedAfterClickList.add(we.getText());
+            obtainedAfterClickList.add(we.getText().toUpperCase());
         }
         ArrayList<String> sortedList = new ArrayList<>();
         for (String s : obtainedList) {
@@ -318,9 +316,9 @@ public abstract class BasePage {
             Collections.sort(sortedList);
         else if (order == "By desc") Collections.sort(sortedList, Collections.reverseOrder());
         else System.out.println("Please choose type of sort");
-        System.out.println(obtainedList);
-        System.out.println(obtainedAfterClickList);
-        System.out.println(sortedList);
+        System.out.println("Obtained:" + obtainedList);
+        System.out.println("After click:" +obtainedAfterClickList);
+        System.out.println("Sorted list" +sortedList);
         return obtainedAfterClickList.equals(sortedList);
     }
 }
