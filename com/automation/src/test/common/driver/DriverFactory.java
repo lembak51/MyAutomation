@@ -69,7 +69,6 @@ public class DriverFactory {
             driver = new SafariDriver(capabilities);
         }
         driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
