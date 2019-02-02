@@ -23,9 +23,9 @@ public class DashboardPage extends BasePage {
             By.cssSelector("button[ng-click='changePassword()']"),
             true);
     private final static PageElement oldPasswordFld = new PageElement(
-        "Old Password Field",
-        By.cssSelector("input[data-ng-model='oldpassword']"),
-        false);
+            "Old Password Field",
+            By.cssSelector("input[data-ng-model='oldpassword']"),
+            false);
     private final static PageElement newPasswordFld = new PageElement(
             "New Password Field",
             By.cssSelector("input[data-ng-model='newpassword']"),
@@ -34,31 +34,62 @@ public class DashboardPage extends BasePage {
             "Confirm Password Field",
             By.cssSelector("input[data-ng-model='confirmpassword']"),
             false);
+    private final static PageElement submitBtn = new PageElement(
+            "Submit button",
+            By.cssSelector("button[class='btn btn-success']"),
+            false);
 
-    public DashboardPage(WebDriver driver){
+    public DashboardPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public boolean pageIsDisplayed(){
+    public boolean pageIsDisplayed() {
         waitToBePresent(userProfileDdb);
         return allRequiredElementDisplayed();
     }
 
-    public void clickReleaseNote(){
+    public void clickReleaseNote() {
         waitToBeClickable(releaseNoteBtn);
         click(releaseNoteBtn);
     }
 
-    public void logout(){
+    public void logout() {
         waitUntilPageLoad();
         waitToBeClickable(userProfileDdb);
         click(userProfileDdb);
         waitToBeClickable(logoutBtn);
         click(logoutBtn);
     }
-    public void clickChangePasswordBtn(){
+
+    public void clickChangePasswordBtn() {
         waitToBeClickable(changePasswordBtn);
         click(changePasswordBtn);
     }
+
+    public void fillOldPassword(String userPassword) {
+        enterText(oldPasswordFld, userPassword);
+    }
+
+    public void fillNewPassword(String newPassword) {
+        enterText(newPasswordFld, newPassword);
+    }
+
+    public void fillConfirmPassword(String confirmPassword) {
+        enterText(confirmPasswordFld, confirmPassword);
+    }
+
+    public void changePassword(String oldPassword, String newPassword, String confirmPassword) {
+        clickChangePasswordBtn();
+        fillOldPassword(oldPassword);
+        fillNewPassword(newPassword);
+        fillConfirmPassword(confirmPassword);
+        click(submitBtn);
+    }
+    public boolean passwordSuccessChange(String expectedText){
+        waitToBeAlertPresent(1);
+        String actualText = getTextFromAlert();
+        return actualText.equals(expectedText);
+    }
+
 }

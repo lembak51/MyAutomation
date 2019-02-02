@@ -4,10 +4,12 @@ import common.Utils;
 
 public class DashboardDataObject {
     public String NewPassword = "";
-
+    public DashboardDataObject(String NewPassword){
+        this.NewPassword = NewPassword;
+    }
 
     public DashboardDataObject(){
-        getRandomNewPassword();
+        this(getRandomNewPassword());
     }
 
     public static String getRandomNewPassword(){
