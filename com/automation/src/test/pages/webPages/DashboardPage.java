@@ -38,6 +38,18 @@ public class DashboardPage extends BasePage {
             "Submit button",
             By.cssSelector("button[class='btn btn-success']"),
             false);
+    private final static PageElement changeMobileBtn = new PageElement(
+            "Change mobile number button",
+            By.cssSelector("i[ng-click='changingMobile = true;changeMobile()']"),
+            true);
+    private final static PageElement mobileNumberFld = new PageElement(
+            "My Mobile number field",
+            By.cssSelector("input[data-ng-model='newMobile']"),
+            true);
+    private final static PageElement saveMobileNumberBtn = new PageElement(
+            "Save Mobile Number button",
+            By.cssSelector("button[ng-hide ='ad_phone_set']"),
+            true);
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -86,10 +98,22 @@ public class DashboardPage extends BasePage {
         fillConfirmPassword(confirmPassword);
         click(submitBtn);
     }
-    public boolean passwordSuccessChange(String expectedText){
+
+    public boolean alertWithExpectedText(String expectedText) {
         waitToBeAlertPresent(1);
         String actualText = getTextFromAlert();
         return actualText.equals(expectedText);
+    }
+
+    public void fillNewMobileNumber(String NewMobileNumber) {
+        enterText(mobileNumberFld, NewMobileNumber);
+    }
+
+    public void changeMyMobileNumberWithIncorrectValues(String NewMobileNumber) {
+        waitToBeClickable(changeMobileBtn);
+        click(changeMobileBtn);
+        fillNewMobileNumber(NewMobileNumber);
+        click(saveMobileNumberBtn);
     }
 
 }
