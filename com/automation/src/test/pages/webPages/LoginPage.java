@@ -28,7 +28,7 @@ public class LoginPage extends BasePage {
 
     @Override
     public boolean pageIsDisplayed(){
-        waitToBeVisible(logInBtn);
+       // waitToBeVisible(usernameFld);
         return allRequiredElementDisplayed();
     }
 
