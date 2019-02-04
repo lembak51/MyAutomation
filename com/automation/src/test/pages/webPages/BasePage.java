@@ -289,6 +289,14 @@ public abstract class BasePage {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Sort elements by specific order.
+     *
+     * @param arrowButton the By object representing the element that need click to.
+     * @param element     the By object representing the first element in column
+     * @param order       the order type: [By ask],[By desc]
+     */
     public boolean isElementsSorted(PageElement arrowButton, PageElement element, String order){
         ArrayList<String> obtainedList = new ArrayList<>();
         List<WebElement> elementList = findAll(element);
@@ -316,9 +324,6 @@ public abstract class BasePage {
             Collections.sort(sortedList);
         else if (order == "By desc") Collections.sort(sortedList, Collections.reverseOrder());
         else System.out.println("Please choose type of sort");
-        System.out.println("Obtained:" + obtainedList);
-        System.out.println("After click:" +obtainedAfterClickList);
-        System.out.println("Sorted list" +sortedList);
         return obtainedAfterClickList.equals(sortedList);
     }
 }
