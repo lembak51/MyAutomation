@@ -262,7 +262,7 @@ abstract class BasePage {
     public String getTextFromAlert(){
         Alert alert = driver.switchTo().alert();
         String alertText = alert.getText();
-        log.info("Alert Text" + alertText);
+        log.info("Alert Text " + alertText);
         return alertText;
     }
 
@@ -299,6 +299,15 @@ abstract class BasePage {
         driver.switchTo().window(tabs.get(numberTab));
     }catch (NegativeArraySizeException e){
             log.info("New tab not open");
+        }
+    }
+    public void refreshPage(){
+        try {
+            Thread.sleep(10000);
+            waitUntilPageLoad();
+            driver.navigate().refresh();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

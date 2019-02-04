@@ -18,8 +18,8 @@ public class DashboardTest extends BaseTest {
         Assert.assertTrue(releaseNotesPage.getReleaseHeaderText(), "Release Notes page should be displayed");
     }
 
-    @Test(description = "SQE --- Change password")
-    public void changePassword() {
+    @Test(description = "Dashboard - change password: login with new password")
+    public void changePasswordLoginWithNewPassword() {
         DashboardDataObject dashboardDataObject = new DashboardDataObject();
         String expectedText = "You have succesfully changed your password";
         driver.get(Config.BASE_URL);
@@ -44,11 +44,12 @@ public class DashboardTest extends BaseTest {
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
         loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
-        dashboardPage.changeMyMobileNumberWithIncorrectValues(dashboardDataObject.IncorrectMobileDigits9);
+        dashboardPage.changeMyMobileNumberWithIncorrectValues(dashboardDataObject.NineDigitsMobileNumber);
         Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
+        dashboardPage.refreshPage();
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
-        dashboardPage.changeMyMobileNumberWithIncorrectValues(dashboardDataObject.IncorrectMobileDigits11);
+        dashboardPage.changeMyMobileNumberWithIncorrectValues(dashboardDataObject.ElevenDigitsMobileNumber);
         Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");

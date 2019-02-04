@@ -34,6 +34,11 @@ public class Utils {
         return randomGenerator.nextInt(max + 1 - min) + min;
     }
 
+    public static long getRandomLong(long min,long max){
+        Random randomGenerator = new Random();
+        return randomGenerator.nextLong() % (max);
+    }
+
     public static void sleep(long millis){
         try {
             Thread.sleep(millis);

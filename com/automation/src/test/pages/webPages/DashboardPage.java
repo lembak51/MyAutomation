@@ -20,7 +20,7 @@ public class DashboardPage extends BasePage {
             true);
     private final static PageElement changePasswordBtn = new PageElement(
             "Change Password button",
-            By.cssSelector("button[ng-click='changePassword()']"),
+            By.cssSelector("button[ng-click='changePasswordLoginWithNewPassword()']"),
             true);
     private final static PageElement oldPasswordFld = new PageElement(
             "Old Password Field",
@@ -50,6 +50,14 @@ public class DashboardPage extends BasePage {
             "Save Mobile Number button",
             By.cssSelector("button[ng-hide ='ad_phone_set']"),
             true);
+    private final static  PageElement sidebarUserDevicesSection = new PageElement(
+            "Sidebar User & Devices section button",
+            By.cssSelector("a[href='#/users/']"),
+            true);
+    private final static  PageElement sidebarUserTab = new PageElement(
+            "User section button",
+            By.cssSelector("a[href='#/users/user']"),
+            false);
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -105,14 +113,14 @@ public class DashboardPage extends BasePage {
         return actualText.equals(expectedText);
     }
 
-    public void fillNewMobileNumber(String NewMobileNumber) {
-        enterText(mobileNumberFld, NewMobileNumber);
+    public void fillMobileNumber(String newMobileNumber) {
+        enterText(mobileNumberFld, newMobileNumber);
     }
 
-    public void changeMyMobileNumberWithIncorrectValues(String NewMobileNumber) {
+    public void changeMyMobileNumberWithIncorrectValues(String newMobileNumber) {
         waitToBeClickable(changeMobileBtn);
         click(changeMobileBtn);
-        fillNewMobileNumber(NewMobileNumber);
+        fillMobileNumber(newMobileNumber);
         click(saveMobileNumberBtn);
     }
 

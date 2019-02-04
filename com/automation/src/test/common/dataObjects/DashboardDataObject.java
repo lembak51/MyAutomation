@@ -3,29 +3,29 @@ package common.dataObjects;
 import common.Utils;
 
 public class DashboardDataObject {
-    public String NewPassword = "";
-    public String IncorrectMobileDigits9 = "";
-    public String IncorrectMobileDigits11 = "";
+    public String NewPassword;
+    public String NineDigitsMobileNumber;
+    public String ElevenDigitsMobileNumber;
 
     public DashboardDataObject(String NewPassword, String IncorrectMobileDigits9, String IncorrectMobileDigits11) {
         this.NewPassword = NewPassword;
-        this.IncorrectMobileDigits9 = IncorrectMobileDigits9;
-        this.IncorrectMobileDigits11 = IncorrectMobileDigits11;
+        this.NineDigitsMobileNumber = IncorrectMobileDigits9;
+        this.ElevenDigitsMobileNumber = IncorrectMobileDigits11;
     }
 
     public DashboardDataObject() {
-        this(getRandomNewPassword(), getRandomIncorrectMobileNumber9(), getRandomIncorrectMobileNumber11());
+        this(getRandomNewPassword(), getRandomNineMobileNumber(), getRandomElevenMobileNumber());
     }
 
     public static String getRandomNewPassword() {
         return "Swanteam" + Utils.getRandomInteger(3);
     }
 
-    public static String getRandomIncorrectMobileNumber9() {
+    public static String getRandomNineMobileNumber() {
         return "" + Utils.getRandomInt(100000000, 200000000);
     }
 
-    public static String getRandomIncorrectMobileNumber11() {
-        return "" + Utils.getRandomInt(1000000000, 2000000000) + Utils.getRandomInt(0, 9);
+    public static String getRandomElevenMobileNumber() {
+        return "" + Utils.getRandomInt(1000000000, 2000000000) + Utils.getRandomInt(0,9);
     }
 }
