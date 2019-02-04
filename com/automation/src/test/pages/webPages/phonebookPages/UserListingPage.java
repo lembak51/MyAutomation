@@ -8,7 +8,7 @@ import pages.webPages.BasePage;
 public class UserListingPage extends BasePage {
     private static final PageElement mobileArrowBtn = new PageElement(
             "Mobile Arrow button",
-            By.cssSelector("div:nth-child(6) > table > thead > tr > th:nth-child(3) > sort-chevron > span > span.fa.cursor"), //need to change: sort-chevron[data-text='Mobile']>span>span[1]
+            By.cssSelector("sort-chevron[data-text='Mobile'] > span > span.fa.cursor"), //need to change: sort-chevron[data-text='Mobile']>span>span[1]
             false);
     private static final PageElement firstElementInMobileColumnMsb = new PageElement(
             "First element in Mobile column ",
@@ -16,7 +16,7 @@ public class UserListingPage extends BasePage {
             false);
     private static final PageElement didArrowBtn = new PageElement(
             "DID Arrow button",
-            By.cssSelector("div:nth-child(6) > table > thead > tr > th:nth-child(4) > sort-chevron > span > span.fa.cursor"), //need to change: sort-chevron[data-text='Mobile']>span>span[1]
+            By.cssSelector("sort-chevron[data-text='DID'] > span > span.fa.cursor"), //need to change: sort-chevron[data-text='Mobile']>span>span[1]
             false);
     private static final PageElement firstElementInDidColumnMsb = new PageElement(
             "First element in DID column ",
@@ -24,7 +24,7 @@ public class UserListingPage extends BasePage {
             false);
     private static final PageElement departmentArrowBtn = new PageElement(
             "Department(s) Arrow button",
-            By.cssSelector("div:nth-child(6) > table > thead > tr > th:nth-child(5) > sort-chevron > span > span.fa.cursor"), //need to change: sort-chevron[data-text='Mobile']>span>span[1]
+            By.cssSelector("sort-chevron[data-text=\"Department(s)\"] > span > span.fa.cursor"), //need to change: sort-chevron[data-text='Mobile']>span>span[1]
             false);
     private static final PageElement firstElementInDepartmentColumnMsb = new PageElement(
             "First element in Department(s) column ",
@@ -32,7 +32,7 @@ public class UserListingPage extends BasePage {
             false);
     private static final PageElement extensionArrowBtn = new PageElement(
             "Extension(s) Arrow button",
-            By.cssSelector("div:nth-child(6) > table > thead > tr > th:nth-child(6) > sort-chevron > span > span.fa.cursor"), //need to change: sort-chevron[data-text='Mobile']>span>span[1]
+            By.cssSelector("sort-chevron[data-text='Extension(s)'] > span > span.fa.cursor"), //need to change: sort-chevron[data-text='Mobile']>span>span[1]
             false);
     private static final PageElement firstElementInExtensionColumnMsb = new PageElement(
             "First element in Extension(s) column ",
