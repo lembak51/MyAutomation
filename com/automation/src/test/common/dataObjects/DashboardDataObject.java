@@ -7,10 +7,10 @@ public class DashboardDataObject {
     public String NineDigitsMobileNumber;
     public String ElevenDigitsMobileNumber;
 
-    public DashboardDataObject(String NewPassword, String IncorrectMobileDigits9, String IncorrectMobileDigits11) {
+    public DashboardDataObject(String NewPassword, String nineDigitsMobileNumber, String elevenDigitsMobileNumber) {
         this.NewPassword = NewPassword;
-        this.NineDigitsMobileNumber = IncorrectMobileDigits9;
-        this.ElevenDigitsMobileNumber = IncorrectMobileDigits11;
+        this.NineDigitsMobileNumber = nineDigitsMobileNumber;
+        this.ElevenDigitsMobileNumber = elevenDigitsMobileNumber;
     }
 
     public DashboardDataObject() {

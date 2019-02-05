@@ -10,7 +10,7 @@ public class UsersPage extends BasePage {
             "Add new User button",
             By.cssSelector("button[ng-click ='addUser()']"),
             true);
-    
+
 
 
     UsersPage(WebDriver driver){
@@ -20,5 +20,9 @@ public class UsersPage extends BasePage {
     @Override
     public boolean pageIsDisplayed(){
         return allRequiredElementDisplayed();
+    }
+    public void clickAddUserBtn(){
+        waitToBeClickable(addUserBtn);
+        click(addUserBtn);
     }
 }
