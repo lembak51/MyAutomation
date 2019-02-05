@@ -63,10 +63,11 @@ public class LoginPage extends BasePage {
         clickLogIn();
     }
 
-    public boolean alertText(){
+    public boolean alertText(String expected){
         waitToBeAlertPresent(1);
         String actualText = getTextFromAlert();
-        return actualText.equals("Error: Email / Password Combination is not correct!");
+        log.info("Expected alert message: " + expected + ".Actual: " + actualText);
+        return actualText.equals(expected);
     }
 
 
