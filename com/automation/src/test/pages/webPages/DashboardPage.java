@@ -20,7 +20,7 @@ public class DashboardPage extends BasePage {
             true);
     private final static PageElement changePasswordBtn = new PageElement(
             "Change Password button",
-            By.cssSelector("button[ng-click='changePasswordLoginWithNewPassword()']"),
+            By.cssSelector("button[ng-click='changePassword()']"),
             true);
     private final static PageElement oldPasswordFld = new PageElement(
             "Old Password Field",
@@ -52,7 +52,7 @@ public class DashboardPage extends BasePage {
             true);
     private final static  PageElement sidebarUserDevicesSection = new PageElement(
             "Sidebar User & Devices section button",
-            By.cssSelector("a[href='#/users/']"),
+            By.cssSelector("span[data-i18n='Users & Devices']"),
             true);
     private final static  PageElement sidebarUserTab = new PageElement(
             "User section button",
@@ -122,6 +122,13 @@ public class DashboardPage extends BasePage {
         click(changeMobileBtn);
         fillMobileNumber(newMobileNumber);
         click(saveMobileNumberBtn);
+    }
+
+    public void openUserTab(){
+        waitToBeClickable(sidebarUserDevicesSection);
+        click(sidebarUserDevicesSection);
+        waitToBeClickable(sidebarUserTab);
+        click(sidebarUserTab);
     }
 
 }

@@ -13,7 +13,7 @@ public class UsersPage extends BasePage {
 
 
 
-    UsersPage(WebDriver driver){
+    public UsersPage(WebDriver driver){
         super(driver);
     }
 
@@ -24,5 +24,6 @@ public class UsersPage extends BasePage {
     public void clickAddUserBtn(){
         waitToBeClickable(addUserBtn);
         click(addUserBtn);
+        waitUntilPageLoad();
     }
 }

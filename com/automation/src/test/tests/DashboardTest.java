@@ -3,6 +3,7 @@ package tests;
 
 import common.Config;
 import common.dataObjects.DashboardDataObject;
+import common.dataObjects.UserDataObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -20,11 +21,21 @@ public class DashboardTest extends BaseTest {
 
     @Test(description = "Dashboard - change password: login with new password")
     public void changePasswordLoginWithNewPassword() {
+        UserDataObject userDataObject = new UserDataObject();
         DashboardDataObject dashboardDataObject = new DashboardDataObject();
         String expectedText = "You have succesfully changed your password";
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
         loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4
+        Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
+        dashboardPage.openUserTab();
+        Assert.assertTrue(usersPage.pageIsDisplayed(),"User page should be displayed");
+        usersPage.clickAddUserBtn();
+        Assert.assertTrue(addUsersPage.pageIsDisplayed(),"Add Users Page should be displayed");
+        addUsersPage.createNewUser(userDataObject.Username,userDataObject.Username,userDataObject.PrimaryExtension,userDataObject.PrimaryExtension,userDataObject.JobTitle,dashboardDataObject.NewPassword,dashboardDataObject.NewPassword);
+        dashboardPage.logout();
+        Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
+        loginPage.makeLogin(userDataObject.UserEmail, dashboardDataObject.NewPassword);//Replace step 2-4
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
         dashboardPage.changePassword(Config.BASE_PASSWORD, dashboardDataObject.NewPassword, dashboardDataObject.NewPassword);
         Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
@@ -54,5 +65,7 @@ public class DashboardTest extends BaseTest {
         dashboardPage.acceptAlert();
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
     }
+
+
 
 }

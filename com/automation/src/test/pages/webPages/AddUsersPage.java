@@ -29,9 +29,21 @@ public class AddUsersPage extends BasePage {
             "Create user nutton",
             By.cssSelector("button[class='btn btn-success']"),
             true);
+    private static final  PageElement generatePasswordChb = new PageElement(
+            "Generate Password Checkbox",
+            By.cssSelector("input[data-ng-model='new_user.generate_password']"),
+            true);
+    private static final PageElement newPasswordFld = new PageElement(
+            "Password Field",
+            By.cssSelector("input[data-ng-model='new_user.password']"),
+            false);
+    private  static  final  PageElement confirmPasswordFld = new PageElement(
+            "Confirm Password Field",
+            By.cssSelector("input[data-ng-model='new_user.confirm_password']"),
+            false);
 
 
-    AddUsersPage(WebDriver driver){
+    public AddUsersPage(WebDriver driver){
         super(driver);
     }
 
@@ -55,5 +67,24 @@ public class AddUsersPage extends BasePage {
     }
     public void fillJobTitleFld(String jobTitle){
         enterText(jobTitleFld,jobTitle);
+    }
+    public void fillPasswordFld(String newPassword){
+        enterText(newPasswordFld,newPassword);
+    }
+    public void fillConfirmPasswordFld(String confirmPassword){
+        enterText(confirmPasswordFld,confirmPassword);
+    }
+
+    public void createNewUser(String firstName, String lastName, String primaryExtension,String userEmail, String jobTitle, String newPassword, String confirmPassword){
+        waitUntilPageLoad();
+        fillFirstName(firstName);
+        fillLastName(lastName);
+        fillPrimaryExtensionFld(primaryExtension);
+        fillUserEmailFld(userEmail);
+        fillJobTitleFld(jobTitle);
+        click(generatePasswordChb);
+        fillPasswordFld(newPassword);
+        fillConfirmPasswordFld(confirmPassword);
+        click(createUserBtn);
     }
 }

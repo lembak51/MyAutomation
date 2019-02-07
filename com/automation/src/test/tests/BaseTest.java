@@ -8,9 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import pages.desktopPages.DesktopLoginPage;
-import pages.webPages.LoginPage;
-import pages.webPages.ReleaseNotesPage;
-import pages.webPages.DashboardPage;
+import pages.webPages.*;
 
 
 public class BaseTest {
@@ -18,6 +16,8 @@ public class BaseTest {
     protected DashboardPage dashboardPage;
     protected DesktopLoginPage desktopLoginPage;
     protected ReleaseNotesPage releaseNotesPage;
+    protected UsersPage usersPage;
+    protected AddUsersPage addUsersPage;
 
     public static WebDriver driver;
     public static WindowsDriver desktop_driver;
@@ -57,6 +57,8 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);
         releaseNotesPage = new ReleaseNotesPage(driver);
+        usersPage = new UsersPage(driver);
+        addUsersPage = new AddUsersPage(driver);
     }
 
     private void initDesktopPages() {
