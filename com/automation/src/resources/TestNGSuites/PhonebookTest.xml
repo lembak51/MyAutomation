@@ -13,6 +13,7 @@
                     <include name="phonebookTabUserListingSortByDid"/>
                     <include name="phonebookTabUserListingSortByDepartments"/>
                     <include name="phonebookTabUserListingSortByExtensions"/>
+                    <include name="phonebookTabUserListingViewUserInformation"/>
                 </methods>
             </class>
         </classes>
