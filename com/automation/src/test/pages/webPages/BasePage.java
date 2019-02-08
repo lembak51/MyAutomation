@@ -410,4 +410,41 @@ public abstract class BasePage {
         else System.out.println("Please choose type of sort");
         return obtainedAfterClickList.equals(sortedList);
     }
+
+    /**
+     * Sort elements by specific order.
+     *
+     * @param arrowButton the By object representing the element that need click to.
+     * @param element     the By object representing the first element in column
+     * @param order       the order type: [By ask],[By desc]
+     */
+    public boolean isElementsSorted(PageElement arrowButton, PageElement element, String order){
+        ArrayList<String> obtainedList = new ArrayList<>();
+        List<WebElement> elementList = findAll(element);
+        for (WebElement we : elementList) {
+            obtainedList.add(we.getText().toUpperCase());
+        }
+        if (order == "By asc") {
+            waitToBeClickable(arrowButton);
+            click(arrowButton);
+        } else if (order == "By desc") {
+            waitToBeClickable(arrowButton);
+            click(arrowButton);
+            click(arrowButton);
+        } else System.out.println("Please choose type of sort");
+        List<WebElement> elementList1 = findAll(element);
+        ArrayList<String> obtainedAfterClickList = new ArrayList<>();
+        for (WebElement we : elementList1) {
+            obtainedAfterClickList.add(we.getText().toUpperCase());
+        }
+        ArrayList<String> sortedList = new ArrayList<>();
+        for (String s : obtainedList) {
+            sortedList.add(s);
+        }
+        if (order == "By asc")
+            Collections.sort(sortedList);
+        else if (order == "By desc") Collections.sort(sortedList, Collections.reverseOrder());
+        else System.out.println("Please choose type of sort");
+        return obtainedAfterClickList.equals(sortedList);
+    }
 }
