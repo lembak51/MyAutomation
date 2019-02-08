@@ -312,15 +312,7 @@ abstract class BasePage {
         }
     }
 
-    public void refreshPage(){
-        try {
-            Thread.sleep(10000);
-            waitUntilPageLoad(1);
-            driver.navigate().refresh();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+   
 
     /**
      * Waits default(1 sec) timeout period to the specific browser
