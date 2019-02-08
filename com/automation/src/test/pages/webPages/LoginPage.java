@@ -28,7 +28,7 @@ public class LoginPage extends BasePage {
 
     @Override
     public boolean pageIsDisplayed(){
-        waitToBeVisible(logInBtn);
+        waitToBeVisible(logInBtn,1000);
         return allRequiredElementDisplayed();
     }
 
@@ -46,6 +46,7 @@ public class LoginPage extends BasePage {
     }
 
     public void makeLogin(String userEmail, String userPassword){
+        waitToBeClickable(logInBtn);
         fillFieldUsername(userEmail);
         fillFieldPassword(userPassword);
         clickLogIn();
@@ -76,7 +77,7 @@ public class LoginPage extends BasePage {
     }
 
     public boolean isLogInButtonDisplayed(){
-        waitUntilPageLoad();
+        waitUntilPageLoad(1);
         return isElementPresent(logInBtn);
     }
 }

@@ -2,15 +2,16 @@ package pages.webPages;
 
 import com.google.common.base.Function;
 import common.PageElement;
+import common.ProjectConfig;
 import common.Utils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.*;
 
 import java.lang.reflect.Field;
-import java.util.*;
-import java.util.concurrent.ExecutionException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 abstract class BasePage {
@@ -281,9 +282,17 @@ abstract class BasePage {
         return driver.findElement(element.locator).getAttribute(attribute);
     }
 
-    public void waitUntilPageLoad(){
+
+    /**
+     * Waits default(1 sec) timeout period
+     *
+     * @param timeout  the Int object representing the value in second that need to wait
+     *
+     */
+    protected void waitUntilPageLoad(int timeout) {
+        //TODO implementation of JS to that
         try {
-            Thread.sleep(1000);
+            Thread.sleep(timeout*1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -291,23 +300,48 @@ abstract class BasePage {
 
     /**
      * Switch between tab in browser
+     *
      * @param numberTab the Integer object representing the tab
      */
     public void switchToTab(int numberTab){
         try {
-        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(numberTab));
-    }catch (NegativeArraySizeException e){
+            ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+            driver.switchTo().window(tabs.get(numberTab));
+        } catch (NegativeArraySizeException e) {
             log.info("New tab not open");
         }
     }
+
     public void refreshPage(){
         try {
             Thread.sleep(10000);
-            waitUntilPageLoad();
+            waitUntilPageLoad(1);
             driver.navigate().refresh();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Waits default(1 sec) timeout period to the specific browser
+     *
+     * @param timeout  the Int object representing the value in second that need to wait
+     * @param chrome the Boolean object representing in what browser need wait
+     * @param firefox the Boolean object representing in what browser need wait
+     * @param ie the Boolean object representing in what browser need wait
+     * @param safari the Boolean object representing in what browser need wait
+     *
+     */
+    protected void waitUntilPageLoad(int timeout, boolean chrome , boolean firefox, boolean ie, boolean safari) {
+        if (ProjectConfig.getBrowser().contains("Chrome") && chrome)
+            waitUntilPageLoad(timeout);
+        if (ProjectConfig.getBrowser().contains("Firefox") && firefox)
+            waitUntilPageLoad(timeout);
+        if (ProjectConfig.getBrowser().contains("IExplorer") && ie)
+            waitUntilPageLoad(timeout);
+        if (ProjectConfig.getBrowser().contains("Safari") && safari)
+            waitUntilPageLoad(timeout);
+    }
+
+
 }

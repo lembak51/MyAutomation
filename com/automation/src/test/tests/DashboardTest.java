@@ -32,18 +32,18 @@ public class DashboardTest extends BaseTest {
         Assert.assertTrue(usersPage.pageIsDisplayed(),"User page should be displayed");
         usersPage.clickAddUserBtn();
         Assert.assertTrue(addUsersPage.pageIsDisplayed(),"Add Users Page should be displayed");
-        addUsersPage.createNewUser(userDataObject.Username,userDataObject.Username,userDataObject.PrimaryExtension,userDataObject.PrimaryExtension,userDataObject.JobTitle,dashboardDataObject.NewPassword,dashboardDataObject.NewPassword);
+        addUsersPage.createNewUser(userDataObject, dashboardDataObject);
         dashboardPage.logout();
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
         loginPage.makeLogin(userDataObject.UserEmail, dashboardDataObject.NewPassword);//Replace step 2-4
+        dashboardPage.clickAgreeTermOfUseBtn();
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
-        dashboardPage.changePassword(Config.BASE_PASSWORD, dashboardDataObject.NewPassword, dashboardDataObject.NewPassword);
+        dashboardPage.changePassword(dashboardDataObject.NewPassword, dashboardDataObject.NewPassword, dashboardDataObject.ConfirmPassword);
         Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
         dashboardPage.logout();
-        dashboardPage.waitUntilPageLoad();
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
-        loginPage.makeLogin(Config.BASE_USERNAME, dashboardDataObject.NewPassword);
+        loginPage.makeLogin(userDataObject.UserEmail, dashboardDataObject.NewPassword);
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
     }
 
@@ -58,7 +58,6 @@ public class DashboardTest extends BaseTest {
         dashboardPage.changeMyMobileNumberWithIncorrectValues(dashboardDataObject.NineDigitsMobileNumber);
         Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
-        dashboardPage.refreshPage();
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
         dashboardPage.changeMyMobileNumberWithIncorrectValues(dashboardDataObject.ElevenDigitsMobileNumber);
         Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");

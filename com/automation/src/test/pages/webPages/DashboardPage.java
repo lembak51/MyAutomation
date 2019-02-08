@@ -58,6 +58,14 @@ public class DashboardPage extends BasePage {
             "User section button",
             By.cssSelector("a[href='#/users/user']"),
             false);
+    private final static PageElement agreeWithTermOfUseBtn = new PageElement(
+            "Agree with Term of use button",
+            By.xpath("//*[@class='modal fade ng-isolate-scope in']//button[1]"),
+            false);
+    private final static  PageElement cancelChangePasswordBtn = new PageElement(
+            "Cancel Change Password modal",
+            By.cssSelector("button[ng-click='cancel()']"),
+            false);
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -75,7 +83,7 @@ public class DashboardPage extends BasePage {
     }
 
     public void logout() {
-        waitUntilPageLoad();
+        waitUntilPageLoad(1);
         waitToBeClickable(userProfileDdb);
         click(userProfileDdb);
         waitToBeClickable(logoutBtn);
@@ -100,10 +108,14 @@ public class DashboardPage extends BasePage {
     }
 
     public void changePassword(String oldPassword, String newPassword, String confirmPassword) {
+        waitUntilPageLoad(1);
+        waitToBeClickable(changePasswordBtn);
         clickChangePasswordBtn();
+        waitToBeClickable(cancelChangePasswordBtn);
         fillOldPassword(oldPassword);
         fillNewPassword(newPassword);
         fillConfirmPassword(confirmPassword);
+        waitToBeClickable(submitBtn);
         click(submitBtn);
     }
 
@@ -120,15 +132,23 @@ public class DashboardPage extends BasePage {
     public void changeMyMobileNumberWithIncorrectValues(String newMobileNumber) {
         waitToBeClickable(changeMobileBtn);
         click(changeMobileBtn);
+        waitUntilPageLoad(1);
         fillMobileNumber(newMobileNumber);
         click(saveMobileNumberBtn);
     }
 
-    public void openUserTab(){
+    public void openUserTab( ){
         waitToBeClickable(sidebarUserDevicesSection);
         click(sidebarUserDevicesSection);
+        waitUntilPageLoad(1);
         waitToBeClickable(sidebarUserTab);
         click(sidebarUserTab);
+    }
+    public void clickAgreeTermOfUseBtn(){
+        waitUntilPageLoad(1);
+        waitToBeClickable(agreeWithTermOfUseBtn);
+        click(agreeWithTermOfUseBtn);
+
     }
 
 }

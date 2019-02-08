@@ -23,8 +23,8 @@ public class UserDataObject  {
 
 
 
-    public static String getRandomUsername() {return"Swan"+ Utils.getRandomInt(000,999)+"team";}
+    public static String getRandomUsername() {return"SwanUser"+ Utils.getRandomInt(00,99);}
     public static String getRandomPrimaryExtension(){return "" + Utils.getRandomInt(1000,1200);}
-    public static String getRandomUserEmail(){return "Swan" + Utils.getRandomInt(100,999) + "teams@swanteams.com"; }
-    public static String getRandomJobTitle() {return "QA Swan"+ Utils.getRandomInt(000,100);}
+    public static String getRandomUserEmail(){return "Swanteams" + Utils.getRandomInt(100,999) + "@swanteams.com"; }
+    public static String getRandomJobTitle() {return "QA Swan";}
 }

@@ -1,6 +1,8 @@
 package pages.webPages;
 
 import common.PageElement;
+import common.dataObjects.DashboardDataObject;
+import common.dataObjects.UserDataObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -25,22 +27,26 @@ public class AddUsersPage extends BasePage {
             "Job Title Field",
             By.cssSelector("input[data-ng-model='new_user.role']"),
             true);
-    private static final  PageElement createUserBtn = new PageElement(
+    private static final PageElement createUserBtn = new PageElement(
             "Create user nutton",
             By.cssSelector("button[class='btn btn-success']"),
             true);
-    private static final  PageElement generatePasswordChb = new PageElement(
+    private static final PageElement generatePasswordChb = new PageElement(
             "Generate Password Checkbox",
-            By.cssSelector("input[data-ng-model='new_user.generate_password']"),
-            true);
+            By.xpath("//span[contains(text(),'Generate Password?')]"),
+            false);
     private static final PageElement newPasswordFld = new PageElement(
             "Password Field",
             By.cssSelector("input[data-ng-model='new_user.password']"),
             false);
-    private  static  final  PageElement confirmPasswordFld = new PageElement(
+    private static final PageElement confirmPasswordFld = new PageElement(
             "Confirm Password Field",
             By.cssSelector("input[data-ng-model='new_user.confirm_password']"),
             false);
+    private static final PageElement homeBtn = new PageElement(
+            "Home button",
+            By.cssSelector("ng-include > form > button.btn.btn-primary"),
+            true);
 
 
     public AddUsersPage(WebDriver driver){
@@ -53,38 +59,58 @@ public class AddUsersPage extends BasePage {
     }
 
 
-    public void fillFirstName(String firstName) {
+    public void fillFirstName(String firstName){
         enterText(firstNameFld, firstName);
     }
-    public void fillLastName(String lastName) {
+
+    public void fillLastName(String lastName){
         enterText(lastNameFld, lastName);
     }
-    public void fillPrimaryExtensionFld(String primaryExtension) {
+
+    public void fillPrimaryExtensionFld(String primaryExtension){
         enterText(primaryExtensionFld, primaryExtension);
     }
-    public void fillUserEmailFld(String userEmail) {
+
+    public void fillUserEmailFld(String userEmail){
         enterText(userEmailFld, userEmail);
     }
+
     public void fillJobTitleFld(String jobTitle){
-        enterText(jobTitleFld,jobTitle);
-    }
-    public void fillPasswordFld(String newPassword){
-        enterText(newPasswordFld,newPassword);
-    }
-    public void fillConfirmPasswordFld(String confirmPassword){
-        enterText(confirmPasswordFld,confirmPassword);
+        enterText(jobTitleFld, jobTitle);
     }
 
-    public void createNewUser(String firstName, String lastName, String primaryExtension,String userEmail, String jobTitle, String newPassword, String confirmPassword){
-        waitUntilPageLoad();
-        fillFirstName(firstName);
-        fillLastName(lastName);
-        fillPrimaryExtensionFld(primaryExtension);
-        fillUserEmailFld(userEmail);
-        fillJobTitleFld(jobTitle);
-        click(generatePasswordChb);
-        fillPasswordFld(newPassword);
-        fillConfirmPasswordFld(confirmPassword);
+    public void fillPasswordFld(String newPassword){
+        enterText(newPasswordFld, newPassword);
+    }
+
+    public void fillConfirmPasswordFld(String confirmPassword){
+        enterText(confirmPasswordFld, confirmPassword);
+    }
+
+    public void selectCheckbox(PageElement element, boolean isNeedToChecked){
+        PageElement hiddenLyt = new PageElement(
+                "Hidden password layot",
+                By.cssSelector("div[ng-hide='new_user.generate_password']"));
+
+        if (getAttribute(hiddenLyt, "class").contains("row") && !isNeedToChecked) {
+            click(element);
+            log.info("Element is " + element.name + " is checked");
+        } else
+            log.info("Element is " + element.name + " is unchecked");
+
+    }
+
+
+    public void createNewUser(UserDataObject userDataObject, DashboardDataObject dashboardDataObject){
+        waitToBeClickable(homeBtn);
+        fillFirstName(userDataObject.Username);
+        fillLastName(userDataObject.Username);
+        fillPrimaryExtensionFld(userDataObject.PrimaryExtension);
+        fillUserEmailFld(userDataObject.UserEmail);
+        fillJobTitleFld(userDataObject.JobTitle);
+        selectCheckbox(generatePasswordChb, false);
+        fillPasswordFld(dashboardDataObject.NewPassword);
+        fillConfirmPasswordFld(dashboardDataObject.ConfirmPassword);
         click(createUserBtn);
     }
 }

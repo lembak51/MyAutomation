@@ -10,6 +10,10 @@ public class UsersPage extends BasePage {
             "Add new User button",
             By.cssSelector("button[ng-click ='addUser()']"),
             true);
+    private static final PageElement usersCount= new PageElement(
+            "User count",
+            By.cssSelector("h4[class='text-primary ng-binding ng-scope']"),
+            true);
 
 
 
@@ -24,6 +28,8 @@ public class UsersPage extends BasePage {
     public void clickAddUserBtn(){
         waitToBeClickable(addUserBtn);
         click(addUserBtn);
-        waitUntilPageLoad();
+        if(isElementPresent(usersCount)){
+            click(addUserBtn);
+        }
     }
 }

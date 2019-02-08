@@ -4,11 +4,13 @@ import common.Utils;
 
 public class DashboardDataObject {
     public String NewPassword;
+    public String ConfirmPassword;
     public String NineDigitsMobileNumber;
     public String ElevenDigitsMobileNumber;
 
     public DashboardDataObject(String NewPassword, String nineDigitsMobileNumber, String elevenDigitsMobileNumber) {
         this.NewPassword = NewPassword;
+        this.ConfirmPassword = NewPassword;
         this.NineDigitsMobileNumber = nineDigitsMobileNumber;
         this.ElevenDigitsMobileNumber = elevenDigitsMobileNumber;
     }
