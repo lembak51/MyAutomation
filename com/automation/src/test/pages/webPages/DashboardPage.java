@@ -50,11 +50,11 @@ public class DashboardPage extends BasePage {
             "Save Mobile Number button",
             By.cssSelector("button[ng-hide ='ad_phone_set']"),
             true);
-    private final static  PageElement sidebarUserDevicesSection = new PageElement(
+    private final static PageElement sidebarUserDevicesSection = new PageElement(
             "Sidebar User & Devices section button",
             By.cssSelector("span[data-i18n='Users & Devices']"),
             true);
-    private final static  PageElement sidebarUserTab = new PageElement(
+    private final static PageElement sidebarUserTab = new PageElement(
             "User section button",
             By.cssSelector("a[href='#/users/user']"),
             false);
@@ -62,27 +62,47 @@ public class DashboardPage extends BasePage {
             "Agree with Term of use button",
             By.xpath("//*[@class='modal fade ng-isolate-scope in']//button[1]"),
             false);
-    private final static  PageElement cancelChangePasswordBtn = new PageElement(
+    private final static PageElement cancelChangePasswordBtn = new PageElement(
             "Cancel Change Password modal",
             By.cssSelector("button[ng-click='cancel()']"),
             false);
+    private final  static  PageElement changeVMPinBtn = new PageElement(
+            "Change Voicemail Pin button",
+            By.cssSelector("i[ng-click='changeVMPin()']"),
+            true);
+    private final static  PageElement voicemailPinFld = new PageElement(
+            "Voicemail field",
+            By.cssSelector("input[data-ng-model='newPin']"),
+            false);
+    private final static  PageElement saveVmPinBtn = new PageElement(
+            "Save Voicemail Pin button",
+            By.cssSelector("button[ng-click='saveVMPin()']"),
+            false);
+    private final static PageElement showPinBtn = new PageElement(
+            "Show Voicemail Pin button",
+            By.cssSelector(" form > span:nth-child(4) > a"),
+            true);
+    private static final PageElement voicemailTab = new PageElement(
+            "Voicemail tab button",
+            By.linkText("#/pages/voicemail"),
+            false);
 
-    public DashboardPage(WebDriver driver) {
+    public DashboardPage(WebDriver driver){
         super(driver);
     }
 
     @Override
-    public boolean pageIsDisplayed() {
+    public boolean pageIsDisplayed(){
         waitToBePresent(userProfileDdb);
         return allRequiredElementDisplayed();
     }
 
-    public void clickReleaseNote() {
+    public void clickReleaseNote(){
         waitToBeClickable(releaseNoteBtn);
         click(releaseNoteBtn);
     }
 
-    public void logout() {
+    public void logout(){
         waitUntilPageLoad(1);
         waitToBeClickable(userProfileDdb);
         click(userProfileDdb);
@@ -90,24 +110,24 @@ public class DashboardPage extends BasePage {
         click(logoutBtn);
     }
 
-    public void clickChangePasswordBtn() {
+    public void clickChangePasswordBtn(){
         waitToBeClickable(changePasswordBtn);
         click(changePasswordBtn);
     }
 
-    public void fillOldPassword(String userPassword) {
+    public void fillOldPassword(String userPassword){
         enterText(oldPasswordFld, userPassword);
     }
 
-    public void fillNewPassword(String newPassword) {
+    public void fillNewPassword(String newPassword){
         enterText(newPasswordFld, newPassword);
     }
 
-    public void fillConfirmPassword(String confirmPassword) {
+    public void fillConfirmPassword(String confirmPassword){
         enterText(confirmPasswordFld, confirmPassword);
     }
 
-    public void changePassword(String oldPassword, String newPassword, String confirmPassword) {
+    public void changePassword(String oldPassword, String newPassword, String confirmPassword){
         waitUntilPageLoad(1);
         waitToBeClickable(changePasswordBtn);
         clickChangePasswordBtn();
@@ -119,17 +139,17 @@ public class DashboardPage extends BasePage {
         click(submitBtn);
     }
 
-    public boolean alertWithExpectedText(String expectedText) {
+    public boolean alertWithExpectedText(String expectedText){
         waitToBeAlertPresent(1);
         String actualText = getTextFromAlert();
         return actualText.equals(expectedText);
     }
 
-    public void fillMobileNumber(String newMobileNumber) {
+    public void fillMobileNumber(String newMobileNumber){
         enterText(mobileNumberFld, newMobileNumber);
     }
 
-    public void changeMyMobileNumberWithIncorrectValues(String newMobileNumber) {
+    public void changeMyMobileNumberWithIncorrectValues(String newMobileNumber){
         waitToBeClickable(changeMobileBtn);
         click(changeMobileBtn);
         waitUntilPageLoad(1);
@@ -137,18 +157,29 @@ public class DashboardPage extends BasePage {
         click(saveMobileNumberBtn);
     }
 
-    public void openUserTab( ){
+    public void openUserTab(){
         waitToBeClickable(sidebarUserDevicesSection);
         click(sidebarUserDevicesSection);
         waitUntilPageLoad(1);
         waitToBeClickable(sidebarUserTab);
         click(sidebarUserTab);
     }
+
     public void clickAgreeTermOfUseBtn(){
         waitUntilPageLoad(1);
         waitToBeClickable(agreeWithTermOfUseBtn);
         click(agreeWithTermOfUseBtn);
 
+    }
+
+    public void changeVoicemailPin (String voicemailPin){
+        waitToBeClickable(changeVMPinBtn);
+        click(changeVMPinBtn);
+        enterText(voicemailPinFld,voicemailPin);
+        waitToBeClickable(saveVmPinBtn);
+        click(saveVmPinBtn);
+        waitToBeClickable(voicemailTab);
+        click(voicemailTab);
     }
 
 }

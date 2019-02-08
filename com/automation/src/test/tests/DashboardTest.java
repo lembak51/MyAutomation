@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class DashboardTest extends BaseTest {
 
     @Test(description = "SQE-673 Dashboard - Release note in new page")
-    public void releaseNoteInNewPage() {
+    public void releaseNoteInNewPage(){
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
         loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4
@@ -20,7 +20,7 @@ public class DashboardTest extends BaseTest {
     }
 
     @Test(description = "Dashboard - change password: login with new password")
-    public void changePasswordLoginWithNewPassword() {
+    public void changePasswordLoginWithNewPassword(){
         UserDataObject userDataObject = new UserDataObject();
         DashboardDataObject dashboardDataObject = new DashboardDataObject();
         String expectedText = "You have succesfully changed your password";
@@ -29,9 +29,9 @@ public class DashboardTest extends BaseTest {
         loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
         dashboardPage.openUserTab();
-        Assert.assertTrue(usersPage.pageIsDisplayed(),"User page should be displayed");
+        Assert.assertTrue(usersPage.pageIsDisplayed(), "User page should be displayed");
         usersPage.clickAddUserBtn();
-        Assert.assertTrue(addUsersPage.pageIsDisplayed(),"Add Users Page should be displayed");
+        Assert.assertTrue(addUsersPage.pageIsDisplayed(), "Add Users Page should be displayed");
         addUsersPage.createNewUser(userDataObject, dashboardDataObject);
         dashboardPage.logout();
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
@@ -48,7 +48,7 @@ public class DashboardTest extends BaseTest {
     }
 
     @Test(description = "SQE-110 Dashboard - My Mobile with incorrect values")
-    public void myMobileWithIncorrectValues() {
+    public void myMobileWithIncorrectValues(){
         DashboardDataObject dashboardDataObject = new DashboardDataObject();
         String expectedText = "Error: Invalid mobile phone number length (please use 10 digit)";
         driver.get(Config.BASE_URL);
@@ -64,7 +64,14 @@ public class DashboardTest extends BaseTest {
         dashboardPage.acceptAlert();
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
     }
+    @Test(description = "SQE- 109 Dashboard - Check Voicemail Pin  in Voicemail page")
+    public void checkVoicemailPinInVoicemailPage(){
+        driver.get(Config.BASE_URL);
+        Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
+        loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4
+        Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
 
+    }
 
 
 }

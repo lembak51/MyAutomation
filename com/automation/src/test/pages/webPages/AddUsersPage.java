@@ -100,7 +100,6 @@ public class AddUsersPage extends BasePage {
 
     }
 
-
     public void createNewUser(UserDataObject userDataObject, DashboardDataObject dashboardDataObject){
         waitToBeClickable(homeBtn);
         fillFirstName(userDataObject.Username);

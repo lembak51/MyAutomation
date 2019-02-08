@@ -286,13 +286,12 @@ abstract class BasePage {
     /**
      * Waits default(1 sec) timeout period
      *
-     * @param timeout  the Int object representing the value in second that need to wait
-     *
+     * @param timeout the Int object representing the value in second that need to wait
      */
-    protected void waitUntilPageLoad(int timeout) {
+    protected void waitUntilPageLoad(int timeout){
         //TODO implementation of JS to that
         try {
-            Thread.sleep(timeout*1000);
+            Thread.sleep(timeout * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -312,19 +311,17 @@ abstract class BasePage {
         }
     }
 
-   
 
     /**
      * Waits default(1 sec) timeout period to the specific browser
      *
-     * @param timeout  the Int object representing the value in second that need to wait
-     * @param chrome the Boolean object representing in what browser need wait
+     * @param timeout the Int object representing the value in second that need to wait
+     * @param chrome  the Boolean object representing in what browser need wait
      * @param firefox the Boolean object representing in what browser need wait
-     * @param ie the Boolean object representing in what browser need wait
-     * @param safari the Boolean object representing in what browser need wait
-     *
+     * @param ie      the Boolean object representing in what browser need wait
+     * @param safari  the Boolean object representing in what browser need wait
      */
-    protected void waitUntilPageLoad(int timeout, boolean chrome , boolean firefox, boolean ie, boolean safari) {
+    protected void waitUntilPageLoad(int timeout, boolean chrome, boolean firefox, boolean ie, boolean safari){
         if (ProjectConfig.getBrowser().contains("Chrome") && chrome)
             waitUntilPageLoad(timeout);
         if (ProjectConfig.getBrowser().contains("Firefox") && firefox)
