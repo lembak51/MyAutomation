@@ -25,7 +25,7 @@ public class DashboardPage extends BasePage {
 
     @Override
     public boolean pageIsDisplayed(){
-        waitToBePresent(userProfileDdb);
+        waitUntilPageLoad(1);
         return allRequiredElementDisplayed();
     }
 
