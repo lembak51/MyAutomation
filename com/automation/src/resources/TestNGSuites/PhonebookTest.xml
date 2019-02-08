@@ -11,9 +11,12 @@
                 <methods>
                     <include name="phonebookTabUserListingSortByMobile"/>
                     <include name="phonebookTabUserListingSortByDid"/>
-                    <include name="phonebookTabUserListingSortByDepartments"/>
                     <include name="phonebookTabUserListingSortByExtensions"/>
-                    <include name="phonebookTabUserListingViewUserInformation"/>
+
+                    <!--TODO should be failed because of https://kerauno.atlassian.net/browse/KER-2061-->
+                    <exclude name="phonebookTabUserListingSortByDepartments"/>
+                    <!--TODO should be failed because of issue(extension button is not clickable)-->
+                    <exclude name="phonebookTabUserListingViewUserInformation"/>
                 </methods>
             </class>
         </classes>

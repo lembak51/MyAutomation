@@ -24,15 +24,16 @@ public class BaseTest {
     public static WindowsDriver desktop_driver;
 
     @BeforeMethod
-    public void setupTestRun(){
+    public void setupTestRun() {
         driver = new DriverFactory().getDriver();
         initPages();
     }
 
     @AfterMethod
-    public void logoutAfterTest(){
-        //TODO add waitUntilPageUploaded
-        dashboardPage.logout();
+    public void logoutAfterTest() {
+        if (!loginPage.isLogInButtonDisplayed())
+            dashboardPage.logout();
+
         if (driver != null) {
             driver.quit();
             driver = null;
@@ -45,19 +46,19 @@ public class BaseTest {
     }
 
 
-    protected void switchToDesktop(){
+    protected void switchToDesktop() {
         AppiumServerJava.startServer();
         desktop_driver = DriverFactory.getInstance();
         initDesktopPages();
     }
 
-    private void initPages(){
+    private void initPages() {
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);
         userListingPage = new UserListingPage(driver);
     }
 
-    private void initDesktopPages(){
+    private void initDesktopPages() {
         desktopLoginPage = new DesktopLoginPage(desktop_driver);
     }
 

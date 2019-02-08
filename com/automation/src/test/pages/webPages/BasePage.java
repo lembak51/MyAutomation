@@ -308,7 +308,7 @@ public abstract class BasePage {
      * Accept alert
      *
      */
-    protected void acceptAlert() {
+    public void acceptAlert() {
         waitToBeAlertPresent();
         driver.switchTo().alert().accept();
     }
@@ -387,10 +387,10 @@ public abstract class BasePage {
         for (WebElement we : elementList) {
             obtainedList.add(we.getText().toUpperCase());
         }
-        if (order == "By asc") {
+        if (order.equals("By asc")) {
             waitToBeClickable(arrowButton);
             click(arrowButton);
-        } else if (order == "By desc") {
+        } else if (order.equals("By desc")) {
             waitToBeClickable(arrowButton);
             click(arrowButton);
             click(arrowButton);
@@ -401,12 +401,10 @@ public abstract class BasePage {
             obtainedAfterClickList.add(we.getText().toUpperCase());
         }
         ArrayList<String> sortedList = new ArrayList<>();
-        for (String s : obtainedList) {
-            sortedList.add(s);
-        }
-        if (order == "By asc")
+        sortedList.addAll(obtainedList);
+        if (order.equals("By asc"))
             Collections.sort(sortedList);
-        else if (order == "By desc") Collections.sort(sortedList, Collections.reverseOrder());
+        else if (order.equals("By desc")) sortedList.sort(Collections.reverseOrder());
         else System.out.println("Please choose type of sort");
         return obtainedAfterClickList.equals(sortedList);
     }

@@ -1,10 +1,10 @@
 package common.dataObjects;
 
-public class PhonebookDataObject {
+public class PhonebookDataObject extends BaseDataObject{
 
-    public String Name = "";
-    public String Email = "";
-    public String Number = "";
+    public String Name;
+    public String Email;
+    public String Number;
 
     public PhonebookDataObject(String Name, String Email, String Number){
         this.Name = Name;
@@ -13,18 +13,12 @@ public class PhonebookDataObject {
     }
 
     public PhonebookDataObject(){
-        this(getName(), getEmail(), getNumber());
+        this(null, null, null);
     }
 
-    public static String getName(){
-        return "";
-    }
-
-    public static String getEmail(){
-        return "";
-    }
-
-    public static String getNumber(){
-        return "";
+    public boolean isPhoneBookDataSame(PhonebookDataObject expectedPhoneDataObject){
+        return compareStringsWithLog(expectedPhoneDataObject.Name, this.Name) &&
+                compareStringsWithLog(expectedPhoneDataObject.Email, this.Email) &&
+                compareStringsWithLog(expectedPhoneDataObject.Number,this.Number);
     }
 }

@@ -62,8 +62,6 @@ public class PhonebookTest extends BaseTest {
         Assert.assertTrue(userListingPage.pageIsDisplayed(), "User Listing page is opened");
         PhonebookDataObject expectedDataObject = userListingPage.getValuesFromTheTable();
         PhonebookDataObject actualDataObject = userListingPage.getValuesFromPopUp();
-        Assert.assertEquals(expectedDataObject.Name, actualDataObject.Name, "The Names are the same");
-        Assert.assertEquals(expectedDataObject.Email, actualDataObject.Email, "The Emails are the same");
-        Assert.assertEquals(expectedDataObject.Number, actualDataObject.Number, "The Numbers are the same");
+        Assert.assertTrue(actualDataObject.isPhoneBookDataSame(expectedDataObject), "Data from the page and pop-up should be a same");
     }
 }
