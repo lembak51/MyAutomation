@@ -1,7 +1,6 @@
 package tests;
 
 import common.AppiumServerJava;
-import common.Utils;
 import common.driver.DriverFactory;
 import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.WebDriver;
@@ -32,9 +31,8 @@ public class BaseTest {
 
     @AfterMethod
     public void logoutAfterTest(){
-        Utils.sleep(2000);
-        if (!loginPage.isLogInButtonDisplayed())
-            dashboardPage.logout();
+        //TODO add waitUntilPageUploaded
+        dashboardPage.logout();
         if (driver != null) {
             driver.quit();
             driver = null;
