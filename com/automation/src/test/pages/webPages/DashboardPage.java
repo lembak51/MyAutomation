@@ -1,5 +1,6 @@
 package pages.webPages;
 
+import common.Config;
 import common.PageElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

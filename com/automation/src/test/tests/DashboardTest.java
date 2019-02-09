@@ -87,7 +87,7 @@ public class DashboardTest extends BaseTest {
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
         loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4 login test
         Assert.assertTrue(dashboardPage.pageIsDisplayed(),"Dashboard page should be displayed");
-        dashboardPage.changePassword(Config.BASE_PASSWORD, dashboardDataObject.NewPasswordWithoutLetters, dashboardDataObject.ConfirmPassword);
+        dashboardPage.changePassword(Config.BASE_PASSWORD, dashboardDataObject.NewPasswordWithoutLetters, dashboardDataObject.ConfirmPasswordWithoutLetters);
         Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
         dashboardPage.clickCancelBtn();

@@ -9,6 +9,7 @@ public class DashboardDataObject {
     public String ElevenDigitsMobileNumber;
     public String VoicemailPinNumber;
     public String NewPasswordWithoutLetters;
+    public String ConfirmPasswordWithoutLetters;
 
 
     public DashboardDataObject(String NewPassword, String nineDigitsMobileNumber, String elevenDigitsMobileNumber, String voicemailPinNumber, String newPasswordWithoutLetters){
@@ -18,7 +19,7 @@ public class DashboardDataObject {
         this.ElevenDigitsMobileNumber = elevenDigitsMobileNumber;
         this.VoicemailPinNumber = voicemailPinNumber;
         this.NewPasswordWithoutLetters = newPasswordWithoutLetters;
-        this.ConfirmPassword = newPasswordWithoutLetters;
+        this.ConfirmPasswordWithoutLetters = newPasswordWithoutLetters;
     }
 
     public DashboardDataObject(){

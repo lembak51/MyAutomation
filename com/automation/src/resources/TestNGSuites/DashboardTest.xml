@@ -5,20 +5,6 @@
         <listener class-name="common.testHelper.FailureRetryListener"/>
         <listener class-name="common.testHelper.TestListener"/>
     </listeners>
-
-    <test name="Login Test">
-        <classes>
-            <class name="tests.LoginTest">
-                <methods>
-                    <include name="logInWithoutRememberME"/>
-                    <include name="loginEmptyFields"/>
-                    <include name="logInIncorrectEmail"/>
-                    <include name="logInIncorrectPassword"/>
-                    <include name="logInViaRememberME"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
     <test name="Dashboard Test">
         <classes>
             <class name="tests.DashboardTest">
