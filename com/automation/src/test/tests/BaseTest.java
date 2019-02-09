@@ -18,6 +18,7 @@ public class BaseTest {
     protected ReleaseNotesPage releaseNotesPage;
     protected UsersPage usersPage;
     protected AddUsersPage addUsersPage;
+    protected VoicemailPage voicemailPage;
 
     public static WebDriver driver;
     public static WindowsDriver desktop_driver;
@@ -59,6 +60,7 @@ public class BaseTest {
         releaseNotesPage = new ReleaseNotesPage(driver);
         usersPage = new UsersPage(driver);
         addUsersPage = new AddUsersPage(driver);
+        voicemailPage = new VoicemailPage(driver);
     }
 
     private void initDesktopPages(){

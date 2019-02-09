@@ -66,15 +66,15 @@ public class DashboardPage extends BasePage {
             "Cancel Change Password modal",
             By.cssSelector("button[ng-click='cancel()']"),
             false);
-    private final  static  PageElement changeVMPinBtn = new PageElement(
+    private final static PageElement changeVMPinBtn = new PageElement(
             "Change Voicemail Pin button",
             By.cssSelector("i[ng-click='changeVMPin()']"),
             true);
-    private final static  PageElement voicemailPinFld = new PageElement(
+    private final static PageElement voicemailPinFld = new PageElement(
             "Voicemail field",
             By.cssSelector("input[data-ng-model='newPin']"),
             false);
-    private final static  PageElement saveVmPinBtn = new PageElement(
+    private final static PageElement saveVmPinBtn = new PageElement(
             "Save Voicemail Pin button",
             By.cssSelector("button[ng-click='saveVMPin()']"),
             false);
@@ -84,7 +84,11 @@ public class DashboardPage extends BasePage {
             true);
     private static final PageElement voicemailTab = new PageElement(
             "Voicemail tab button",
-            By.linkText("#/pages/voicemail"),
+            By.cssSelector("a[href='#/pages/voicemail']"),
+            false);
+    private static final PageElement voicemailPinNumber = new PageElement(
+            "Voicemail Pin n=Number",
+            By.cssSelector("span[class ='pin ng-binding']"),
             false);
 
     public DashboardPage(WebDriver driver){
@@ -172,14 +176,26 @@ public class DashboardPage extends BasePage {
 
     }
 
-    public void changeVoicemailPin (String voicemailPin){
+    public void changeVoicemailPin(String voicemailPin){
         waitToBeClickable(changeVMPinBtn);
         click(changeVMPinBtn);
-        enterText(voicemailPinFld,voicemailPin);
+        enterText(voicemailPinFld, voicemailPin);
         waitToBeClickable(saveVmPinBtn);
         click(saveVmPinBtn);
+    }
+    public boolean getVoicemialPinOnDashboard (String voicemailPin){
+        waitToBeClickable(showPinBtn);
+        click(showPinBtn);
+        String actualVoicemailPin = getText(voicemailPinNumber);
+        return actualVoicemailPin.equals(voicemailPin);
+    }
+
+    public void switchToVoicemailTab(){
         waitToBeClickable(voicemailTab);
         click(voicemailTab);
     }
-
+    public void clickCancelBtn (){
+        waitToBeClickable(cancelChangePasswordBtn);
+        click(cancelChangePasswordBtn);
+    }
 }

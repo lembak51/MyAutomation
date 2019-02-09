@@ -7,16 +7,22 @@ public class DashboardDataObject {
     public String ConfirmPassword;
     public String NineDigitsMobileNumber;
     public String ElevenDigitsMobileNumber;
+    public String VoicemailPinNumber;
+    public String NewPasswordWithoutLetters;
 
-    public DashboardDataObject(String NewPassword, String nineDigitsMobileNumber, String elevenDigitsMobileNumber){
+
+    public DashboardDataObject(String NewPassword, String nineDigitsMobileNumber, String elevenDigitsMobileNumber, String voicemailPinNumber, String newPasswordWithoutLetters){
         this.NewPassword = NewPassword;
         this.ConfirmPassword = NewPassword;
         this.NineDigitsMobileNumber = nineDigitsMobileNumber;
         this.ElevenDigitsMobileNumber = elevenDigitsMobileNumber;
+        this.VoicemailPinNumber = voicemailPinNumber;
+        this.NewPasswordWithoutLetters = newPasswordWithoutLetters;
+        this.ConfirmPassword = newPasswordWithoutLetters;
     }
 
     public DashboardDataObject(){
-        this(getRandomNewPassword(), getRandomNineMobileNumber(), getRandomElevenMobileNumber());
+        this(getRandomNewPassword(), getRandomNineMobileNumber(), getRandomElevenMobileNumber(), getRandomVoicemailPin(),getRandomPasswordWithoutLetters());
     }
 
     public static String getRandomNewPassword(){
@@ -29,5 +35,12 @@ public class DashboardDataObject {
 
     public static String getRandomElevenMobileNumber(){
         return "" + Utils.getRandomInt(1000000000, 2000000000) + Utils.getRandomInt(0, 9);
+    }
+
+    public static String getRandomVoicemailPin(){
+        return "" + Utils.getRandomInt(0000, 9999);
+    }
+    public static String getRandomPasswordWithoutLetters(){
+        return "" + Utils.getRandomInt(00000000, 99999999);
     }
 }

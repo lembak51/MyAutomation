@@ -15,7 +15,7 @@ public class VoicemailPage extends BasePage{
             By.cssSelector("input[data-ng-model='modify_user.voicemail_secret']"),
             false);
 
-    VoicemailPage(WebDriver driver){
+    public VoicemailPage(WebDriver driver){
         super(driver);
     }
 
