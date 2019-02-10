@@ -81,7 +81,7 @@ public class DashboardPage extends BasePage {
             false);
     private final static PageElement showPinBtn = new PageElement(
             "Show Voicemail Pin button",
-            By.cssSelector(" form > span:nth-child(4) > a"),
+            By.cssSelector("form > span:nth-child(4) > a"),
             true);
     private static final PageElement voicemailTab = new PageElement(
             "Voicemail tab button",
@@ -91,6 +91,26 @@ public class DashboardPage extends BasePage {
             "Voicemail Pin n=Number",
             By.cssSelector("span[class ='pin ng-binding']"),
             false);
+    private static  final PageElement cancelVMPinBtn = new PageElement(
+            "Cancel Voicemail Pin number button",
+            By.cssSelector("button[ng-click='cancelVMPin()']"),
+            false);
+    private static final PageElement hidePinBtn = new PageElement(
+            "Hide Pin number button",
+            By.cssSelector(" form > span:nth-child(4) > span:nth-child(3) > a"));
+    private static final PageElement changePictureBtn = new PageElement(
+            "Change Picture button",
+            By.cssSelector("span[class='ng-scope']>a[ng-click='open()']"),
+            true);
+    private static final PageElement chooseFileBtn = new PageElement(
+            "Choose file button",
+            By.xpath("//*[@class='row']/div/a"));
+    private static final PageElement uploadNewProfilePictureBtn = new PageElement(
+            "Upload New Profile Picture button",
+            By.cssSelector("button[ng-click='setProfilePicture()']"));
+    private static final PageElement closeChangeProfilePictureBtn = new PageElement(
+            "Close Change Profile Picture modal button ",
+            By.cssSelector("a[ng-click='close()']"));
 
     public DashboardPage(WebDriver driver){
         super(driver);
@@ -199,4 +219,37 @@ public class DashboardPage extends BasePage {
         waitToBeClickable(cancelChangePasswordBtn);
         click(cancelChangePasswordBtn);
     }
+    public void clickHidePinBtn (){
+        waitToBeClickable(hidePinBtn);
+        click(hidePinBtn);
+    }
+
+    public boolean getHideStatusVMPin (String hiddenText){
+        PageElement getHiddenText = new PageElement(
+                "Hidden Text",
+                By.xpath("//*[@class='pin']//strong"));
+        String actualText = getText(getHiddenText);
+        return actualText.equals(hiddenText);
+    }
+
+    public void changeVoicemailPinWithoutSave(String voicemailPin){
+        waitToBeClickable(changeVMPinBtn);
+        click(changeVMPinBtn);
+        enterText(voicemailPinFld, voicemailPin);
+        waitToBeClickable(cancelVMPinBtn);
+        click(cancelVMPinBtn);
+
+    }
+    public void uploadProfilePicture(){
+        waitToBeClickable(changePictureBtn);
+        click(changePictureBtn);
+        //waitUntilPageLoad(1);
+        waitToBeClickable(chooseFileBtn);
+        click(chooseFileBtn);
+        uploadNewPhoto("C:\\Users\\admin\\Downloads\\9fdbf585d17c95f7a31ccacdb6466af9.jpg");
+        waitToBeClickable(closeChangeProfilePictureBtn);
+        click(uploadNewProfilePictureBtn);
+    }
+
+
 }

@@ -304,7 +304,7 @@ abstract class BasePage {
     /**
      * Accept alert
      */
-    protected void acceptAlert(){
+    public void acceptAlert(){
         waitToBeAlertPresent();
         driver.switchTo().alert().accept();
     }
@@ -367,5 +367,9 @@ abstract class BasePage {
         } catch (NegativeArraySizeException e) {
             log.info("New tab not open");
         }
+    }
+    public void uploadNewPhoto(String pathToPhoto ){
+        WebElement frame = driver.switchTo().activeElement();
+        frame.sendKeys(pathToPhoto);
     }
 }

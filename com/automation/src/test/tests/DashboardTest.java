@@ -86,13 +86,82 @@ public class DashboardTest extends BaseTest {
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
         loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4 login test
-        Assert.assertTrue(dashboardPage.pageIsDisplayed(),"Dashboard page should be displayed");
+        Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard page should be displayed");
         dashboardPage.changePassword(Config.BASE_PASSWORD, dashboardDataObject.NewPasswordWithoutLetters, dashboardDataObject.ConfirmPasswordWithoutLetters);
         Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
         dashboardPage.clickCancelBtn();
-        Assert.assertTrue(dashboardPage.pageIsDisplayed(),"Dashboard page should be displayed");
+        Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard page should be displayed");
     }
 
+    @Test(description = "SQE-106 Dashboard  - change password: new password without numbers")
+    public void changePasswordNewPasswordWithoutNumbers(){
+        DashboardDataObject dashboardDataObject = new DashboardDataObject();
+        String expectedText = "Error: Password must include at least one number!";
+        driver.get(Config.BASE_URL);
+        Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
+        loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4 login test
+        Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard page should be displayed");
+        dashboardPage.changePassword(Config.BASE_PASSWORD, dashboardDataObject.NewPasswordWithoutNumbers, dashboardDataObject.ConfirmPasswordWithoutNumber);
+        Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
+        dashboardPage.acceptAlert();
+        dashboardPage.clickCancelBtn();
+        Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard page should be displayed");
+    }
 
+    @Test(description = "SQE-105 Dashboard  - change password: passwords are not the same")
+    public void changePasswordAreNotTheSame(){
+        DashboardDataObject dashboardDataObject = new DashboardDataObject();
+        String expectedText = "New Password and Confirm Password must be the same.";
+        driver.get(Config.BASE_URL);
+        Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
+        loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4 login test
+        Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard page should be displayed");
+        dashboardPage.changePassword(Config.BASE_PASSWORD, dashboardDataObject.NewPassword, dashboardDataObject.ConfirmPasswordWithoutNumber);
+        Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
+        dashboardPage.acceptAlert();
+        dashboardPage.clickCancelBtn();
+        Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard page should be displayed");
+    }
+
+    @Test(description = "SQE-104 Dashboard - change password: wrong old password")
+    public void changePasswordWrongOldPassword(){
+        DashboardDataObject dashboardDataObject = new DashboardDataObject();
+        String expectedText = "Old password must match your current password";
+        driver.get(Config.BASE_URL);
+        Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
+        loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4 login test
+        Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard page should be displayed");
+        dashboardPage.changePassword(dashboardDataObject.NewPassword, dashboardDataObject.NewPassword, dashboardDataObject.ConfirmPassword);
+        Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
+        dashboardPage.acceptAlert();
+        dashboardPage.clickCancelBtn();
+        Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard page should be displayed");
+    }
+
+    @Test(description = "SQE-101 Dashboard - Change Voicemail Pin")
+    public void changeVoicemailPin(){
+        DashboardDataObject dashboardDataObject = new DashboardDataObject();
+        DashboardDataObject dashboardDataObject1 = new DashboardDataObject();
+        driver.get(Config.BASE_URL);
+        Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
+        loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4 login test
+        Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
+        dashboardPage.changeVoicemailPin(dashboardDataObject.VoicemailPinNumber);//Replace step 2-4
+        Assert.assertTrue(dashboardPage.getVoicemialPinOnDashboard(dashboardDataObject.VoicemailPinNumber), "Voicemail Pin displayed in field with numbers from step 3");
+        dashboardPage.clickHidePinBtn();
+        Assert.assertTrue(dashboardPage.getHideStatusVMPin("(Hidden)"));
+        dashboardPage.changeVoicemailPinWithoutSave(dashboardDataObject1.VoicemailPinNumber);
+        Assert.assertTrue(dashboardPage.getVoicemialPinOnDashboard(dashboardDataObject.VoicemailPinNumber), "Voicemail Pin displayed in field with numbers from step 3");
+    }
+
+    @Test(description = "SQE-107 Dashboard - Change Profile Picture without Upload button")
+    public void changeProfilePictureWithoutUploadButton(){
+        driver.get(Config.BASE_URL);
+        Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
+        loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4 login test
+        Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
+        dashboardPage.uploadProfilePicture();
+
+    }
 }

@@ -10,9 +10,11 @@ public class DashboardDataObject {
     public String VoicemailPinNumber;
     public String NewPasswordWithoutLetters;
     public String ConfirmPasswordWithoutLetters;
+    public String NewPasswordWithoutNumbers;
+    public String ConfirmPasswordWithoutNumber;
 
 
-    public DashboardDataObject(String NewPassword, String nineDigitsMobileNumber, String elevenDigitsMobileNumber, String voicemailPinNumber, String newPasswordWithoutLetters){
+    public DashboardDataObject(String NewPassword, String nineDigitsMobileNumber, String elevenDigitsMobileNumber, String voicemailPinNumber, String newPasswordWithoutLetters, String newPasswordWithoutNumbers){
         this.NewPassword = NewPassword;
         this.ConfirmPassword = NewPassword;
         this.NineDigitsMobileNumber = nineDigitsMobileNumber;
@@ -20,10 +22,12 @@ public class DashboardDataObject {
         this.VoicemailPinNumber = voicemailPinNumber;
         this.NewPasswordWithoutLetters = newPasswordWithoutLetters;
         this.ConfirmPasswordWithoutLetters = newPasswordWithoutLetters;
+        this.NewPasswordWithoutNumbers = newPasswordWithoutNumbers;
+        this.ConfirmPasswordWithoutNumber = newPasswordWithoutNumbers;
     }
 
     public DashboardDataObject(){
-        this(getRandomNewPassword(), getRandomNineMobileNumber(), getRandomElevenMobileNumber(), getRandomVoicemailPin(),getRandomPasswordWithoutLetters());
+        this(getRandomNewPassword(), getRandomNineMobileNumber(), getRandomElevenMobileNumber(), getRandomVoicemailPin(), getRandomPasswordWithoutLetters(), getRandomPasswordWithoutNumbers());
     }
 
     public static String getRandomNewPassword(){
@@ -41,7 +45,12 @@ public class DashboardDataObject {
     public static String getRandomVoicemailPin(){
         return "" + Utils.getRandomInt(0000, 9999);
     }
+
     public static String getRandomPasswordWithoutLetters(){
         return "" + Utils.getRandomInt(00000000, 99999999);
+    }
+
+    public static String getRandomPasswordWithoutNumbers(){
+        return "" + Utils.getRandomString(8);
     }
 }
