@@ -11,15 +11,16 @@ import org.openqa.selenium.support.ui.*;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-abstract class BasePage {
+public abstract class BasePage {
 
-    private WebDriver driver;
+    protected WebDriver driver;
     protected Logger log;
 
-    BasePage(WebDriver driver) {
+    protected BasePage(WebDriver driver){
         this.driver = driver;
         log = Logger.getLogger(this.getClass().getCanonicalName());
     }
@@ -307,7 +308,7 @@ abstract class BasePage {
      * Accept alert
      *
      */
-    protected void acceptAlert() {
+    public void acceptAlert() {
         waitToBeAlertPresent();
         driver.switchTo().alert().accept();
     }
@@ -371,5 +372,40 @@ abstract class BasePage {
             waitUntilPageLoad(timeout);
         if (ProjectConfig.getBrowser().contains("Safari") && safari)
             waitUntilPageLoad(timeout);
+    }
+
+    /**
+     * Sort elements by specific order.
+     *
+     * @param arrowButton the By object representing the element that need click to.
+     * @param element     the By object representing the first element in column
+     * @param order       the order type: [By ask],[By desc]
+     */
+    public boolean isElementsSorted(PageElement arrowButton, PageElement element, String order){
+        ArrayList<String> obtainedList = new ArrayList<>();
+        List<WebElement> elementList = findAll(element);
+        for (WebElement we : elementList) {
+            obtainedList.add(we.getText().toUpperCase());
+        }
+        if (order.equals("By asc")) {
+            waitToBeClickable(arrowButton);
+            click(arrowButton);
+        } else if (order.equals("By desc")) {
+            waitToBeClickable(arrowButton);
+            click(arrowButton);
+            click(arrowButton);
+        } else System.out.println("Please choose type of sort");
+        List<WebElement> elementList1 = findAll(element);
+        ArrayList<String> obtainedAfterClickList = new ArrayList<>();
+        for (WebElement we : elementList1) {
+            obtainedAfterClickList.add(we.getText().toUpperCase());
+        }
+        ArrayList<String> sortedList = new ArrayList<>();
+        sortedList.addAll(obtainedList);
+        if (order.equals("By asc"))
+            Collections.sort(sortedList);
+        else if (order.equals("By desc")) sortedList.sort(Collections.reverseOrder());
+        else System.out.println("Please choose type of sort");
+        return obtainedAfterClickList.equals(sortedList);
     }
 }
