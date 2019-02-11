@@ -6,10 +6,13 @@ import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import pages.desktopPages.DesktopLoginPage;
-import pages.webPages.*;
+import pages.webPages.LoginPage;
+import pages.webPages.DashboardPage;
 
+import pages.webPages.phonebookPages.UserListingPage;
 
 public class BaseTest {
     protected LoginPage loginPage;
@@ -19,24 +22,23 @@ public class BaseTest {
     protected UsersPage usersPage;
     protected AddUsersPage addUsersPage;
     protected VoicemailPage voicemailPage;
+    protected UserListingPage userListingPage;
 
     public static WebDriver driver;
     public static WindowsDriver desktop_driver;
 
-    @BeforeTest
-    public void setupTestRun(){
+    @BeforeMethod
+    public void setupTestRun() {
         driver = new DriverFactory().getDriver();
         initPages();
     }
 
     @AfterMethod
-    public void logoutAfterTest(){
+    public void logoutAfterTest() {
         if (!loginPage.isLogInButtonDisplayed())
             dashboardPage.logout();
     }
 
-    @AfterTest
-    public void turnDown(){
         if (driver != null) {
             driver.quit();
             driver = null;
@@ -48,7 +50,8 @@ public class BaseTest {
         }
     }
 
-    protected void switchToDesktop(){
+
+    protected void switchToDesktop() {
         AppiumServerJava.startServer();
         desktop_driver = DriverFactory.getInstance();
         initDesktopPages();
@@ -61,6 +64,7 @@ public class BaseTest {
         usersPage = new UsersPage(driver);
         addUsersPage = new AddUsersPage(driver);
         voicemailPage = new VoicemailPage(driver);
+        userListingPage = new UserListingPage(driver);
     }
 
     private void initDesktopPages(){

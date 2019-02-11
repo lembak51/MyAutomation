@@ -111,6 +111,10 @@ public class DashboardPage extends BasePage {
     private static final PageElement closeChangeProfilePictureBtn = new PageElement(
             "Close Change Profile Picture modal button ",
             By.cssSelector("a[ng-click='close()']"));
+    private static final PageElement phonebookBtn = new PageElement(
+            "Phonebook button",
+            By.cssSelector("li[ng-show='user.navigation.pages_phonebook']"),
+            true);
 
     public DashboardPage(WebDriver driver){
         super(driver);
@@ -118,7 +122,7 @@ public class DashboardPage extends BasePage {
 
     @Override
     public boolean pageIsDisplayed(){
-        waitToBePresent(userProfileDdb);
+        waitUntilPageLoad(1);
         return allRequiredElementDisplayed();
     }
 
@@ -133,6 +137,11 @@ public class DashboardPage extends BasePage {
         click(userProfileDdb);
         waitToBeClickable(logoutBtn);
         click(logoutBtn);
+    }
+
+    public void openPhonebookPage(){
+        waitToBeClickable(phonebookBtn);
+        click(phonebookBtn);
     }
 
     public void clickChangePasswordBtn(){

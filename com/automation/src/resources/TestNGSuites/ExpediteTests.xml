@@ -19,6 +19,22 @@
             </class>
         </classes>
     </test>
+    <test name="Phonebook Test">
+        <classes>
+            <class name="tests.PhonebookTest">
+                <methods>
+                    <include name="phonebookTabUserListingSortByMobile"/>
+                    <include name="phonebookTabUserListingSortByDid"/>
+                    <include name="phonebookTabUserListingSortByExtensions"/>
+
+                    <!--TODO should be failed because of https://kerauno.atlassian.net/browse/KER-2061-->
+                    <exclude name="phonebookTabUserListingSortByDepartments"/>
+                    <!--TODO should be failed because of issue(extension button is not clickable)-->
+                    <exclude name="phonebookTabUserListingViewUserInformation"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
     <test name="Dashboard Test">
         <classes>
             <class name="tests.DashboardTest">
