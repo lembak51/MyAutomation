@@ -106,27 +106,27 @@ public class UserListingPage extends BasePage {
         return isElementsSorted(extensionArrowBtn, firstElementInExtensionColumnMsb, "By desc");
     }
 
-    public String getNameTextFromTheTable(){
+    private String getNameTextFromTheTable(){
         return getText(firstNameInTableMsb);
     }
 
-    public String getEmailTextFromTheTable(){
+    private String getEmailTextFromTheTable(){
         return getText(firstEmailInTableMsb);
     }
 
-    public String getNumberTextFromTheTable(){
+    private String getNumberTextFromTheTable(){
         return getText(firstNumberInTableMsb);
     }
 
-    public String getNameTextFromThePopUp(){
+    private String getNameTextFromThePopUp(){
         return getText(firstNameinPopUpMsb);
     }
 
-    public String getEmailTextFromThePopUp(){
+    private String getEmailTextFromThePopUp(){
         return getText(firstEmailInPopUpMsb);
     }
 
-    public String getNumberTextFromThePopUp(){
+    private String getNumberTextFromThePopUp(){
         return getText(firstNumberInPopUpMsb);
     }
 
