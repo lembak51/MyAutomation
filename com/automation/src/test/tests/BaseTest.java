@@ -9,8 +9,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import pages.desktopPages.DesktopLoginPage;
-import pages.webPages.LoginPage;
-import pages.webPages.DashboardPage;
+import pages.webPages.*;
 
 import pages.webPages.phonebookPages.UserListingPage;
 
@@ -37,7 +36,7 @@ public class BaseTest {
     public void logoutAfterTest() {
         if (!loginPage.isLogInButtonDisplayed())
             dashboardPage.logout();
-    }
+
 
         if (driver != null) {
             driver.quit();

@@ -6,13 +6,11 @@ import common.ProjectConfig;
 import common.Utils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.*;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public abstract class BasePage {
@@ -411,6 +409,7 @@ public abstract class BasePage {
      * @param numberTab the Integer object representing the tab
      */
     public void switchToTab(int numberTab){
+        waitUntilPageLoad();
         try {
             ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
             driver.switchTo().window(tabs.get(numberTab));

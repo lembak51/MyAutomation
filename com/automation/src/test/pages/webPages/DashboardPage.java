@@ -257,7 +257,7 @@ public class DashboardPage extends BasePage {
         click(chooseFileBtn);
         uploadNewPhoto("C:\\Users\\admin\\Downloads\\9fdbf585d17c95f7a31ccacdb6466af9.jpg");
         waitToBeClickable(closeChangeProfilePictureBtn);
-        click(uploadNewProfilePictureBtn);
+        click(closeChangeProfilePictureBtn);
     }
 
 

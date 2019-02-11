@@ -10,15 +10,15 @@ public class UserDataObject {
     public String JobTitle;
 
 
-    public UserDataObject(String username, String primaryExtension, String userEmail, String jobTitle){
+    public UserDataObject(String username, String primaryExtension, String userEmail){
         this.Username = username;
         this.PrimaryExtension = primaryExtension;
         this.UserEmail = userEmail;
-        this.JobTitle = jobTitle;
+        this.JobTitle = "QA Swan";
     }
 
     public UserDataObject(){
-        this(getRandomUsername(), getRandomPrimaryExtension(), getRandomUserEmail(), getRandomJobTitle());
+        this(getRandomUsername(), getRandomPrimaryExtension(), getRandomUserEmail());
     }
 
 
@@ -27,14 +27,11 @@ public class UserDataObject {
     }
 
     public static String getRandomPrimaryExtension(){
-        return "" + Utils.getRandomInt(1000, 1200);
+        return String.valueOf(Utils.getRandomInt(1000, 1200));
     }
 
     public static String getRandomUserEmail(){
         return "Swanteams" + Utils.getRandomInt(100, 999) + "@swanteams.com";
     }
 
-    public static String getRandomJobTitle(){
-        return "QA Swan";
-    }
 }

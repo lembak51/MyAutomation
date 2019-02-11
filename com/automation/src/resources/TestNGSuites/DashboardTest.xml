@@ -18,7 +18,7 @@
                     <include name="changePasswordAreNotTheSame"/>
                     <include name="changePasswordWrongOldPassword"/>
                     <include name="changeVoicemailPin"/>
-                    <include name="changeProfilePictureWithoutUploadButton"/>
+                    <exclude name="changeProfilePictureWithoutUploadButton"/>
                 </methods>
             </class>
         </classes>

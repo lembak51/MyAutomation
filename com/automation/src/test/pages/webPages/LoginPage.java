@@ -46,6 +46,7 @@ public class LoginPage extends BasePage {
     }
 
     public void makeLogin(String userEmail, String userPassword){
+        waitUntilPageLoad();
         waitToBeClickable(logInBtn);
         fillFieldUsername(userEmail);
         fillFieldPassword(userPassword);
