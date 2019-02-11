@@ -175,9 +175,9 @@ public class DashboardPage extends BasePage {
     }
 
     public void changeMyMobileNumberWithIncorrectValues(String newMobileNumber){
+        waitUntilPageLoad( 10, false, false, true, false);
         waitToBeClickable(changeMobileBtn);
         click(changeMobileBtn);
-        waitUntilPageLoad(1);
         fillMobileNumber(newMobileNumber);
         click(saveMobileNumberBtn);
     }
