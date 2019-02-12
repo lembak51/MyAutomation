@@ -8,6 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import pages.desktopPages.DesktopDashboardPage;
 import pages.desktopPages.DesktopLoginPage;
 import pages.webPages.LoginPage;
 import pages.webPages.DashboardPage;
@@ -19,6 +20,7 @@ public class BaseTest {
     protected DashboardPage dashboardPage;
     protected DesktopLoginPage desktopLoginPage;
     protected UserListingPage userListingPage;
+    protected DesktopDashboardPage desktopDashboardPage;
 
     public static WebDriver driver;
     public static WindowsDriver desktop_driver;
@@ -33,6 +35,7 @@ public class BaseTest {
     public void logoutAfterTest() {
         if (!loginPage.isLogInButtonDisplayed())
             dashboardPage.logout();
+            desktopDashboardPage.logout();
 
         if (driver != null) {
             driver.quit();
@@ -60,6 +63,7 @@ public class BaseTest {
 
     private void initDesktopPages() {
         desktopLoginPage = new DesktopLoginPage(desktop_driver);
+        desktopDashboardPage = new DesktopDashboardPage(desktop_driver);
     }
 
 }

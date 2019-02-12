@@ -1,6 +1,7 @@
 package pages.desktopPages;
 
 import common.DesktopElement;
+import common.PageElement;
 import common.ProjectConfig;
 import io.appium.java_client.windows.WindowsDriver;
 import org.apache.log4j.Logger;
@@ -10,11 +11,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 abstract class BasePage {
-    private WindowsDriver desktop_driver;
+    protected WindowsDriver desktop_driver;
     public boolean doLogging = true;
     protected Logger log;
 
-    BasePage(WindowsDriver driver){
+    public BasePage(WindowsDriver driver){
         this.desktop_driver = driver;
         log = Logger.getLogger(this.getClass().getName());
     }
@@ -46,15 +47,32 @@ abstract class BasePage {
         this.waitToBeClickable(element.getLocator(), timeout);
     }
 
+    public String getText(DesktopElement desktopElement){
+        log.info("Getting text of element: " + desktopElement.name);
+        return this.find(desktopElement).getText();
+    }
+
+    public void enterText(DesktopElement desktopElement, String text){
+        this.enterText(desktopElement, text, true);
+    }
+
+    public void enterText(DesktopElement desktopElement, String text, boolean clearField){
+        log.info("Entering text \"" + text + "\" to element: " + desktopElement.name);
+        this.find(desktopElement).click();
+        if (clearField) {
+            this.find(desktopElement).clear();
+        }
+        this.find(desktopElement).sendKeys(text);
+    }
+
     protected void waitToBeClickable(DesktopElement element){
         this.waitToBeClickable(element.getLocator(), 30);
     }
 
     /**
      * Waits default(1 sec) timeout period
-     *
      */
-    protected void waitUntilLoad() {
+    protected void waitUntilLoad(){
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -65,12 +83,11 @@ abstract class BasePage {
     /**
      * Waits default(1 sec) timeout period
      *
-     * @param timeout  the Int object representing the value in second that need to wait
-     *
+     * @param timeout the Int object representing the value in second that need to wait
      */
-    protected void waitUntilLoad(int timeout) {
+    protected void waitUntilLoad(int timeout){
         try {
-            Thread.sleep(timeout*1000);
+            Thread.sleep(timeout * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

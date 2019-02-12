@@ -14,8 +14,6 @@ public class PhonebookTest extends BaseTest {
         loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);
         dashboardPage.pageIsDisplayed();
     }
-    private void createNewVoicemail(){
-    }
 
     @Test(description = "SQE-28 Phonebook tab - User Listing: sort by Mobile")
     public void phonebookTabUserListingSortByMobile(){

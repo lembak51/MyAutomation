@@ -15,6 +15,9 @@ public class ProjectConfig {
     private static String appiumPort;
     private static String testDeviceName;
     private static String appPath;
+    private static String baseUsernameForBolt;
+    private static String basePasswordForBolt;
+
 
 
     public static String getBaseUrl(){
@@ -78,6 +81,20 @@ public class ProjectConfig {
         return appPath;
     }
 
+    public static String getBaseUsernameForBolt(){
+        if (baseUsernameForBolt == null) {
+            initProperties();
+        }
+        return baseUsernameForBolt;
+    }
+
+    public static String getBasePasswordForBolt(){
+        if (basePasswordForBolt == null) {
+            initProperties();
+        }
+        return basePasswordForBolt;
+    }
+
     private static void initProperties(){
         try {
             File file;
@@ -97,6 +114,8 @@ public class ProjectConfig {
             browser = properties.getProperty("browser_name");
             //desktop properties
             testDeviceName = properties.getProperty("device_name");
+            baseUsernameForBolt = properties.getProperty("base_username_for_bolt");
+            basePasswordForBolt = properties.getProperty("base_password_for_bolt");
             appiumIP = properties.getProperty("appium_IP");
             appiumPort = properties.getProperty("appium_port");
             appPath = properties.getProperty("app_path");
