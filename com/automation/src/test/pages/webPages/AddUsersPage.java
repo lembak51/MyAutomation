@@ -28,7 +28,7 @@ public class AddUsersPage extends BasePage {
             By.cssSelector("input[data-ng-model='new_user.role']"),
             true);
     private static final PageElement createUserBtn = new PageElement(
-            "Create user nutton",
+            "Create user button",
             By.cssSelector("button[class='btn btn-success']"),
             true);
     private static final PageElement generatePasswordChb = new PageElement(

@@ -417,8 +417,20 @@ public abstract class BasePage {
             log.info("New tab not open");
         }
     }
+
+    /**
+     * Upload Photo from the specified path
+     *
+     * @param pathToPhoto object representing the path to the file
+     */
     public void uploadNewPhoto(String pathToPhoto ){
         WebElement frame = driver.switchTo().activeElement();
         frame.sendKeys(pathToPhoto);
+    }
+    public boolean alertWithExpectedText(String expectedText){
+        waitToBeAlertPresent(1);
+        String actualText = getTextFromAlert();
+        log.info("Alert Text " + actualText);
+        return actualText.equals(expectedText);
     }
 }

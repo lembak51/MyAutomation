@@ -81,7 +81,7 @@ public class DashboardPage extends BasePage {
             false);
     private final static PageElement showPinBtn = new PageElement(
             "Show Voicemail Pin button",
-            By.cssSelector("form > span:nth-child(4) > a"),
+            By.cssSelector(" a[ng-hide='pinShow==true || changingPin'] "),
             true);
     private static final PageElement voicemailTab = new PageElement(
             "Voicemail tab button",
@@ -97,7 +97,7 @@ public class DashboardPage extends BasePage {
             false);
     private static final PageElement hidePinBtn = new PageElement(
             "Hide Pin number button",
-            By.cssSelector(" form > span:nth-child(4) > span:nth-child(3) > a"));
+            By.cssSelector("span[ng-show='pinShow && !changingPin']  > a"));
     private static final PageElement changePictureBtn = new PageElement(
             "Change Picture button",
             By.cssSelector("span[class='ng-scope']>a[ng-click='open()']"),
@@ -171,12 +171,6 @@ public class DashboardPage extends BasePage {
         fillConfirmPassword(confirmPassword);
         waitToBeClickable(submitBtn);
         click(submitBtn);
-    }
-
-    public boolean alertWithExpectedText(String expectedText){
-        waitToBeAlertPresent(1);
-        String actualText = getTextFromAlert();
-        return actualText.equals(expectedText);
     }
 
     public void fillMobileNumber(String newMobileNumber){
