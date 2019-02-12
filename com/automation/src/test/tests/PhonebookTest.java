@@ -8,11 +8,13 @@ import org.testng.annotations.Test;
 
 public class PhonebookTest extends BaseTest {
     @BeforeMethod
-    public void loginBeforeTest(){
+    private void loginBeforeTest(){
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed());
         loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);
         dashboardPage.pageIsDisplayed();
+    }
+    private void createNewVoicemail(){
     }
 
     @Test(description = "SQE-28 Phonebook tab - User Listing: sort by Mobile")
