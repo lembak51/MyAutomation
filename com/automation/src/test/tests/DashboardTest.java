@@ -23,7 +23,7 @@ public class DashboardTest extends BaseTest {
         Assert.assertTrue(releaseNotesPage.getReleaseHeaderText(), "Release Notes page should be displayed");
     }
 
-    @Test(description = "Dashboard - change password: login with new password")
+    @Test(description = "SQE-113 Dashboard - change password: login with new password")
     public void changePasswordLoginWithNewPassword(){
         UserDataObject userDataObject = new UserDataObject();
         DashboardDataObject dashboardDataObject = new DashboardDataObject();
@@ -96,9 +96,9 @@ public class DashboardTest extends BaseTest {
     @Test(description = "SQE-105 Dashboard  - change password: passwords are not the same")
     public void changePasswordAreNotTheSame(){
         DashboardDataObject dashboardDataObject = new DashboardDataObject();
-        DashboardDataObject dashboardDataObject1 = new DashboardDataObject();
+        DashboardDataObject dashboardDataObjectForNewPassword = new DashboardDataObject();
         String expectedText = "New Password and Confirm Password must be the same.";
-        dashboardPage.changePassword(Config.BASE_PASSWORD, dashboardDataObject.NewPassword, dashboardDataObject1.NewPassword);
+        dashboardPage.changePassword(Config.BASE_PASSWORD, dashboardDataObject.NewPassword, dashboardDataObjectForNewPassword.NewPassword);
         Assert.assertTrue(dashboardPage.isAlertTextAsExpected(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
         dashboardPage.clickCancelBtn();
@@ -119,12 +119,12 @@ public class DashboardTest extends BaseTest {
     @Test(description = "SQE-101 Dashboard - Change Voicemail Pin")
     public void changeVoicemailPin(){
         DashboardDataObject dashboardDataObject = new DashboardDataObject();
-        DashboardDataObject dashboardDataObject1 = new DashboardDataObject();
+        DashboardDataObject dashboardDataObjectForNewVoiceMail = new DashboardDataObject();
         dashboardPage.changeVoiceMailPin(dashboardDataObject.VoicemailPinNumber);//Replace step 2-4
         Assert.assertTrue(dashboardPage.getVoiceMailPinOnDashboard(dashboardDataObject.VoicemailPinNumber), "Voicemail Pin displayed in field with numbers from step 3");
         dashboardPage.clickHidePinBtn();
         Assert.assertTrue(dashboardPage.getHideStatusVMPin("(Hidden)"));
-        dashboardPage.changeVoicemailPinWithoutSave(dashboardDataObject1.VoicemailPinNumber);
+        dashboardPage.changeVoicemailPinWithoutSave(dashboardDataObjectForNewVoiceMail.VoicemailPinNumber);
         Assert.assertTrue(dashboardPage.getVoiceMailPinOnDashboard(dashboardDataObject.VoicemailPinNumber), "Voicemail Pin displayed in field with numbers from step 3");
     }
 

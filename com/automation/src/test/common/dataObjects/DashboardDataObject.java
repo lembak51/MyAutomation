@@ -34,7 +34,7 @@ public class DashboardDataObject {
     }
 
     public static String getRandomNewPassword(){
-        return "Swanteam" + Utils.getRandomInteger(3);
+        return "Swanteam" + Utils.getRandomInt(000,999);
     }
 
     public static String getRandomNineMobileNumber(){
