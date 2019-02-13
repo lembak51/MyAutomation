@@ -5,36 +5,6 @@
         <listener class-name="common.testHelper.FailureRetryListener"/>
         <listener class-name="common.testHelper.TestListener"/>
     </listeners>
-
-    <test name="Login Test">
-        <classes>
-            <class name="tests.LoginTest">
-                <methods>
-                    <include name="logInWithoutRememberME"/>
-                    <include name="loginEmptyFields"/>
-                    <include name="logInIncorrectEmail"/>
-                    <include name="logInIncorrectPassword"/>
-                    <include name="logInViaRememberME"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test name="Phonebook Test">
-        <classes>
-            <class name="tests.PhonebookTest">
-                <methods>
-                    <include name="phonebookTabUserListingSortByMobile"/>
-                    <include name="phonebookTabUserListingSortByDid"/>
-                    <include name="phonebookTabUserListingSortByExtensions"/>
-
-                    <!--TODO should be failed because of https://kerauno.atlassian.net/browse/KER-2061-->
-                    <exclude name="phonebookTabUserListingSortByDepartments"/>
-                    <!--TODO should be failed because of issue(extension button is not clickable)-->
-                    <exclude name="phonebookTabUserListingViewUserInformation"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
     <test name="Dashboard Test">
         <classes>
             <class name="tests.DashboardTest">
@@ -48,7 +18,6 @@
                     <include name="changePasswordAreNotTheSame"/>
                     <include name="changePasswordWrongOldPassword"/>
                     <include name="changeVoicemailPin"/>
-
                     <!-- TODO add method of the screenshoot comparator -->
                     <exclude name="changeProfilePictureWithoutUploadButton"/>
                 </methods>
