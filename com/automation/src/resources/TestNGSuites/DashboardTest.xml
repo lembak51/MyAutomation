@@ -18,6 +18,7 @@
                     <include name="changePasswordAreNotTheSame"/>
                     <include name="changePasswordWrongOldPassword"/>
                     <include name="changeVoicemailPin"/>
+                    <!-- TODO add method of the screenshoot comparator -->
                     <exclude name="changeProfilePictureWithoutUploadButton"/>
                 </methods>
             </class>

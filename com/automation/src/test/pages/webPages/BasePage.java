@@ -427,10 +427,16 @@ public abstract class BasePage {
         WebElement frame = driver.switchTo().activeElement();
         frame.sendKeys(pathToPhoto);
     }
-    public boolean alertWithExpectedText(String expectedText){
+
+    /**
+     * Compare expected and actual text of alert
+     *
+     * @param expectedText the String object representing of the expected alert text
+     */
+    public boolean isAlertTextAsExpected(String expectedText){
         waitToBeAlertPresent(1);
         String actualText = getTextFromAlert();
-        log.info("Alert Text " + actualText);
+        log.info("Actual Alert Text: " + actualText + ".Expected: " + expectedText);
         return actualText.equals(expectedText);
     }
 }

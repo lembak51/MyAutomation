@@ -4,6 +4,7 @@ import common.AppiumServerJava;
 import common.driver.DriverFactory;
 import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -34,10 +35,25 @@ public class BaseTest {
 
     @AfterMethod
     public void logoutAfterTest() {
-        if (!loginPage.isLogInButtonDisplayed())
-            dashboardPage.logout();
+        try {
+            if (!loginPage.isLogInButtonDisplayed())
+                dashboardPage.logout();
+        } catch (WebDriverException ignored) {
+        } finally {
+            if (driver != null) {
+                driver.quit();
+                driver = null;
+            }
+            if (desktop_driver != null) {
+                desktop_driver.quit();
+                desktop_driver = null;
+                AppiumServerJava.stopServer();
+            }
+        }
+    }
 
-
+    @AfterTest
+    public void destroyDrivers(){
         if (driver != null) {
             driver.quit();
             driver = null;
@@ -48,15 +64,13 @@ public class BaseTest {
             AppiumServerJava.stopServer();
         }
     }
-
-
     protected void switchToDesktop() {
         AppiumServerJava.startServer();
         desktop_driver = DriverFactory.getInstance();
         initDesktopPages();
     }
 
-    private void initPages(){
+    private void initPages() {
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);
         releaseNotesPage = new ReleaseNotesPage(driver);
@@ -66,7 +80,7 @@ public class BaseTest {
         userListingPage = new UserListingPage(driver);
     }
 
-    private void initDesktopPages(){
+    private void initDesktopPages() {
         desktopLoginPage = new DesktopLoginPage(desktop_driver);
     }
 

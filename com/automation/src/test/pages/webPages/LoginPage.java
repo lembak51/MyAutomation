@@ -65,21 +65,13 @@ public class LoginPage extends BasePage {
         clickLogIn();
     }
 
-    public boolean alertText(String expected){
-        waitToBeAlertPresent(1);
-        String actualText = getTextFromAlert();
-        log.info("Expected alert message: " + expected + ".Actual: " + actualText);
-        return actualText.equals(expected);
-    }
-
-
     public String getTextFromEmailField(){
         waitToBeVisible(usernameFld);
         return getAttribute(usernameFld, "value");
     }
 
     public boolean isLogInButtonDisplayed(){
-        waitUntilPageLoad(1);
+        waitUntilPageLoad();
         return isElementPresent(logInBtn);
     }
 }

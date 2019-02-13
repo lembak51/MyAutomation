@@ -4,6 +4,7 @@ import common.Config;
 import common.PageElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 
 public class DashboardPage extends BasePage {
 
@@ -91,7 +92,7 @@ public class DashboardPage extends BasePage {
             "Voicemail Pin n=Number",
             By.cssSelector("span[class ='pin ng-binding']"),
             false);
-    private static  final PageElement cancelVMPinBtn = new PageElement(
+    private static final PageElement cancelVMPinBtn = new PageElement(
             "Cancel Voicemail Pin number button",
             By.cssSelector("button[ng-click='cancelVMPin()']"),
             false);
@@ -116,56 +117,56 @@ public class DashboardPage extends BasePage {
             By.cssSelector("li[ng-show='user.navigation.pages_phonebook']"),
             true);
 
-    public DashboardPage(WebDriver driver){
+    public DashboardPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public boolean pageIsDisplayed(){
-        waitUntilPageLoad(1);
+    public boolean pageIsDisplayed() {
+        waitUntilPageLoad();
         return allRequiredElementDisplayed();
     }
 
-    public void clickReleaseNote(){
+    public void clickReleaseNote() {
         waitToBeClickable(releaseNoteBtn);
         click(releaseNoteBtn);
     }
 
-    public void logout(){
-        waitUntilPageLoad(1);
+    public void logout() {
+        waitUntilPageLoad();
         waitToBeClickable(userProfileDdb);
         click(userProfileDdb);
         waitToBeClickable(logoutBtn);
         click(logoutBtn);
     }
 
-    public void openPhonebookPage(){
+    public void openPhonebookPage() {
         waitToBeClickable(phonebookBtn);
         click(phonebookBtn);
     }
 
-    public void clickChangePasswordBtn(){
+    public void clickChangePasswordBtn() {
         waitToBeClickable(changePasswordBtn);
         click(changePasswordBtn);
     }
 
-    public void fillOldPassword(String userPassword){
+    public void fillOldPassword(String userPassword) {
         enterText(oldPasswordFld, userPassword);
     }
 
-    public void fillNewPassword(String newPassword){
+    public void fillNewPassword(String newPassword) {
         enterText(newPasswordFld, newPassword);
     }
 
-    public void fillConfirmPassword(String confirmPassword){
+    public void fillConfirmPassword(String confirmPassword) {
         enterText(confirmPasswordFld, confirmPassword);
     }
 
-    public void changePassword(String oldPassword, String newPassword, String confirmPassword){
-        waitUntilPageLoad(1);
+    public void changePassword(String oldPassword, String newPassword, String confirmPassword) {
+        waitUntilPageLoad();
         waitToBeClickable(changePasswordBtn);
         clickChangePasswordBtn();
-        waitToBeClickable(cancelChangePasswordBtn);
+        waitUntilPageLoad();
         fillOldPassword(oldPassword);
         fillNewPassword(newPassword);
         fillConfirmPassword(confirmPassword);
@@ -173,61 +174,66 @@ public class DashboardPage extends BasePage {
         click(submitBtn);
     }
 
-    public void fillMobileNumber(String newMobileNumber){
+    public void fillMobileNumber(String newMobileNumber) {
         enterText(mobileNumberFld, newMobileNumber);
     }
 
-    public void changeMyMobileNumberWithIncorrectValues(String newMobileNumber){
-        waitUntilPageLoad( 10, false, false, true, false);
+    public void changeMyMobileNumberWithIncorrectValues(String newMobileNumber) {
+        waitUntilPageLoad(10, false, false, true, false);
         waitToBeClickable(changeMobileBtn);
         click(changeMobileBtn);
         fillMobileNumber(newMobileNumber);
         click(saveMobileNumberBtn);
     }
 
-    public void openUserTab(){
+    public void openUserTab() {
         waitToBeClickable(sidebarUserDevicesSection);
         click(sidebarUserDevicesSection);
-        waitUntilPageLoad(1);
+        waitUntilPageLoad();
         waitToBeClickable(sidebarUserTab);
         click(sidebarUserTab);
     }
 
-    public void clickAgreeTermOfUseBtn(){
-        waitUntilPageLoad(1);
+    public void clickAgreeTermOfUseBtn() {
+        waitUntilPageLoad();
         waitToBeClickable(agreeWithTermOfUseBtn);
         click(agreeWithTermOfUseBtn);
 
     }
 
-    public void changeVoicemailPin(String voicemailPin){
+    public void changeVoiceMailPin(String voiceMailPin) {
         waitToBeClickable(changeVMPinBtn);
         click(changeVMPinBtn);
-        enterText(voicemailPinFld, voicemailPin);
+        waitToBeVisible(voicemailPinFld);
+        enterText(voicemailPinFld, voiceMailPin);
         waitToBeClickable(saveVmPinBtn);
         click(saveVmPinBtn);
     }
-    public boolean getVoicemialPinOnDashboard (String voicemailPin){
+
+    public boolean getVoiceMailPinOnDashboard(String expectedVoiceMailPin) {
         waitToBeClickable(showPinBtn);
         click(showPinBtn);
-        String actualVoicemailPin = getText(voicemailPinNumber);
-        return actualVoicemailPin.equals(voicemailPin);
+        String actualVoiceMailPin = getText(voicemailPinNumber);
+        log.info("Actual Voice Mail Pin: " + actualVoiceMailPin + ".Expected: " + expectedVoiceMailPin);
+        return actualVoiceMailPin.equals(expectedVoiceMailPin);
     }
 
-    public void switchToVoicemailTab(){
+    public void switchToVoiceMailTab() {
         waitToBeClickable(voicemailTab);
         click(voicemailTab);
     }
-    public void clickCancelBtn (){
+
+    public void clickCancelBtn() {
         waitToBeClickable(cancelChangePasswordBtn);
         click(cancelChangePasswordBtn);
     }
-    public void clickHidePinBtn (){
+
+    public void clickHidePinBtn() {
         waitToBeClickable(hidePinBtn);
         click(hidePinBtn);
     }
 
-    public boolean getHideStatusVMPin (String hiddenText){
+    public boolean getHideStatusVMPin(String hiddenText) {
         PageElement getHiddenText = new PageElement(
                 "Hidden Text",
                 By.xpath("//*[@class='pin']//strong"));
@@ -235,7 +241,7 @@ public class DashboardPage extends BasePage {
         return actualText.equals(hiddenText);
     }
 
-    public void changeVoicemailPinWithoutSave(String voicemailPin){
+    public void changeVoicemailPinWithoutSave(String voicemailPin) {
         waitToBeClickable(changeVMPinBtn);
         click(changeVMPinBtn);
         enterText(voicemailPinFld, voicemailPin);
@@ -243,10 +249,11 @@ public class DashboardPage extends BasePage {
         click(cancelVMPinBtn);
 
     }
-    public void uploadProfilePicture(){
+
+    public void uploadProfilePicture() {
         waitToBeClickable(changePictureBtn);
         click(changePictureBtn);
-        //waitUntilPageLoad(1);
+        waitUntilPageLoad();
         waitToBeClickable(chooseFileBtn);
         click(chooseFileBtn);
         uploadNewPhoto("C:\\Users\\admin\\Downloads\\9fdbf585d17c95f7a31ccacdb6466af9.jpg");

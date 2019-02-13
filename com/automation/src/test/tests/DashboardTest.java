@@ -39,7 +39,7 @@ public class DashboardTest extends BaseTest {
         dashboardPage.clickAgreeTermOfUseBtn();
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
         dashboardPage.changePassword(dashboardDataObject.NewPassword, dashboardDataObject.NewPassword, dashboardDataObject.ConfirmPassword);
-        Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
+        Assert.assertTrue(dashboardPage.isAlertTextAsExpected(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
         dashboardPage.logout();
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
@@ -52,22 +52,22 @@ public class DashboardTest extends BaseTest {
         DashboardDataObject dashboardDataObject = new DashboardDataObject();
         String expectedText = "Error: Invalid mobile phone number length (please use 10 digit)";
         dashboardPage.changeMyMobileNumberWithIncorrectValues(dashboardDataObject.NineDigitsMobileNumber);
-        Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
+        Assert.assertTrue(dashboardPage.isAlertTextAsExpected(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
         dashboardPage.changeMyMobileNumberWithIncorrectValues(dashboardDataObject.ElevenDigitsMobileNumber);
-        Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
+        Assert.assertTrue(dashboardPage.isAlertTextAsExpected(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
     }
 
-    //Bug, in attribute does not change voicemail pin number. But in field pin number is changed
+    //TODO Bug, in attribute does not change voicemail pin number. But in field pin number is changed
     @Test(description = "SQE- 109 Dashboard - Check Voicemail Pin  in Voicemail page")
     public void checkVoicemailPinInVoicemailPage(){
         DashboardDataObject dashboardDataObject = new DashboardDataObject();
-        dashboardPage.changeVoicemailPin(dashboardDataObject.VoicemailPinNumber);//Replace step 2-4
-        Assert.assertTrue(dashboardPage.getVoicemialPinOnDashboard(dashboardDataObject.VoicemailPinNumber), "Voicemail Pin displayed in field with numbers from step 3");
-        dashboardPage.switchToVoicemailTab();
+        dashboardPage.changeVoiceMailPin(dashboardDataObject.VoicemailPinNumber);//Replace step 2-4
+        Assert.assertTrue(dashboardPage.getVoiceMailPinOnDashboard(dashboardDataObject.VoicemailPinNumber), "Voicemail Pin displayed in field with numbers from step 3");
+        dashboardPage.switchToVoiceMailTab();
         Assert.assertTrue(voicemailPage.getVoicemailPin(dashboardDataObject.VoicemailPinNumber), "Voicemail Pin displayed with numbers from step 3");//Replace step 6-7
     }
 
@@ -76,7 +76,7 @@ public class DashboardTest extends BaseTest {
         DashboardDataObject dashboardDataObject = new DashboardDataObject().getPasswordWithLetters();
         String expectedText = "Error: Password must include at least one letter!";
         dashboardPage.changePassword(Config.BASE_PASSWORD, dashboardDataObject.NewPassword, dashboardDataObject.ConfirmPassword);
-        Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
+        Assert.assertTrue(dashboardPage.isAlertTextAsExpected(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
         dashboardPage.clickCancelBtn();
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard page should be displayed");
@@ -87,7 +87,7 @@ public class DashboardTest extends BaseTest {
         DashboardDataObject dashboardDataObject = new DashboardDataObject().getPasswordWithNumber();
         String expectedText = "Error: Password must include at least one number!";
         dashboardPage.changePassword(Config.BASE_PASSWORD, dashboardDataObject.NewPassword, dashboardDataObject.ConfirmPassword);
-        Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
+        Assert.assertTrue(dashboardPage.isAlertTextAsExpected(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
         dashboardPage.clickCancelBtn();
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard page should be displayed");
@@ -99,7 +99,7 @@ public class DashboardTest extends BaseTest {
         DashboardDataObject dashboardDataObject1 = new DashboardDataObject();
         String expectedText = "New Password and Confirm Password must be the same.";
         dashboardPage.changePassword(Config.BASE_PASSWORD, dashboardDataObject.NewPassword, dashboardDataObject1.NewPassword);
-        Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
+        Assert.assertTrue(dashboardPage.isAlertTextAsExpected(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
         dashboardPage.clickCancelBtn();
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard page should be displayed");
@@ -110,7 +110,7 @@ public class DashboardTest extends BaseTest {
         DashboardDataObject dashboardDataObject = new DashboardDataObject();
         String expectedText = "Old password must match your current password";
         dashboardPage.changePassword(dashboardDataObject.NewPassword, dashboardDataObject.NewPassword, dashboardDataObject.ConfirmPassword);
-        Assert.assertTrue(dashboardPage.alertWithExpectedText(expectedText), "Alert with text expected text should present");
+        Assert.assertTrue(dashboardPage.isAlertTextAsExpected(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
         dashboardPage.clickCancelBtn();
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard page should be displayed");
@@ -120,14 +120,15 @@ public class DashboardTest extends BaseTest {
     public void changeVoicemailPin(){
         DashboardDataObject dashboardDataObject = new DashboardDataObject();
         DashboardDataObject dashboardDataObject1 = new DashboardDataObject();
-        dashboardPage.changeVoicemailPin(dashboardDataObject.VoicemailPinNumber);//Replace step 2-4
-        Assert.assertTrue(dashboardPage.getVoicemialPinOnDashboard(dashboardDataObject.VoicemailPinNumber), "Voicemail Pin displayed in field with numbers from step 3");
+        dashboardPage.changeVoiceMailPin(dashboardDataObject.VoicemailPinNumber);//Replace step 2-4
+        Assert.assertTrue(dashboardPage.getVoiceMailPinOnDashboard(dashboardDataObject.VoicemailPinNumber), "Voicemail Pin displayed in field with numbers from step 3");
         dashboardPage.clickHidePinBtn();
         Assert.assertTrue(dashboardPage.getHideStatusVMPin("(Hidden)"));
         dashboardPage.changeVoicemailPinWithoutSave(dashboardDataObject1.VoicemailPinNumber);
-        Assert.assertTrue(dashboardPage.getVoicemialPinOnDashboard(dashboardDataObject.VoicemailPinNumber), "Voicemail Pin displayed in field with numbers from step 3");
+        Assert.assertTrue(dashboardPage.getVoiceMailPinOnDashboard(dashboardDataObject.VoicemailPinNumber), "Voicemail Pin displayed in field with numbers from step 3");
     }
-    //To do
+
+    //TODO add method of the screenshoot comparator
     @Test(description = "SQE-107 Dashboard - Change Profile Picture without Upload button")
     public void changeProfilePictureWithoutUploadButton(){
         dashboardPage.uploadProfilePicture();

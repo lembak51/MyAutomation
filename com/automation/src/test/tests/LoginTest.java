@@ -21,7 +21,7 @@ public class LoginTest extends BaseTest {
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
         loginPage.loginWithEmptyField();
-        Assert.assertTrue(loginPage.alertText(alertErrorText), "Alert should be present with text");
+        Assert.assertTrue(loginPage.isAlertTextAsExpected(alertErrorText), "Alert should be present with text");
         loginPage.acceptAlert();
         Assert.assertTrue(loginPage.pageIsDisplayed(),"Login page should be displayed");
     }
@@ -31,7 +31,7 @@ public class LoginTest extends BaseTest {
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
         loginPage.makeLogin(Config.INCORRECT_USERNAME, Config.BASE_PASSWORD);//Replace step
-        Assert.assertTrue(loginPage.alertText(alertErrorText), "Alert should be present with text");
+        Assert.assertTrue(loginPage.isAlertTextAsExpected(alertErrorText), "Alert should be present with text");
         loginPage.acceptAlert();
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login page should be displayed");
     }
@@ -41,7 +41,7 @@ public class LoginTest extends BaseTest {
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed());
         loginPage.makeLogin(Config.BASE_USERNAME, Config.INCORRECT_PASSWORD);//Replace step
-        Assert.assertTrue(loginPage.alertText(alertErrorText), "Alert should be present with text");
+        Assert.assertTrue(loginPage.isAlertTextAsExpected(alertErrorText), "Alert should be present with text");
         loginPage.acceptAlert();
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login page should be displayed");
     }
