@@ -204,7 +204,7 @@ public class DashboardPage extends BasePage {
     public void changeVoiceMailPin(String voiceMailPin) {
         waitToBeClickable(changeVMPinBtn);
         click(changeVMPinBtn);
-        waitToBeVisible(voicemailPinFld);
+        waitUntilPageLoad();
         enterText(voicemailPinFld, voiceMailPin);
         waitToBeClickable(saveVmPinBtn);
         click(saveVmPinBtn);
