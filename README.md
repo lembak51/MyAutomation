@@ -46,7 +46,7 @@ Adding automated test cases to the changelog should be done using the following 
 1. Add Link to the Jira 
 1. Add by whom was done that test cases
 
-###_Exmaple:_ 
+###_Example:_ 
 Section, Name, Link, Tester
 
 
