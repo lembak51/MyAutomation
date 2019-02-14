@@ -53,6 +53,7 @@
     </dependencies>
 
     <build>
+        <testSourceDirectory>com/automation/src/test</testSourceDirectory>
         <plugins>
             <!-- PLUGIN TO PACKAGE DEPENDENCY-->
             <plugin>
@@ -88,7 +89,7 @@
 
                     <forkCount>0</forkCount>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/TestNGSuites/ExpediteTests.xml</suiteXmlFile>
+                        <suiteXmlFile>com/automation/src/resources/TestNGSuites/ExpediteTests.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
