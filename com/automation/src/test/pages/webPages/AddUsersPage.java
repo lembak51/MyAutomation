@@ -1,7 +1,6 @@
 package pages.webPages;
 
 import common.PageElement;
-import common.dataObjects.DashboardDataObject;
 import common.dataObjects.UserDataObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -100,7 +99,7 @@ public class AddUsersPage extends BasePage {
 
     }
 
-    public void createNewUser(UserDataObject userDataObject, DashboardDataObject dashboardDataObject){
+    public void createNewUser(UserDataObject userDataObject){
         waitToBeClickable(homeBtn);
         fillFirstName(userDataObject.Username);
         fillLastName(userDataObject.Username);
@@ -108,8 +107,8 @@ public class AddUsersPage extends BasePage {
         fillUserEmailFld(userDataObject.UserEmail);
         fillJobTitleFld(userDataObject.JobTitle);
         selectCheckbox(generatePasswordChb, false);
-        fillPasswordFld(dashboardDataObject.NewPassword);
-        fillConfirmPasswordFld(dashboardDataObject.ConfirmPassword);
+        fillPasswordFld(userDataObject.NewPassword);
+        fillConfirmPasswordFld(userDataObject.ConfirmPassword);
         click(createUserBtn);
     }
 }
