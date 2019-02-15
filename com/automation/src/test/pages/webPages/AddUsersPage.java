@@ -46,6 +46,10 @@ public class AddUsersPage extends BasePage {
             "Home button",
             By.cssSelector("ng-include > form > button.btn.btn-primary"),
             true);
+    private static final PageElement mobileNumberFld = new  PageElement(
+            "Mobile Number filed",
+            By.cssSelector("input[data-ng-model='new_user.phone']"),
+            true);
 
 
     public AddUsersPage(WebDriver driver){
@@ -85,6 +89,7 @@ public class AddUsersPage extends BasePage {
     public void fillConfirmPasswordFld(String confirmPassword){
         enterText(confirmPasswordFld, confirmPassword);
     }
+    public void fillMobilenumberFld(String mobileNumber){enterText(mobileNumberFld,mobileNumber);}
 
     public void selectCheckbox(PageElement element, boolean isNeedToChecked){
         PageElement hiddenLyt = new PageElement(
@@ -106,6 +111,7 @@ public class AddUsersPage extends BasePage {
         fillPrimaryExtensionFld(userDataObject.PrimaryExtension);
         fillUserEmailFld(userDataObject.UserEmail);
         fillJobTitleFld(userDataObject.JobTitle);
+        fillMobilenumberFld(userDataObject.MobileNumber);
         selectCheckbox(generatePasswordChb, false);
         fillPasswordFld(userDataObject.NewPassword);
         fillConfirmPasswordFld(userDataObject.ConfirmPassword);

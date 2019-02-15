@@ -1,6 +1,5 @@
 package tests;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import common.Config;
 import common.dataObjects.PhonebookDataObject;
 import common.dataObjects.UserDataObject;
@@ -77,6 +76,14 @@ public class PhonebookTest extends BaseTest {
         dashboardPage.openPhonebookPage();
         Assert.assertTrue(userListingPage.pageIsDisplayed(),"User Listing page is opened");
         userListingPage.fillUsersSearchFld(preconditionUserDate.Username);
-        Assert.assertTrue(userListingPage.userWithNameDisplayed(preconditionUserDate.Username),"User find in list by Name");
+        Assert.assertTrue(userListingPage.isFindInList(preconditionUserDate.Username),"User find in list by Name");
+    }
+
+    @Test(description = "SQE-40 Phonebook tab - User Listing: find user by Mobile",dependsOnMethods={"createUserForPhonebook"})
+    public void userListingFindUserByMobile(){
+        dashboardPage.openPhonebookPage();
+        Assert.assertTrue(userListingPage.pageIsDisplayed(),"User Listing page is opened");
+        userListingPage.fillUsersSearchFld(preconditionUserDate.MobileNumber);
+        Assert.assertTrue(userListingPage.isFindInList(preconditionUserDate.Username),"User find in list by Name");
     }
 }

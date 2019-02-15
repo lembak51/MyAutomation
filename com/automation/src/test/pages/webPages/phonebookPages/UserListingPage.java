@@ -153,7 +153,7 @@ public class UserListingPage extends BasePage {
 
     public void fillUsersSearchFld(String searchUsersParameter){enterText(searchUsersFld,searchUsersParameter);}
 
-    public boolean userWithNameDisplayed(String firstName){
+    public boolean isFindInList(String firstName){
         waitUntilPageLoad();
         PageElement findName = new PageElement(
                 "Find user using search field ",
@@ -163,4 +163,5 @@ public class UserListingPage extends BasePage {
         log.info("Class attribute " + attributeIsHide + "User with " + "is find");
         return attributeIsHide.equals("ng-scope");
     }
+
 }
