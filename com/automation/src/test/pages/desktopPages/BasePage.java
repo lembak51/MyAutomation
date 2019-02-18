@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 abstract class BasePage {
-    private WindowsDriver desktop_driver;
+    protected WindowsDriver desktop_driver;
     public boolean doLogging = true;
     protected Logger log;
 
@@ -49,6 +49,23 @@ abstract class BasePage {
     protected void waitToBeClickable(DesktopElement element){
         this.waitToBeClickable(element.getLocator(), 30);
     }
+    public String getText(DesktopElement desktopElement){
+                log.info("Getting text of element: " + desktopElement.name);
+                return this.find(desktopElement).getText();
+            }
+
+            public void enterText(DesktopElement desktopElement, String text){
+                this.enterText(desktopElement, text, true);
+            }
+
+            public void enterText(DesktopElement desktopElement, String text, boolean clearField){
+                log.info("Entering text \"" + text + "\" to element: " + desktopElement.name);
+                this.find(desktopElement).click();
+                if (clearField) {
+                        this.find(desktopElement).clear();
+                    }
+                this.find(desktopElement).sendKeys(text);
+            }
 
     /**
      * Waits default(1 sec) timeout period

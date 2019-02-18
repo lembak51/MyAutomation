@@ -9,6 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import pages.desktopPages.DesktopDashboardPage;
 import pages.desktopPages.DesktopLoginPage;
 import pages.webPages.*;
 
@@ -23,6 +24,7 @@ public class BaseTest {
     protected AddUsersPage addUsersPage;
     protected VoicemailPage voicemailPage;
     protected UserListingPage userListingPage;
+    protected DesktopDashboardPage desktopDashboardPage;
 
     public static WebDriver driver;
     public static WindowsDriver desktop_driver;
@@ -82,6 +84,7 @@ public class BaseTest {
 
     private void initDesktopPages() {
         desktopLoginPage = new DesktopLoginPage(desktop_driver);
+        desktopDashboardPage = new DesktopDashboardPage(desktop_driver);
     }
 
 }
