@@ -4,13 +4,8 @@ import common.AppiumServerJava;
 import common.driver.DriverFactory;
 import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import pages.desktopPages.DesktopDashboardPage;
-import pages.desktopPages.DesktopLoginPage;
 import pages.webPages.*;
 
 import pages.webPages.phonebookPages.UserListingPage;
@@ -18,13 +13,11 @@ import pages.webPages.phonebookPages.UserListingPage;
 public class BaseTest {
     protected LoginPage loginPage;
     protected DashboardPage dashboardPage;
-    protected DesktopLoginPage desktopLoginPage;
     protected ReleaseNotesPage releaseNotesPage;
     protected UsersPage usersPage;
     protected AddUsersPage addUsersPage;
     protected VoicemailPage voicemailPage;
     protected UserListingPage userListingPage;
-    protected DesktopDashboardPage desktopDashboardPage;
 
     public static WebDriver driver;
     public static WindowsDriver desktop_driver;
@@ -40,7 +33,6 @@ public class BaseTest {
         try {
             if (!loginPage.isLogInButtonDisplayed())
                 dashboardPage.logout();
-        } catch (WebDriverException ignored) {
         } finally {
             if (driver != null) {
                 driver.quit();
@@ -54,18 +46,6 @@ public class BaseTest {
         }
     }
 
-    @AfterTest
-    public void destroyDrivers(){
-        if (driver != null) {
-            driver.quit();
-            driver = null;
-        }
-        if (desktop_driver != null) {
-            desktop_driver.quit();
-            desktop_driver = null;
-            AppiumServerJava.stopServer();
-        }
-    }
     protected void switchToDesktop() {
         AppiumServerJava.startServer();
         desktop_driver = DriverFactory.getInstance();
@@ -83,8 +63,6 @@ public class BaseTest {
     }
 
     private void initDesktopPages() {
-        desktopLoginPage = new DesktopLoginPage(desktop_driver);
-        desktopDashboardPage = new DesktopDashboardPage(desktop_driver);
     }
 
 }

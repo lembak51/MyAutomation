@@ -1,5 +1,6 @@
 package common;
 
+import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
 
 public class DesktopElement {
@@ -14,7 +15,17 @@ public class DesktopElement {
         this.required = required;
     }
 
+    public DesktopElement(String name, MobileBy locator, boolean required){
+        this.name = name;
+        this.locator = locator;
+        this.required = required;
+    }
+
     public DesktopElement(String name, By locator){
+        this(name, locator, false);
+    }
+
+    public DesktopElement(String name, MobileBy locator){
         this(name, locator, false);
     }
 
