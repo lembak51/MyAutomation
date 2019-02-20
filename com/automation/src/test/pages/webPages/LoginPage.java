@@ -46,6 +46,8 @@ public class LoginPage extends BasePage {
     }
 
     public void makeLogin(String userEmail, String userPassword){
+        waitUntilPageLoad();
+        waitToBeClickable(logInBtn);
         fillFieldUsername(userEmail);
         fillFieldPassword(userPassword);
         clickLogIn();
@@ -62,14 +64,6 @@ public class LoginPage extends BasePage {
         waitToBeClickable(logInBtn);
         clickLogIn();
     }
-
-    public boolean alertText(String expected){
-        waitToBeAlertPresent(1);
-        String actualText = getTextFromAlert();
-        log.info("Expected alert message: " + expected + ".Actual: " + actualText);
-        return actualText.equals(expected);
-    }
-
 
     public String getTextFromEmailField(){
         waitToBeVisible(usernameFld);

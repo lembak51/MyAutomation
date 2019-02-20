@@ -12,5 +12,8 @@ allure-results/
 target/
 test-output/
 
-ConfigProjectLocal.properties
 debug.log
+
+ConfigProjectLocal.properties
+
+

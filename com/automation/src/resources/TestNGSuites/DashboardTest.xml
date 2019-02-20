@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Expedite Testes" preserve-order="true">
+    <listeners>
+        <listener class-name="common.testHelper.FailureRetryListener"/>
+        <listener class-name="common.testHelper.TestListener"/>
+    </listeners>
+    <test name="Dashboard Test">
+        <classes>
+            <class name="tests.DashboardTest">
+                <methods>
+                    <include name="releaseNoteInNewPage"/>
+                    <include name="changePasswordLoginWithNewPassword"/>
+                    <include name="myMobileWithIncorrectValues"/>
+                    <exclude name="checkVoicemailPinInVoicemailPage"/>
+                    <include name="changePasswordNewPasswordWithoutLetters"/>
+                    <include name="changePasswordNewPasswordWithoutNumbers"/>
+                    <include name="changePasswordAreNotTheSame"/>
+                    <include name="changePasswordWrongOldPassword"/>
+                    <include name="changeVoicemailPin"/>
+                    <!-- TODO add method of the screenshoot comparator -->
+                    <exclude name="changeProfilePictureWithoutUploadButton"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+</suite>
