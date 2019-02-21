@@ -1,0 +1,41 @@
+##Change log
+|Sections | Name test cases | Link to test-case | Done By |
+|:---:| :---:| :---:| :---:| 
+|Login section | "Log in (via ""Remember Me"" option)" | https://kerauno.atlassian.net/browse/SQE-293 |Kristian
+|Login section | "Log in,(Empty Fields)" | https://kerauno.atlassian.net/browse/SQE-298 | Kristian
+|Login section | "Log in,(incorrect email)" | https://kerauno.atlassian.net/browse/SQE-297 | Kristian
+|Login section | "Log in,(incorrect password)" | https://kerauno.atlassian.net/browse/SQE-296 | Kristian
+|Login section | "Log in (without ""Remember Me"" option)" | https://kerauno.atlassian.net/browse/SQE-292 | Kristian
+|User Panel section | Phonebook tab - User Listing: sort by Mobile | https://kerauno.atlassian.net/browse/SQE-28 | Bogdan
+|User Panel section | Phonebook tab - User Listing: sort by DID | https://kerauno.atlassian.net/browse/SQE-29 | Bogdan
+|User Panel section | Phonebook tab - User Listing: sort by Departments | https://kerauno.atlassian.net/browse/SQE-31 | Bogdan
+|User Panel section | Phonebook tab - User Listing: sort by Extensions | https://kerauno.atlassian.net/browse/SQE-32 | Bogdan
+|User Panel section | Phonebook tab - User Listing: view user information | https://kerauno.atlassian.net/browse/SQE-34 | Bogdan
+|User Panel section | |https://kerauno.atlassian.net/browse/SQE-101 | Kristian
+|User Panel section | |https://kerauno.atlassian.net/browse/SQE-104 | Kristian
+|User Panel section | |https://kerauno.atlassian.net/browse/SQE-105 | Kristian
+|User Panel section | | https://kerauno.atlassian.net/browse/SQE-106 | Kristian
+|User Panel section | | https://kerauno.atlassian.net/browse/SQE-107 | Kristian
+|User Panel section | | https://kerauno.atlassian.net/browse/SQE-108 | Kristian
+|User Panel section | | https://kerauno.atlassian.net/browse/SQE-109 | Kristian
+|User Panel section | | https://kerauno.atlassian.net/browse/SQE-110 | Kristian
+|User Panel section | |https://kerauno.atlassian.net/browse/SQE-113 | Kristian
+|User Panel section | |https://kerauno.atlassian.net/browse/SQE-673 | Kristian
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |

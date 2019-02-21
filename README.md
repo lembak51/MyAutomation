@@ -47,7 +47,7 @@ Adding automated test cases to the changelog should be done using the following 
 1. Add by whom was done that test cases
 
 ###_Example:_ 
-Section, Name, Link, Tester
+|Section| Name | Link | Tester |
 
 
 ###Working with test documentation
