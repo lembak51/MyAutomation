@@ -7,9 +7,9 @@ import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import pages.desktopPages.DesktopDashboardPage;
 import pages.desktopPages.DesktopLoginPage;
+
 import pages.webPages.*;
 
 import pages.webPages.phonebookPages.UserListingPage;
@@ -22,10 +22,11 @@ public class BaseTest {
     protected AddUsersPage addUsersPage;
     protected VoicemailPage voicemailPage;
     protected UserListingPage userListingPage;
+    protected DesktopLoginPage desktopLoginPage;
     protected DesktopDashboardPage desktopDashboardPage;
-
     public WebDriver driver;
     public WindowsDriver desktop_driver;
+
 
     @BeforeMethod
     public void setupTestRun(){
@@ -51,7 +52,7 @@ public class BaseTest {
         }
     }
 
-    protected void switchToDesktop() {
+    protected void switchToDesktop(){
         new AppiumServer().startServer();
         desktop_driver = new DriverFactory().getInstance();
         initDesktopPages();
@@ -67,10 +68,8 @@ public class BaseTest {
         userListingPage = new UserListingPage(driver);
     }
 
-    private void initDesktopPages() {
     private void initDesktopPages(){
         desktopLoginPage = new DesktopLoginPage(desktop_driver);
         desktopDashboardPage = new DesktopDashboardPage(desktop_driver);
     }
-
-}
+    }

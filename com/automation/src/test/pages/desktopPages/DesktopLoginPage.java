@@ -32,25 +32,20 @@ public class DesktopLoginPage extends BasePage {
     private void fillFieldUsername(String userEmail){
         WebElement usernameField = desktop_driver.findElementByAccessibilityId("UsernameText");
         usernameField.sendKeys(userEmail);
-
     }
 
     private void fillFieldPassword(String userPassword){
-
         WebElement passwordField = desktop_driver.findElementByAccessibilityId("PasswordText");
         passwordField.sendKeys(userPassword);
     }
-    //TODO need to correct method
+
     public void makeLogin(String userEmail, String userPassword){
         fillFieldUsername(userEmail);
         fillFieldPassword(userPassword);
         clickToSignInButton();
-        if (isSignInButtonDisplayed()) clickToSignInButton();
-        else System.out.println("IDK how to rewrite this");
+        clickToSignInButton();
     }
 
-    public boolean isSignInButtonDisplayed(){
-        waitUntilLoad();
-        return isElementPresent(signInBtn);
-    }
+
+
 }
