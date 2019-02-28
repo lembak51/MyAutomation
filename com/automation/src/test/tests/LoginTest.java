@@ -2,7 +2,6 @@ package tests;
 
 
 import common.Config;
-import common.dataObjects.UserDataObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
