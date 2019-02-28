@@ -29,11 +29,12 @@ public class DriverFactory {
     private WebDriver driver;
     private Logger log = Logger.getLogger(this.getClass().getSimpleName());
     private DesiredCapabilities capabilities = null;
-    private static WindowsDriver desktop_driver;
+    private WindowsDriver desktop_driver;
+    private ProjectConfig projectConfig = new ProjectConfig();
 
-    public static WindowsDriver getInstance(){
+    public WindowsDriver getInstance() {
         try {
-            desktop_driver = new WindowsDriver(new URL(ProjectConfig.getAppiumUrl()), setDesktopCapabilities());
+            desktop_driver = new WindowsDriver(new URL(projectConfig.getAppiumUrl()), setDesktopCapabilities());
             desktop_driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -41,16 +42,16 @@ public class DriverFactory {
         return desktop_driver;
     }
 
-    public DriverFactory(){
-        this.browser = ProjectConfig.getBrowser();
+    public DriverFactory() {
+        this.browser = projectConfig.getBrowser();
     }
 
-    public WebDriver getDriver(){
+    public WebDriver getDriver() {
         setUpDriver(browser);
         return driver;
     }
 
-    private void setUpDriver(String browser){
+    private void setUpDriver(String browser) {
         if (browser.equalsIgnoreCase("Chrome")) {
             initChromeDriverPath();
             setChromeCapabilities();
@@ -75,7 +76,7 @@ public class DriverFactory {
     /**
      * initChromeDriverPath method initialize chrome driver on following OS
      */
-    private void initChromeDriverPath(){
+    private void initChromeDriverPath() {
         String chromeDriverPath = System.getProperty("user.dir") + "/com/automation/src/resources/drivers";
 
         if (Utils.getSystemName().contains("Win")) {
@@ -91,7 +92,7 @@ public class DriverFactory {
     /**
      * initFirefoxDriverPath method initialize firefox driver on following OS
      */
-    private void initFirefoxDriverPath(){
+    private void initFirefoxDriverPath() {
         String firefoxDriverPath = System.getProperty("user.dir") + "/com/automation/src/resources/drivers";
         if (Utils.getSystemName().contains("Win")) {
             firefoxDriverPath += "/windows/geckodriver.exe";
@@ -106,7 +107,7 @@ public class DriverFactory {
     /**
      * initSafariDriverPath method initialize safari driver on following OS
      */
-    private void initSafariDriverPath(){
+    private void initSafariDriverPath() {
         String safariDriverPath = System.getProperty("user.dir") + "/com/automation/src/resources/drivers";
         if (Utils.getSystemName().contains("Mac")) {
             safariDriverPath += "/mac/SafariDriver.safariextz";
@@ -119,7 +120,7 @@ public class DriverFactory {
     /**
      * initInternetExplorerDriverPath method initialize ie driver on following OS
      */
-    private void initInternetExplorerDriverPath(){
+    private void initInternetExplorerDriverPath() {
         String internetExplorerPath = System.getProperty("user.dir") + "/com/automation/src/resources/drivers";
 
         if (Utils.getSystemName().contains("Win")) {
@@ -135,7 +136,7 @@ public class DriverFactory {
     /**
      * setChromeCapabilities method set chrome capabilities to the web driver
      */
-    private void setChromeCapabilities(){
+    private void setChromeCapabilities() {
         capabilities = DesiredCapabilities.chrome();
 
         ChromeOptions chOptions = new ChromeOptions();
@@ -154,7 +155,7 @@ public class DriverFactory {
     /**
      * setFirefoxCapabilities method set Firefox capabilities to the web driver
      */
-    private void setFirefoxCapabilities(){
+    private void setFirefoxCapabilities() {
         capabilities = DesiredCapabilities.firefox();
 
         FirefoxOptions firefoxOptions = new FirefoxOptions();
@@ -169,7 +170,7 @@ public class DriverFactory {
     /**
      * setInternetExplorerCapabilities method set Internet Explorer capabilities to the web driver
      */
-    private void setInternetExplorerCapabilities(){
+    private void setInternetExplorerCapabilities() {
         capabilities = DesiredCapabilities.internetExplorer();
 
         InternetExplorerOptions ieOptions = new InternetExplorerOptions();
@@ -183,7 +184,7 @@ public class DriverFactory {
     /**
      * setSafariCapabilities method set Safari capabilities to the web driver
      */
-    private void setSafariCapabilities(){
+    private void setSafariCapabilities() {
         capabilities = DesiredCapabilities.safari();
 
         SafariOptions safariOptions = new SafariOptions();
@@ -197,10 +198,10 @@ public class DriverFactory {
     /**
      * setWindowsCapabilities method set Desktop capabilities to the driver
      */
-    private static DesiredCapabilities setDesktopCapabilities(){
+    private DesiredCapabilities setDesktopCapabilities() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName", ProjectConfig.getTestDeviceName());
-        capabilities.setCapability("app", ProjectConfig.getAppPath());
+        capabilities.setCapability("deviceName", projectConfig.getTestDeviceName());
+        capabilities.setCapability("app", projectConfig.getAppPath());
         capabilities.setCapability("newCommandTimeout", 5000);
         return capabilities;
     }

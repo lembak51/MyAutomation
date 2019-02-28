@@ -17,6 +17,7 @@ public abstract class BasePage {
 
     protected WebDriver driver;
     protected Logger log;
+    private ProjectConfig projectConfig = new ProjectConfig();
 
     protected BasePage(WebDriver driver){
         this.driver = driver;
@@ -358,13 +359,13 @@ public abstract class BasePage {
      * @param safari  the Boolean object representing in what browser need wait
      */
     protected void waitUntilPageLoad(int timeout, boolean chrome , boolean firefox, boolean ie, boolean safari) {
-        if (ProjectConfig.getBrowser().contains("Chrome") && chrome)
+        if (projectConfig.getBrowser().contains("Chrome") && chrome)
             waitUntilPageLoad(timeout);
-        if (ProjectConfig.getBrowser().contains("Firefox") && firefox)
+        if (projectConfig.getBrowser().contains("Firefox") && firefox)
             waitUntilPageLoad(timeout);
-        if (ProjectConfig.getBrowser().contains("IExplorer") && ie)
+        if (projectConfig.getBrowser().contains("IExplorer") && ie)
             waitUntilPageLoad(timeout);
-        if (ProjectConfig.getBrowser().contains("Safari") && safari)
+        if (projectConfig.getBrowser().contains("Safari") && safari)
             waitUntilPageLoad(timeout);
     }
 

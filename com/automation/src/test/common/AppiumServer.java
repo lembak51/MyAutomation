@@ -8,31 +8,32 @@ import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class AppiumServerJava {
+public class AppiumServer {
 
-    private static AppiumDriverLocalService service;
-    private static AppiumServiceBuilder builder;
-    private static DesiredCapabilities cap;
+    private AppiumDriverLocalService service;
+    private AppiumServiceBuilder builder;
+    private DesiredCapabilities cap;
+    private ProjectConfig projectConfig = new ProjectConfig();
 
-    public static void startServer() {
+    public void startServer() {
         //Set Capabilities
         cap = new DesiredCapabilities();
         cap.setCapability("noReset", "false");
 
         //Build the Appium service
         builder = new AppiumServiceBuilder();
-        builder.withIPAddress(ProjectConfig.getAppiumIP());
-        builder.usingPort(ProjectConfig.getAppiumPort());
+        builder.withIPAddress(projectConfig.getAppiumIP());
+        builder.usingPort(projectConfig.getAppiumPort());
         builder.withCapabilities(cap);
         builder.withArgument(GeneralServerFlag.SESSION_OVERRIDE);
-        builder.withArgument(GeneralServerFlag.LOG_LEVEL,"error");
+        builder.withArgument(GeneralServerFlag.LOG_LEVEL, "error");
 
         //Start the server with the builder
         service = AppiumDriverLocalService.buildService(builder);
         service.start();
     }
 
-    public static void stopServer() {
+    public void stopServer() {
         service.stop();
     }
 

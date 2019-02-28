@@ -64,6 +64,11 @@ public class UserListingPage extends BasePage {
             By.xpath("//strong/strong/span[contains(@ng-click, 'initiateCall(details.phone)')]"),
             false);
 
+    private static final PageElement searchUsersFld = new PageElement(
+            "Search Users Field",
+            By.cssSelector("input[data-ng-model='user_text']"),
+            true);
+
 
     public UserListingPage(WebDriver driver){
         super(driver);
@@ -146,5 +151,17 @@ public class UserListingPage extends BasePage {
         return actualDataObject;
     }
 
+    public void fillUsersSearchFld(String searchUsersParameter){enterText(searchUsersFld,searchUsersParameter);}
+
+    public boolean isFindInList(String firstName){
+        waitUntilPageLoad();
+        PageElement findName = new PageElement(
+                "Find user using search field ",
+                By.xpath("//strong[contains(text(),'" + firstName + "')]//parent::td//parent::tr")
+        );
+        String attributeIsHide = getAttribute(findName,"class");
+        log.info("Class attribute " + attributeIsHide + "User with " + "is find");
+        return attributeIsHide.equals("ng-scope");
+    }
 
 }
