@@ -50,7 +50,7 @@ Adding automated test cases to the changelog should be done using the following 
 1. If the test case was modification need add by whom and date of the modification
 
 ###_Example:_ 
-|Section| Name | Link | Tester who automated the test case | Tester who modified the test case |Date when automated | Date when modified |
+|Section| Name | Status| Link | Tester who automated the test case | Tester who modified the test case |Date when automated | Date when modified |
 
 
 ###Working with test documentation
