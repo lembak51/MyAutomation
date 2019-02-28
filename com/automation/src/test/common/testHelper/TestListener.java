@@ -63,7 +63,7 @@ public class TestListener implements ITestListener {
     }
 
     private void takeScreenShot(String tcNumbber, String pathName){
-        driver = BaseTest.driver;
+        driver = new BaseTest().driver;
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(scrFile, new File(pathName));
@@ -81,7 +81,7 @@ public class TestListener implements ITestListener {
     }
 
     private byte[] saveScreenshot(ITestResult result){
-        driver = BaseTest.driver;
+        driver = new BaseTest().driver;
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }
