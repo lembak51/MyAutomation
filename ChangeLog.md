@@ -1,6 +1,6 @@
 ##Change log
 |Sections | Name test cases |Status |Link to test-case | Done By Tester| Done Date| Modified By Tester| Modified Date 
-|:---:| :---:| :---:| :---:| :---:| :---:| :---:| :---:| 
+|---| --- | ---| ---| ---| ---| ---| ---| 
 |Login section | "Log in (via ""Remember Me"" option)" | Done |https://kerauno.atlassian.net/browse/SQE-293 |Kristian | | | 
 |Login section | "Log in,(Empty Fields)" |Done |https://kerauno.atlassian.net/browse/SQE-298 | Kristian | | | 
 |Login section | "Log in,(incorrect email)" |Done |https://kerauno.atlassian.net/browse/SQE-297 | Kristian | | | 
