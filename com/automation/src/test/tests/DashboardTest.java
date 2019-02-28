@@ -130,6 +130,5 @@ public class DashboardTest extends BaseTest {
     @Test(description = "SQE-107 Dashboard - Change Profile Picture without Upload button")
     public void changeProfilePictureWithoutUploadButton(){
         dashboardPage.uploadProfilePicture();
-
     }
 }

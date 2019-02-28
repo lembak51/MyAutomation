@@ -11,7 +11,6 @@ public class LoginTest extends BaseTest {
 
     @Test(description = "SQE-292 Log in (without Remember Me option")
     public void logInWithoutRememberME(){
-        UserDataObject userDataObject = new UserDataObject();
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
         loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4

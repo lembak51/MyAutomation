@@ -19,9 +19,8 @@ public class BaseTest {
     protected AddUsersPage addUsersPage;
     protected VoicemailPage voicemailPage;
     protected UserListingPage userListingPage;
-    private String windowTitle;
-    public static WebDriver driver;
-    public static WindowsDriver desktop_driver;
+    public WebDriver driver;
+    public WindowsDriver desktop_driver;
 
     @BeforeMethod
     public void setupTestRun() {

@@ -1,14 +1,8 @@
 package common.dataObjects;
 
-
 import common.Utils;
 
-public class UserDataObject {
-    public String Username;
-    public String PrimaryExtension;
-    public String UserEmail;
-    public String JobTitle;
-    public String MobileNumber;
+public class DashboardDataObject extends BaseDataObject {
     public String NewPassword;
     public String ConfirmPassword;
     public String NineDigitsMobileNumber;
@@ -16,12 +10,7 @@ public class UserDataObject {
     public String VoicemailPinNumber;
 
 
-    public UserDataObject(String username, String primaryExtension, String userEmail, String mobileNumber, String NewPassword, String nineDigitsMobileNumber, String elevenDigitsMobileNumber, String voicemailPinNumber) {
-        this.Username = username;
-        this.PrimaryExtension = primaryExtension;
-        this.UserEmail = userEmail;
-        this.JobTitle = "QA Swan";
-        this.MobileNumber = mobileNumber;
+    public DashboardDataObject(String NewPassword, String nineDigitsMobileNumber, String elevenDigitsMobileNumber, String voicemailPinNumber) {
         this.NewPassword = NewPassword;
         this.ConfirmPassword = NewPassword;
         this.NineDigitsMobileNumber = nineDigitsMobileNumber;
@@ -29,37 +18,20 @@ public class UserDataObject {
         this.VoicemailPinNumber = voicemailPinNumber;
     }
 
-    public UserDataObject() {
-        this(getRandomUsername(), getRandomPrimaryExtension(), getRandomUserEmail(), getRandomMobileNumber(), getRandomNewPassword(), getRandomNineMobileNumber(), getRandomElevenMobileNumber(), getRandomVoicemailPin());
-    }
-
-
-    static String getRandomUsername() {
-        return "SwanUser" + Utils.getRandomInt(00, 99);
-    }
-
-    static String getRandomPrimaryExtension() {
-        return String.valueOf(Utils.getRandomInt(1000, 1200));
-    }
-
-    static String getRandomUserEmail() {
-        return "Swanteams" + Utils.getRandomInt(100, 999) + "@swanteams.com";
-    }
-
-    static String getRandomMobileNumber() {
-        return String.valueOf(Utils.getRandomInt(1000000000, 2000000000));
-    }
-
-    public UserDataObject getPasswordWithLetters() {
+    public DashboardDataObject getPasswordWithLetters() {
         this.NewPassword = getRandomPasswordWithoutLetters();
         this.ConfirmPassword = NewPassword;
         return this;
     }
 
-    public UserDataObject getPasswordWithNumber() {
+    public DashboardDataObject getPasswordWithNumber() {
         this.NewPassword = getRandomPasswordWithoutNumbers();
         this.ConfirmPassword = NewPassword;
         return this;
+    }
+
+    public DashboardDataObject() {
+        this(getRandomNewPassword(), getRandomNineMobileNumber(), getRandomElevenMobileNumber(), getRandomVoicemailPin());
     }
 
     static String getRandomNewPassword() {
