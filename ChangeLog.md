@@ -1,16 +1,16 @@
 ##Change log
 |Sections | Name test cases |Status |Link to test-case | Done By Tester| Done Date| Modified By Tester| Modified Date 
 |:---:| :---:| :---:| :---:| :---:| :---:| :---:| :---:| 
-|Login section | "Log in (via ""Remember Me"" option)" | |https://kerauno.atlassian.net/browse/SQE-293 |Kristian | | | 
-|Login section | "Log in,(Empty Fields)" | |https://kerauno.atlassian.net/browse/SQE-298 | Kristian | | | 
-|Login section | "Log in,(incorrect email)" | |https://kerauno.atlassian.net/browse/SQE-297 | Kristian | | | 
-|Login section | "Log in,(incorrect password)" | |https://kerauno.atlassian.net/browse/SQE-296 | Kristian | | | 
-|Login section | "Log in (without ""Remember Me"" option)" | | https://kerauno.atlassian.net/browse/SQE-292 | Kristian | | | 
-|User Panel section | Phonebook tab - User Listing: sort by Mobile | |https://kerauno.atlassian.net/browse/SQE-28 | Bogdan | | | 
-|User Panel section | Phonebook tab - User Listing: sort by DID | |https://kerauno.atlassian.net/browse/SQE-29 | Bogdan | | | 
-|User Panel section | Phonebook tab - User Listing: sort by Departments | |https://kerauno.atlassian.net/browse/SQE-31 | Bogdan | | | 
-|User Panel section | Phonebook tab - User Listing: sort by Extensions | |https://kerauno.atlassian.net/browse/SQE-32 | Bogdan | | | 
-|User Panel section | Phonebook tab - User Listing: view user information | |https://kerauno.atlassian.net/browse/SQE-34 | Bogdan | | | 
+|Login section | "Log in (via ""Remember Me"" option)" | Done |https://kerauno.atlassian.net/browse/SQE-293 |Kristian | | | 
+|Login section | "Log in,(Empty Fields)" |Done |https://kerauno.atlassian.net/browse/SQE-298 | Kristian | | | 
+|Login section | "Log in,(incorrect email)" |Done |https://kerauno.atlassian.net/browse/SQE-297 | Kristian | | | 
+|Login section | "Log in,(incorrect password)" |Done |https://kerauno.atlassian.net/browse/SQE-296 | Kristian | | | 
+|Login section | "Log in (without ""Remember Me"" option)" |Done | https://kerauno.atlassian.net/browse/SQE-292 | Kristian | | | 
+|User Panel section | Phonebook tab - User Listing: sort by Mobile |Done |https://kerauno.atlassian.net/browse/SQE-28 | Bogdan | | | 
+|User Panel section | Phonebook tab - User Listing: sort by DID |Done |https://kerauno.atlassian.net/browse/SQE-29 | Bogdan | | | 
+|User Panel section | Phonebook tab - User Listing: sort by Departments |Done |https://kerauno.atlassian.net/browse/SQE-31 | Bogdan | | | 
+|User Panel section | Phonebook tab - User Listing: sort by Extensions |Done |https://kerauno.atlassian.net/browse/SQE-32 | Bogdan | | | 
+|User Panel section | Phonebook tab - User Listing: view user information |Done |https://kerauno.atlassian.net/browse/SQE-34 | Bogdan | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-101 | Kristian | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-104 | Kristian | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-105 | Kristian | | | 
