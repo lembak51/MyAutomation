@@ -43,11 +43,14 @@
 Adding automated test cases to the changelog should be done using the following rules:
 1. Add Section to what attached that test case
 1. Add Name of the test case
+1. Status of the test case, can be or done or To Do, should add it when work on one test case is finished and started work on the second test case
 1. Add Link to the Jira 
 1. Add by whom was done that test cases
+1. Date when Test case was automated 
+1. If the test case was modification need add by whom and date of the modification
 
 ###_Example:_ 
-|Section| Name | Link | Tester |
+|Section| Name | Link | Tester who automated the test case | Tester who modified the test case |Date when automated | Date when modified |
 
 
 ###Working with test documentation

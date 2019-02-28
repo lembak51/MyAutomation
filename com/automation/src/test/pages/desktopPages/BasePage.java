@@ -149,6 +149,6 @@ abstract class BasePage {
      * Deploy application from the sleep using driver
      */
     protected void deployApplicationUsingDriver(){
-        desktop_driver = DriverFactory.getInstance();
+        desktop_driver = new DriverFactory().getInstance();
     }
 }

@@ -1,6 +1,7 @@
 package tests;
 
-import common.AppiumServerJava;
+import common.AppiumServer;
+import common.CommandLineHelper;
 import common.driver.DriverFactory;
 import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.WebDriver;
@@ -18,7 +19,7 @@ public class BaseTest {
     protected AddUsersPage addUsersPage;
     protected VoicemailPage voicemailPage;
     protected UserListingPage userListingPage;
-
+    private String windowTitle;
     public static WebDriver driver;
     public static WindowsDriver desktop_driver;
 
@@ -39,16 +40,16 @@ public class BaseTest {
                 driver = null;
             }
             if (desktop_driver != null) {
-                desktop_driver.quit();
+                new CommandLineHelper().killProcessBolt();
                 desktop_driver = null;
-                AppiumServerJava.stopServer();
+                new AppiumServer().stopServer();
             }
         }
     }
 
     protected void switchToDesktop() {
-        AppiumServerJava.startServer();
-        desktop_driver = DriverFactory.getInstance();
+        new AppiumServer().startServer();
+        desktop_driver = new DriverFactory().getInstance();
         initDesktopPages();
     }
 
