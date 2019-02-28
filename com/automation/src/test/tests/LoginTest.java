@@ -16,11 +16,6 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
         loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
-        switchToDesktop();
-        String expectedText = "Error: Invalid mobile phone number length (please use 10 digit)";
-        dashboardPage.changeMyMobileNumberWithIncorrectValues(userDataObject.NineDigitsMobileNumber);
-        Assert.assertTrue(dashboardPage.isAlertTextAsExpected(expectedText), "Alert with text expected text should present");
-        dashboardPage.acceptAlert();
     }
 
     @Test(description = "SQE-298 Log in, (Empty fields)")
