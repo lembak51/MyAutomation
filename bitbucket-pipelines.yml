@@ -6,12 +6,6 @@
 pipelines:
   default:
     - step:
-        script:
-        - npm install
-    - step:
-        script:
-        - npm install -g appium
-    - step:
         caches:
           - maven
         script: # Modify the commands below to build your repository.
