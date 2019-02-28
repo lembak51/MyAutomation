@@ -34,7 +34,7 @@ public class AppiumServer {
     }
 
     public void stopServer() {
-        service.stop();
+        //service.stop();
     }
 
     public boolean checkIfServerIsRunnning(int port) {

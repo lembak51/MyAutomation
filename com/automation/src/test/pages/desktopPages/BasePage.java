@@ -33,7 +33,6 @@ abstract class BasePage {
         log = Logger.getLogger(this.getClass().getName());
     }
 
-
     protected WebElement find(By element) {
         return this.desktop_driver.findElement(element);
     }
