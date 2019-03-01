@@ -13,8 +13,4 @@ pipelines:
             - ln -sf /usr/local/bin/xvfb-chrome /usr/local/bin/google-chrome
             - chmod 755 /usr/local/bin/google-chrome
             - chmod +x /opt/atlassian/pipelines/agent/build/com/automation/src/resources/drivers/linux/chromedriver
-            - apt install nodejs 
-            - apt install npm
-            - npm -v
-            - npm install -g appium
             - mvn -Dtest=LoginTest,DashboardTest test #Run Login test for the verification
