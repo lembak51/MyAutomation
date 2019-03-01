@@ -2,7 +2,7 @@
 image: maven:3.5.0-jdk-8
 pipelines:
   branches:
-    master, dev:
+   dev:
     - step:
         script: #Installation Chrome to the machine
             - apt-get update; apt-get install -y gettext-base;
@@ -12,13 +12,4 @@ pipelines:
             - wget -q -O /usr/bin/xvfb-chrome https://bitbucket.org/atlassian/docker-node-chrome-firefox/raw/ff180e2f16ea8639d4ca4a3abb0017ee23c2836c/scripts/xvfb-chrome
             - ln -sf /usr/bin/xvfb-chrome /usr/bin/google-chrome
             - chmod 755 /usr/bin/google-chrome
-    - step:
-        caches:
-        - maven
-        script: 
-        - mvn -Dtest=LoginTest test #Run Login test for the verification
-    - step:
-          caches:
-          - maven
-          script: 
-          - mvn -Dtest=DashboardTest test #Run Dashboard test for the verification
+            - mvn -Dtest=LoginTest,DashboardTest test #Run Login test for the verification
