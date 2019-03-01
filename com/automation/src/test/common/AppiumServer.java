@@ -34,7 +34,12 @@ public class AppiumServer {
     }
 
     public void stopServer() {
-        service.stop();
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            runtime.exec("taskkill /F /IM node.exe");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean checkIfServerIsRunnning(int port) {

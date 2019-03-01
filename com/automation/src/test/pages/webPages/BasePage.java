@@ -5,6 +5,7 @@ import common.PageElement;
 import common.ProjectConfig;
 import common.Utils;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.*;
@@ -21,6 +22,7 @@ public abstract class BasePage {
 
     protected BasePage(WebDriver driver){
         this.driver = driver;
+        PropertyConfigurator.configure(System.getProperty("user.dir") + "/com/automation/src/resources/log4j.properties");
         log = Logger.getLogger(this.getClass().getCanonicalName());
     }
 
