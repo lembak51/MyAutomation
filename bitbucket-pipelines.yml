@@ -1,14 +1,24 @@
-# This is a sample build configuration for Java (Maven).
-# Check our guides at https://confluence.atlassian.com/x/zd-5Mw for more examples.
-# Only use spaces to indent your .yml configuration.
-# -----
 # You can specify a custom docker image from Docker Hub as your build environment.
 image: maven:3.5.0-jdk-8
 pipelines:
   branches:
     master, dev:
     - step:
+        script: #Installation Chrome to the machine
+        - apt-get update; apt-get install -y gettext-base;
+        - echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' &gt; /etc/apt/sources.list.d/chrome.list
+        - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+        - set -x &amp;&amp; apt-get update &amp;&amp; apt-get install -y xvfb google-chrome-stable
+        - wget -q -O /usr/bin/xvfb-chrome https://bitbucket.org/atlassian/docker-node-chrome-firefox/raw/ff180e2f16ea8639d4ca4a3abb0017ee23c2836c/scripts/xvfb-chrome
+        - ln -sf /usr/bin/xvfb-chrome /usr/bin/google-chrome
+        - chmod 755 /usr/bin/google-chrome
+    - step:
         caches:
         - maven
-        script: # Modify the commands below to build your repository.
-        - mvn -B verify # -B batch mode makes Maven less verbose
+        script: 
+        - mvn -Dtest=LoginTest test #Run Login test for the verification
+    - step:
+          caches:
+          - maven
+          script: 
+          - mvn -Dtest=DashboardTest test #Run Dashboard test for the verification
