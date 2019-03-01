@@ -8,6 +8,8 @@ import org.testng.Assert;
 
 import org.testng.annotations.Test;
     public class CallsTest extends BaseTest {
+        String numberForMakeCall = "1001";
+        String numberForDestinationMakeCall = "3175229430";
         @BeforeMethod
         public void loginBeforeTest(){
             driver.get(Config.BASE_URL);
@@ -15,19 +17,36 @@ import org.testng.annotations.Test;
             loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);
             dashboardPage.pageIsDisplayed();
         }
-        @Test(description = "depends methods for Users search")
+        @Test(description = "depends methods for Calls tab - Users search")
         public void makeCall (){
             switchToDesktop();
             desktopLoginPage.makeLogin(Config.BASE_USERNAME_FOR_BOLT, Config.BASE_PASSWORD_FOR_BOLT);
-            desktopDashboardPage.makeCallToUser("1001");
+            desktopDashboardPage.makeCallToUser(numberForMakeCall);
+        }
+        @Test(description = "depends methods for Users search")
+        public void makeCallToDestination (){
+            switchToDesktop();
+            desktopLoginPage.makeLogin(Config.BASE_USERNAME_FOR_BOLT, Config.BASE_PASSWORD_FOR_BOLT);
+            desktopDashboardPage.makeCallToUser(numberForDestinationMakeCall);
         }
 
-        @Test(description = "Calls tab - Users search",dependsOnMethods ="makeCall")
+
+        @Test(description = "SQE-41 Calls tab - Users search",dependsOnMethods ="makeCall")
         public void callsTabUsersSearch(){
             dashboardPage.openCallsPage();
             Assert.assertTrue(callsPage.pageIsDisplayed(),"Calls page should be displayed");
             callsPage.selectUser("Kristian Gombosh");
-            CallsDataObject expectedDataObject =  new CallsDataObject();
+            CallsDataObject expectedDataObject =  new CallsDataObject().getCalsDateAndTime(numberForMakeCall);
+            CallsDataObject actualDataObject = callsPage.getValuesFromTheTable();
+            Assert.assertTrue(actualDataObject.isCallDataSame(expectedDataObject));
+
+        }
+        @Test(description = "SQE-42 Calls tab - Destination",dependsOnMethods = "makeCallToDestination")
+        public void callsTabDestination(){
+            dashboardPage.openCallsPage();
+            Assert.assertTrue(callsPage.pageIsDisplayed(),"Calls page should be displayed");
+            callsPage.selectUserUsingDestination(numberForDestinationMakeCall);
+            CallsDataObject expectedDataObject =  new CallsDataObject().getCalsDateAndTime(numberForDestinationMakeCall);
             CallsDataObject actualDataObject = callsPage.getValuesFromTheTable();
             Assert.assertTrue(actualDataObject.isCallDataSame(expectedDataObject));
 

@@ -31,6 +31,9 @@ public class CallsPage extends BasePage{
     public static final PageElement firstToCallNumber = new PageElement(
             "To call number",
             By.xpath("//*[@class='col-md-12']//tbody[2]//td[4]//call"));
+    public static final PageElement toDestinationFld = new PageElement(
+            "To/Destination field",
+            By.cssSelector("input[data-ng-model='search_data.to']"));
 
 
     public CallsPage(WebDriver driver){
@@ -42,6 +45,15 @@ public class CallsPage extends BasePage{
         return allRequiredElementDisplayed();
     }
 
+    public void fillToDestinationFld(String destinatioNumber){enterText(toDestinationFld,destinatioNumber);}
+
+    public void selectUserUsingDestination(String destinatioNumber){
+        fillToDestinationFld(destinatioNumber);
+        waitUntilPageLoad();
+        waitToBeClickable(viewCallsBtn);
+        click(viewCallsBtn);
+    }
+
 
     public void selectUser(String username){
         waitToBeClickable(userSearchChb);
@@ -49,6 +61,7 @@ public class CallsPage extends BasePage{
         waitUntilPageLoad();
         waitToBeClickable(userSelectFld);
         click(userSelectFld);
+        waitUntilPageLoad();
         PageElement userChb = new PageElement(
                 "User Checkbox",
                 By.xpath("//*[@class='modal-content']//tbody//tr//label//span[contains(text(),'" +username+ "')]")
@@ -56,14 +69,13 @@ public class CallsPage extends BasePage{
         waitToBeClickable(userChb);
         click(userChb);
         waitToBeClickable(okSelectUsersBtn);
-        waitUntilPageLoad();
         click(okSelectUsersBtn);
         waitUntilPageLoad(2);
         waitToBeClickable(viewCallsBtn);
         click(viewCallsBtn);
     }
 
-    private String getDateTimeText (){return getText(firstDateTimeInTable);}
+    private String getDateTimeText (){return getText(firstDateTimeInTable).substring(0,15);}
     private String getFromCallNumber(){return getAttribute(firstFromCallNumber,"number");}
     private String getToCallNumber(){return getAttribute(firstToCallNumber,"number");}
 
