@@ -19,13 +19,6 @@ public class DesktopDashboardPage extends BasePage {
         super(driver);
     }
 
-    public void logout(){
-        waitUntilLoad();
-        waitToBeClickable(softponeBtn);
-        click(softponeBtn);
-        waitToBeClickable(signOutBtn);
-        click(signOutBtn);
-    }
 
     private void fillNumberFld(String userNumber){
         WebElement numberFld = desktop_driver.findElementByAccessibilityId("DialNumberTextBox");
@@ -41,9 +34,11 @@ public class DesktopDashboardPage extends BasePage {
     }
 
     public void makeCallToUser(String userNumber){
-        waitUntilLoad(2);
+      //  waitUntilLoad(1);
+        deployApplicationUsingDriver();
         fillNumberFld(userNumber);
         clickCallBtn();
-        waitUntilLoad(5);
+        waitUntilLoad(15);
+        clickEndCallBtn();
     }
 }

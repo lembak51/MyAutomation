@@ -54,6 +54,5 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
         dashboardPage.logout();
         Assert.assertEquals(Config.BASE_USERNAME, loginPage.getTextFromEmailField(), "Email field should be contains the credential of the previous user who was logged in");
-
     }
 }

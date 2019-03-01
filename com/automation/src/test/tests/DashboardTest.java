@@ -66,7 +66,10 @@ public class DashboardTest extends BaseTest {
         dashboardPage.changeVoiceMailPin(userDataObject.VoicemailPinNumber);//Replace step 2-4
         Assert.assertTrue(dashboardPage.getVoiceMailPinOnDashboard(userDataObject.VoicemailPinNumber), "Voicemail Pin displayed in field with numbers from step 3");
         dashboardPage.switchToVoiceMailTab();
-        Assert.assertTrue(voicemailPage.getVoicemailPin(userDataObject.VoicemailPinNumber), "Voicemail Pin displayed with numbers from step 3");//Replace step 6-7
+        Assert.assertTrue(inboxPage.pageIsDisplayed(),"Inbox page is displayed");
+        inboxPage.openVoicemailConfigurationPage();
+        Assert.assertTrue(voicemailConfigurationPage.pageIsDisplayed(),"Voicemail Configuration page is opened");
+        Assert.assertTrue(voicemailConfigurationPage.getVoicemailPin(userDataObject.VoicemailPinNumber), "Voicemail Pin displayed with numbers from step 3");//Replace step 6-7
     }
 
     @Test(description = "SQE-108 Dashboard - change password: new password without letters")

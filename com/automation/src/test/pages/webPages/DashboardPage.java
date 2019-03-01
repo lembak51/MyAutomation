@@ -116,6 +116,10 @@ public class DashboardPage extends BasePage {
             "Phonebook button",
             By.cssSelector("li[ng-show='user.navigation.pages_phonebook']"),
             true);
+    private static final PageElement voicemailBtn = new PageElement(
+            "Voicemail button",
+            By.cssSelector("li[ng-show='user.navigation.pages_voicemail'']"),
+            true);
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -144,6 +148,7 @@ public class DashboardPage extends BasePage {
         waitToBeClickable(phonebookBtn);
         click(phonebookBtn);
     }
+
 
     public void clickChangePasswordBtn() {
         waitToBeClickable(changePasswordBtn);

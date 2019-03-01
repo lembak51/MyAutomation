@@ -19,7 +19,7 @@ public abstract class BasePage {
     protected Logger log;
     private ProjectConfig projectConfig = new ProjectConfig();
 
-    protected BasePage(WebDriver driver){
+    public BasePage(WebDriver driver){
         this.driver = driver;
         log = Logger.getLogger(this.getClass().getCanonicalName());
     }
@@ -208,7 +208,7 @@ public abstract class BasePage {
         this.waitToBeClickable(element, 30);
     }
 
-    public void waitToBeClickable(PageElement element, int timeout) {
+    public void waitToBeClickable(PageElement element, int timeout){
         this.waitToBeClickable(element.getLocator(), timeout);
     }
 
@@ -303,9 +303,8 @@ public abstract class BasePage {
 
     /**
      * Accept alert
-     *
      */
-    public void acceptAlert() {
+    public void acceptAlert(){
         waitToBeAlertPresent();
         driver.switchTo().alert().accept();
     }
@@ -324,9 +323,8 @@ public abstract class BasePage {
 
     /**
      * Waits default(1 sec) timeout period
-     *
      */
-    protected void waitUntilPageLoad() {
+    protected void waitUntilPageLoad(){
         //TODO implementation of JS to that
         try {
             Thread.sleep(1000);
@@ -358,7 +356,7 @@ public abstract class BasePage {
      * @param ie      the Boolean object representing in what browser need wait
      * @param safari  the Boolean object representing in what browser need wait
      */
-    protected void waitUntilPageLoad(int timeout, boolean chrome , boolean firefox, boolean ie, boolean safari) {
+    protected void waitUntilPageLoad(int timeout, boolean chrome, boolean firefox, boolean ie, boolean safari){
         if (projectConfig.getBrowser().contains("Chrome") && chrome)
             waitUntilPageLoad(timeout);
         if (projectConfig.getBrowser().contains("Firefox") && firefox)
@@ -424,7 +422,7 @@ public abstract class BasePage {
      *
      * @param pathToPhoto object representing the path to the file
      */
-    public void uploadNewPhoto(String pathToPhoto ){
+    public void uploadNewPhoto(String pathToPhoto){
         WebElement frame = driver.switchTo().activeElement();
         frame.sendKeys(pathToPhoto);
     }

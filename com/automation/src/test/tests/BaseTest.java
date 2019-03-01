@@ -13,6 +13,8 @@ import pages.desktopPages.DesktopLoginPage;
 import pages.webPages.*;
 
 import pages.webPages.phonebookPages.UserListingPage;
+import pages.webPages.voicemailPages.InboxPage;
+import pages.webPages.voicemailPages.VoicemailConfigurationPage;
 
 public class BaseTest {
     protected LoginPage loginPage;
@@ -20,10 +22,12 @@ public class BaseTest {
     protected ReleaseNotesPage releaseNotesPage;
     protected UsersPage usersPage;
     protected AddUsersPage addUsersPage;
-    protected VoicemailPage voicemailPage;
+    protected VoicemailConfigurationPage voicemailConfigurationPage;
     protected UserListingPage userListingPage;
     protected DesktopLoginPage desktopLoginPage;
     protected DesktopDashboardPage desktopDashboardPage;
+    protected InboxPage inboxPage;
+
     public WebDriver driver;
     public WindowsDriver desktop_driver;
 
@@ -64,12 +68,13 @@ public class BaseTest {
         releaseNotesPage = new ReleaseNotesPage(driver);
         usersPage = new UsersPage(driver);
         addUsersPage = new AddUsersPage(driver);
-        voicemailPage = new VoicemailPage(driver);
+        voicemailConfigurationPage = new VoicemailConfigurationPage(driver);
         userListingPage = new UserListingPage(driver);
+        inboxPage = new InboxPage(driver);
     }
 
     private void initDesktopPages(){
         desktopLoginPage = new DesktopLoginPage(desktop_driver);
         desktopDashboardPage = new DesktopDashboardPage(desktop_driver);
     }
-    }
+}

@@ -17,6 +17,9 @@ public class VoicemailTest extends BaseTest {
 
     @Test(description = "SQE-2 Voicemail tab - Mark as Read")
     public void voicemailTabMarkAsRead(){
+        dashboardPage.switchToVoiceMailTab();
+        Assert.assertTrue(inboxPage.pageIsDisplayed()," Inbox tab is opened");
+        inboxPage.clickToUnreadButton();
     }
 
     @Test(description = "SQE-13 Voicemail tab - Change Folder")
@@ -33,6 +36,7 @@ public class VoicemailTest extends BaseTest {
 
     private void createNewVoicemail(){
         switchToDesktop();
-        desktopLoginPage.makeLogin(Config.BASE_USERNAME_FOR_BOLT, Config.BASE_PASSWORD_FOR_BOLT);
+        desktopLoginPage.makeLogin(Config.ANOTHER_USERNAME_FOR_BOLT, Config.ANOTHER_PASSWORD_BOLT_BOLT);
+        desktopDashboardPage.makeCallToUser("1000");
     }
 }

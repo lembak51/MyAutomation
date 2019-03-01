@@ -142,7 +142,7 @@ abstract class BasePage {
         } catch (NoSuchElementException e){
             click(notificationOverflowBtn);
             click(openBoltBtn);
-            log.info("Open application from the tray meny");
+            log.info("Open application from the tray menu");
         }
     }
 

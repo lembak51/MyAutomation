@@ -1,22 +1,20 @@
-package pages.webPages;
+package pages.webPages.voicemailPages;
 
 
 import common.PageElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pages.webPages.BasePage;
 
-public class VoicemailPage extends BasePage{
-    private static final PageElement voicemailConfigurationBtn = new PageElement(
-            "Voicemail Configuration button",
-            By.cssSelector("a[data-toggle='voicemail']"),
-            true);
+public class VoicemailConfigurationPage extends BasePage {
+
     private static final PageElement voicemailPinFld = new PageElement(
             "Voicemail Field",
             By.xpath("//*[@class='row']/div/input"),
-            false);
+            true);
 
-    public VoicemailPage(WebDriver driver){
+    public VoicemailConfigurationPage(WebDriver driver){
         super(driver);
     }
 
@@ -25,10 +23,7 @@ public class VoicemailPage extends BasePage{
         return allRequiredElementDisplayed();
     }
 
-
-    public boolean getVoicemailPin (String pinFromDashboard){
-        waitToBeClickable(voicemailConfigurationBtn);
-        click(voicemailConfigurationBtn);
+    public boolean getVoicemailPin(String pinFromDashboard){
         String actualPin = getText(voicemailPinFld);
         return actualPin.equals(pinFromDashboard);
     }
