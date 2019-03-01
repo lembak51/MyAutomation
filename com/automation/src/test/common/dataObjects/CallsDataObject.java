@@ -12,6 +12,7 @@ public class CallsDataObject extends BaseDataObject {
     public String DateTime;
     public String FromNumber;
     public String ToNumber;
+    public String TypeOfCall;
 
 
 
@@ -27,6 +28,13 @@ public class CallsDataObject extends BaseDataObject {
 
     public CallsDataObject getCalsDateAndTime(String toNumber){
         this.DateTime = getCurrentDateTime();
+        this.FromNumber = "1000";
+        this.ToNumber = toNumber;
+        return this;
+    }
+    public CallsDataObject getTypeOfCall(String toNumber,String typeOfCall){
+        this.DateTime = getCurrentDateTime();
+        this.TypeOfCall = typeOfCall;
         this.FromNumber = "1000";
         this.ToNumber = toNumber;
         return this;

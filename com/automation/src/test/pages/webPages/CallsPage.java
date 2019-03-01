@@ -34,6 +34,9 @@ public class CallsPage extends BasePage{
     public static final PageElement toDestinationFld = new PageElement(
             "To/Destination field",
             By.cssSelector("input[data-ng-model='search_data.to']"));
+    public static final PageElement firstTypeOfCallInTable = new PageElement(
+            "To/Destination field",
+            By.cssSelector("//*[@class='col-md-12']//tbody[2]//td[2]"));
 
 
     public CallsPage(WebDriver driver){
@@ -78,9 +81,19 @@ public class CallsPage extends BasePage{
     private String getDateTimeText (){return getText(firstDateTimeInTable).substring(0,15);}
     private String getFromCallNumber(){return getAttribute(firstFromCallNumber,"number");}
     private String getToCallNumber(){return getAttribute(firstToCallNumber,"number");}
+    private String getTypeOfCall(){return getText(firstTypeOfCallInTable);}
 
     public CallsDataObject getValuesFromTheTable(){
         CallsDataObject expectedCallDataObject = new CallsDataObject();
+        expectedCallDataObject.DateTime = getDateTimeText();
+        expectedCallDataObject.FromNumber =getFromCallNumber();
+        expectedCallDataObject.ToNumber = getToCallNumber();
+        return expectedCallDataObject;
+    }
+
+    public CallsDataObject getValuesFromTypeOfCall(){
+        CallsDataObject expectedCallDataObject = new CallsDataObject();
+        expectedCallDataObject.TypeOfCall = getTypeOfCall();
         expectedCallDataObject.DateTime = getDateTimeText();
         expectedCallDataObject.FromNumber =getFromCallNumber();
         expectedCallDataObject.ToNumber = getToCallNumber();

@@ -51,5 +51,16 @@ import org.testng.annotations.Test;
             Assert.assertTrue(actualDataObject.isCallDataSame(expectedDataObject));
 
         }
+        @Test(description = "SQE-48 Calls tab - View calls with Incoming Type",dependsOnMethods = "makeCallToDestination")
+        public void viewCallsWithIncomingType(){
+            String typeOfCall = "Incoming";
+            dashboardPage.openCallsPage();
+            Assert.assertTrue(callsPage.pageIsDisplayed(),"Calls page should be displayed");
+            callsPage.selectUser("Kristian Gombosh");
+            CallsDataObject expectedDataObject =  new CallsDataObject().getTypeOfCall(numberForDestinationMakeCall,typeOfCall);
+            CallsDataObject actualDataObject = callsPage.getValuesFromTheTable();
+            Assert.assertTrue(actualDataObject.isCallDataSame(expectedDataObject));
+
+        }
     }
 
