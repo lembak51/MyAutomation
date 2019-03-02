@@ -43,8 +43,8 @@ public class DesktopLoginPage extends BasePage {
         fillFieldUsername(userEmail);
         fillFieldPassword(userPassword);
         clickToSignInButton();
-        if (isSignInButtonDisplayed()) clickToSignInButton();
-        else System.out.println("IDK how to rewrite this");
+//        if (isSignInButtonDisplayed()) clickToSignInButton();
+//        else System.out.println("IDK how to rewrite this");
     }
 
     private boolean isSignInButtonDisplayed(){
