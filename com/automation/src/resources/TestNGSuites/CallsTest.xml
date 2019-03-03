@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Calls Test" preserve-order="true">
+    <listeners>
+        <listener class-name="common.testHelper.FailureRetryListener"/>
+        <listener class-name="common.testHelper.TestListener"/>
+    </listeners>
+    <test name="Calls Test">
+        <classes>
+            <class name="tests.CallsTest">
+                <methods>
+                    <include name="makeInternalCall"/>
+                    <include name="callsTabUsersSearch"/>
+                    <include name="makeCallToDestination"/>
+                    <include name="callsTabDestination"/>
+                    <include name="viewCallsWithIncomingType"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

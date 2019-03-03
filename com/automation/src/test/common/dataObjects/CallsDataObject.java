@@ -32,10 +32,10 @@ public class CallsDataObject extends BaseDataObject {
         this.ToNumber = toNumber;
         return this;
     }
-    public CallsDataObject getTypeOfCall(String toNumber,String typeOfCall){
+    public CallsDataObject getTypeOfCall(String toNumber,String typeOfCall, String fromNumber){
         this.DateTime = getCurrentDateTime();
         this.TypeOfCall = typeOfCall;
-        this.FromNumber = "1000";
+        this.FromNumber = fromNumber;
         this.ToNumber = toNumber;
         return this;
     }
@@ -47,6 +47,12 @@ public class CallsDataObject extends BaseDataObject {
                 compareStringsWithLog(expectedDataObject.ToNumber, this.ToNumber);
     }
 
+    public boolean isTypeOfCallSame(CallsDataObject expectedDataObject){
+        return compareStringsWithLog(expectedDataObject.DateTime, this.DateTime) &&
+                compareStringsWithLog(expectedDataObject.TypeOfCall,this.TypeOfCall)&&
+                compareStringsWithLog(expectedDataObject.FromNumber, this.FromNumber) &&
+                compareStringsWithLog(expectedDataObject.ToNumber, this.ToNumber);
+    }
     public String getCurrentDateTime(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
         Calendar cal = Calendar.getInstance();

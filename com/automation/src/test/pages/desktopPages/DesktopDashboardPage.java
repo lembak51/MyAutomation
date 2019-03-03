@@ -3,24 +3,26 @@ package pages.desktopPages;
 
 import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.WebElement;
-import pages.webPages.*;
 
-public class DesktopDashboardPage extends pages.desktopPages.BasePage{
+public class DesktopDashboardPage extends pages.desktopPages.BasePage {
 
 
     public DesktopDashboardPage(WindowsDriver driver){
         super(driver);
     }
+
     private void fillNumberFld(String userNumber){
         WebElement numberFld = desktop_driver.findElementByAccessibilityId("DialNumberTextBox");
         numberFld.sendKeys(userNumber);
     }
+
     private void clickCallBtn(){
-        WebElement callBtn= desktop_driver.findElementByAccessibilityId("CallButton");
+        WebElement callBtn = desktop_driver.findElementByAccessibilityId("CallButton");
         callBtn.click();
     }
+
     private void clickEndCallBtn(){
-        WebElement callBtn= desktop_driver.findElementByAccessibilityId("EndCall");
+        WebElement callBtn = desktop_driver.findElementByAccessibilityId("EndCall");
         callBtn.click();
     }
 
