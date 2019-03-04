@@ -30,84 +30,89 @@ public class InboxPage extends BasePage {
             true);
     private static final PageElement dateInVoicemailTableMsb = new PageElement(
             "Date in voicemail table",
-            By.xpath("//*[@id='voicemail']/tbody[1]/tr/td[4]"),
+            By.cssSelector("tbody:nth-child(1) > tr[class='mail-unread'] > td:nth-child(4)"),
             false);
     private static final PageElement durationInVoicemailTableMsb = new PageElement(
             "Duration   in voicemail table",
-            By.xpath("//*[@id='voicemail']/tbody[1]/tr/td[3]"),
+            By.cssSelector("tbody:nth-child(1) > tr[class='mail-unread'] > td:nth-child(3)"),
             false);
     private static final PageElement folderInVoicemailTableMsb = new PageElement(
             "Folder in voicemail table",
-            By.xpath("//*[@id='voicemail']/tbody[1]/tr/td[5]"),
+            By.cssSelector("tbody:nth-child(1) > tr[class='mail-unread'] > td:nth-child(5)"),
             false);
     private static final PageElement dateInSingleVoicemailMsb = new PageElement(
             "Date in single voicemail",
-            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[2]/text()[1]"),
+            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[2]"),
             false);
     private static final PageElement durationInSingleVoicemailMsb = new PageElement(
             "Duration single in voicemail",
-            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[2]/text()[2]"),
+            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[2]/strong[2]"),
             false);
     private static final PageElement folderInSingleVoicemailMsb = new PageElement(
             "Folder in single voicemail",
-            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[2]/span/text()"),
+            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[2]/span"),
             false);
     private static final PageElement markAsReadBtn = new PageElement(
             "Mark As Read button",
             By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[3]/div[3]/span/button"),
             false);
-    )
 
-    public InboxPage(WebDriver driver) {
+    public InboxPage(WebDriver driver){
         super(driver);
     }
 
     @Override
-    public boolean pageIsDisplayed() {
+    public boolean pageIsDisplayed(){
         return allRequiredElementDisplayed();
     }
 
-    public void openVoicemailConfigurationPage() {
+    public void openVoicemailConfigurationPage(){
         waitToBeClickable(voicemailConfigurationBtn);
         click(voicemailConfigurationBtn);
     }
 
-    public void clickToUnreadButton() {
+    public void clickToUnreadButton(){
         waitToBeClickable(unreadBtn);
         click(unreadBtn);
     }
 
     //TODO need to change locator
-    public void playVoicemail() {
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("document.querySelector('#audioElement').play();");
+    public void playVoicemail(){
+//        JavascriptExecutor jse = (JavascriptExecutor) driver;
+//        jse.executeScript("document.querySelector('#audioElement').play();");
     }
 
-    private String getDateFromTable() {
+    private String getDateFromTable(){
+        System.out.println("Date from table" + getText(dateInVoicemailTableMsb));
         return getText(dateInVoicemailTableMsb);
     }
 
-    private String getDurationFromTable() {
+    private String getDurationFromTable(){
+        System.out.println("Duration from table" + getText(durationInVoicemailTableMsb));
         return getText(durationInVoicemailTableMsb);
     }
 
-    private String getFolderFromTable() {
+    private String getFolderFromTable(){
+        System.out.println("Folder from table" + getText(folderInVoicemailTableMsb));
         return getText(folderInVoicemailTableMsb);
     }
 
-    private String getDateFromSingleVoicemail() {
+    private String getDateFromSingleVoicemail(){
+        System.out.println("Date from modal" + getText(dateInSingleVoicemailMsb));
         return getText(dateInSingleVoicemailMsb);
     }
 
-    private String getDurationFromSingleVoicemail() {
+    private String getDurationFromSingleVoicemail(){
+        System.out.println("Duration from modal" + getText(durationInSingleVoicemailMsb));
         return getText(durationInSingleVoicemailMsb);
     }
 
-    private String getFolderFromSingleVoicemail() {
+    private String getFolderFromSingleVoicemail(){
+        System.out.println("Folder from modal" + getText(folderInSingleVoicemailMsb));
         return getText(folderInSingleVoicemailMsb);
     }
 
-    public VoicemailDataObject getValuesFromTable() {
+    public VoicemailDataObject getValuesFromTable(){
         VoicemailDataObject expectedDataObject = new VoicemailDataObject();
         expectedDataObject.Date = getDateFromTable();
         expectedDataObject.Duration = getDurationFromTable();
@@ -115,7 +120,7 @@ public class InboxPage extends BasePage {
         return expectedDataObject;
     }
 
-    public VoicemailDataObject getValuesFromModal() {
+    public VoicemailDataObject getValuesFromModal(){
         VoicemailDataObject actualDataObject = new VoicemailDataObject();
         actualDataObject.Date = getDateFromSingleVoicemail();
         actualDataObject.Duration = getDurationFromSingleVoicemail();
@@ -123,16 +128,16 @@ public class InboxPage extends BasePage {
         return actualDataObject;
     }
 
-    public void openFirstVoicemailInTable() {
+    public void openFirstVoicemailInTable(){
         waitToBeClickable(firstVoicemailInTableBtn);
-        click(folderInSingleVoicemailMsb);
+        click(firstVoicemailInTableBtn);
     }
 
-    public boolean isVoicemailIsPlaying() {
+    public boolean isVoicemailIsPlaying(){
         return true;
     }
 
-    public void clickToMarkAsReadButton() {
+    public void clickToMarkAsReadButton(){
         waitToBeClickable(markAsReadBtn);
         click(markAsReadBtn);
     }
