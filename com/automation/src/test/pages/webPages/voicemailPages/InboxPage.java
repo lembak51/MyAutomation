@@ -30,15 +30,15 @@ public class InboxPage extends BasePage {
             true);
     private static final PageElement dateInVoicemailTableMsb = new PageElement(
             "Date in voicemail table",
-            By.cssSelector("tbody:nth-child(1) > tr[class='mail-unread'] > td:nth-child(4)"),
+            By.xpath("//*[@id=\"voicemail\"]/tbody[1]/tr/td[4]"),
             false);
     private static final PageElement durationInVoicemailTableMsb = new PageElement(
             "Duration   in voicemail table",
-            By.cssSelector("tbody:nth-child(1) > tr[class='mail-unread'] > td:nth-child(3)"),
+            By.xpath("//*[@id=\"voicemail\"]/tbody[1]/tr/td[3]"),
             false);
     private static final PageElement folderInVoicemailTableMsb = new PageElement(
             "Folder in voicemail table",
-            By.cssSelector("tbody:nth-child(1) > tr[class='mail-unread'] > td:nth-child(5)"),
+            By.xpath("//*[@id=\"voicemail\"]/tbody[1]/tr/td[5]/i[1]"),
             false);
     private static final PageElement dateInSingleVoicemailMsb = new PageElement(
             "Date in single voicemail",
@@ -46,11 +46,11 @@ public class InboxPage extends BasePage {
             false);
     private static final PageElement durationInSingleVoicemailMsb = new PageElement(
             "Duration single in voicemail",
-            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[2]/strong[2]"),
+            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[2]"),
             false);
     private static final PageElement folderInSingleVoicemailMsb = new PageElement(
             "Folder in single voicemail",
-            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[2]/span"),
+            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[2]"),
             false);
     private static final PageElement markAsReadBtn = new PageElement(
             "Mark As Read button",
@@ -83,33 +83,27 @@ public class InboxPage extends BasePage {
     }
 
     private String getDateFromTable(){
-        System.out.println("Date from table" + getText(dateInVoicemailTableMsb));
         return getText(dateInVoicemailTableMsb);
     }
 
     private String getDurationFromTable(){
-        System.out.println("Duration from table" + getText(durationInVoicemailTableMsb));
         return getText(durationInVoicemailTableMsb);
     }
 
     private String getFolderFromTable(){
-        System.out.println("Folder from table" + getText(folderInVoicemailTableMsb));
-        return getText(folderInVoicemailTableMsb);
+        return getAttribute(folderInVoicemailTableMsb, "ng-show").substring(16, 21).toLowerCase();
     }
 
     private String getDateFromSingleVoicemail(){
-        System.out.println("Date from modal" + getText(dateInSingleVoicemailMsb));
-        return getText(dateInSingleVoicemailMsb);
+        return getText(dateInSingleVoicemailMsb).substring(6, getText(dateInSingleVoicemailMsb).indexOf('\n'));
     }
 
     private String getDurationFromSingleVoicemail(){
-        System.out.println("Duration from modal" + getText(durationInSingleVoicemailMsb));
-        return getText(durationInSingleVoicemailMsb);
+        return getText(durationInSingleVoicemailMsb).substring(39, getText(durationInSingleVoicemailMsb).indexOf('\n') + 16);
     }
 
     private String getFolderFromSingleVoicemail(){
-        System.out.println("Folder from modal" + getText(folderInSingleVoicemailMsb));
-        return getText(folderInSingleVoicemailMsb);
+        return getText(folderInSingleVoicemailMsb).substring(53, getText(folderInSingleVoicemailMsb).indexOf('\n') + 30).toLowerCase();
     }
 
     public VoicemailDataObject getValuesFromTable(){
