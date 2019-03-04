@@ -113,7 +113,7 @@ public class InboxPage extends BasePage {
         expectedDataObject.Duration = getDurationFromTable();
         expectedDataObject.Folder = getFolderFromTable();
         return expectedDataObject;
-    }1
+    }
 
     public VoicemailDataObject getValuesFromModal() {
         VoicemailDataObject actualDataObject = new VoicemailDataObject();
