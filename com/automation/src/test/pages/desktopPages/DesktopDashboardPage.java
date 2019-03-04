@@ -4,7 +4,7 @@ package pages.desktopPages;
 import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.WebElement;
 
-public class DesktopDashboardPage extends pages.desktopPages.BasePage {
+public class DesktopDashboardPage extends BasePage {
 
 
     public DesktopDashboardPage(WindowsDriver driver){

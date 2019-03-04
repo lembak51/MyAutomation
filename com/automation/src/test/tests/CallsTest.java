@@ -2,8 +2,8 @@ package tests;
 
 
 import common.Config;
-import common.dataObjects.CallsDataObject;
 import org.testng.Assert;
+import common.dataObjects.CallsDataObject;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
