@@ -19,7 +19,7 @@
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-108 | Kristian | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-109 | Kristian | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-110 | Kristian | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-113 | Kristian | | | 
+|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-113 | Kristian | |Kristian | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-673 | Kristian | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-30 | | | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-2 | | | | | 

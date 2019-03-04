@@ -5,7 +5,9 @@ import common.CommandLineHelper;
 import common.driver.DriverFactory;
 import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import pages.webPages.*;
 
@@ -33,6 +35,7 @@ public class BaseTest {
         try {
             if (!loginPage.isLogInButtonDisplayed())
                 dashboardPage.logout();
+        } catch (WebDriverException ignored) {
         } finally {
             if (driver != null) {
                 driver.quit();
@@ -43,6 +46,19 @@ public class BaseTest {
                 desktop_driver = null;
                 new AppiumServer().stopServer();
             }
+        }
+    }
+
+    @AfterTest
+    public void stopAllDrivers() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
+        if (desktop_driver != null) {
+            new CommandLineHelper().killProcessBolt();
+            desktop_driver = null;
+            new AppiumServer().stopServer();
         }
     }
 
