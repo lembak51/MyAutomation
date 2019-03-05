@@ -1,10 +1,12 @@
 package pages.webPages.voicemailPages;
 
 import common.PageElement;
+import common.Utils;
 import common.dataObjects.VoicemailDataObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pages.webPages.BasePage;
 
 public class InboxPage extends BasePage {
@@ -42,11 +44,11 @@ public class InboxPage extends BasePage {
             false);
     private static final PageElement dataInSingleVoicemailMsb = new PageElement(
             "Data in single voicemail",
-            By.cssSelector("div[class=modal-body]"),
+            By.xpath("//*[@id='app']/div[3]/div/div/div[2]"),
             false);
     private static final PageElement markAsReadBtn = new PageElement(
             "Mark As Read button",
-            By.xpath("button[ng-click='changeBox('Old');']"),
+            By.xpath("//div[3]/span/button"),
             false);
     private static final PageElement closeModalBtn = new PageElement(
             "Close modal button",
@@ -74,8 +76,10 @@ public class InboxPage extends BasePage {
 
     //TODO need to change locator
     public void playVoicemail(){
-//        JavascriptExecutor jse = (JavascriptExecutor) driver;
-//        jse.executeScript("document.querySelector('#audioElement').play();");
+        WebElement audio = driver.findElement(By.xpath("//div/audio"));
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("arguments[0].play();", audio);
+        Utils.sleep(7000);
     }
 
     private String getDateFromTable(){
@@ -95,11 +99,11 @@ public class InboxPage extends BasePage {
     }
 
     private String getDurationFromSingleVoicemail(){
-        return getText(dataInSingleVoicemailMsb).substring(40, getText(dataInSingleVoicemailMsb).indexOf('\n') + 16);
+        return getText(dataInSingleVoicemailMsb).substring(39, getText(dataInSingleVoicemailMsb).indexOf('\n') + 16);
     }
 
     private String getFolderFromSingleVoicemail(){
-        return getText(dataInSingleVoicemailMsb).substring(54, getText(dataInSingleVoicemailMsb).indexOf('\n') + 30).toLowerCase();
+        return getText(dataInSingleVoicemailMsb).substring(53, getText(dataInSingleVoicemailMsb).indexOf('\n') + 30).toLowerCase();
     }
 
     public VoicemailDataObject getValuesFromTable(){
@@ -132,4 +136,8 @@ public class InboxPage extends BasePage {
         click(markAsReadBtn);
     }
 
+    public void clickToCloseButton(){
+        waitToBeVisible(closeModalBtn);
+        click(closeModalBtn);
+    }
 }

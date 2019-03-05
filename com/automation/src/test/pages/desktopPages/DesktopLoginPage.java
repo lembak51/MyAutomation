@@ -1,6 +1,7 @@
 package pages.desktopPages;
 
 import common.DesktopElement;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -12,11 +13,11 @@ public class DesktopLoginPage extends BasePage {
             false);
     private static final DesktopElement usernameTxt = new DesktopElement(
             "Username field",
-            By.id("UsernameText"),
+            MobileBy.AccessibilityId("UsernameText"),
             false);
     private static final DesktopElement passwordTxt = new DesktopElement(
             "Password field",
-            By.id("PasswordText"),
+            MobileBy.AccessibilityId("PasswordText"),
             false);
 
 
@@ -30,13 +31,11 @@ public class DesktopLoginPage extends BasePage {
     }
 
     private void fillFieldUsername(String userEmail){
-        WebElement usernameField = desktop_driver.findElementByAccessibilityId("UsernameText");
-        usernameField.sendKeys(userEmail);
+        enterText(usernameTxt, userEmail);
     }
 
     private void fillFieldPassword(String userPassword){
-        WebElement passwordField = desktop_driver.findElementByAccessibilityId("PasswordText");
-        passwordField.sendKeys(userPassword);
+        enterText(passwordTxt, userPassword);
     }
 
     public void makeLogin(String userEmail, String userPassword){

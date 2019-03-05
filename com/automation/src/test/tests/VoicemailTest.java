@@ -13,7 +13,7 @@ public class VoicemailTest extends BaseTest {
         Assert.assertTrue(loginPage.pageIsDisplayed());
         loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);
         dashboardPage.pageIsDisplayed();
-        //createNewVoicemail();
+        createNewVoicemail();
     }
 
     @Test(description = "SQE-2 Voicemail tab - Mark as Read")
@@ -28,6 +28,7 @@ public class VoicemailTest extends BaseTest {
         inboxPage.playVoicemail();
         Assert.assertTrue(inboxPage.isVoicemailIsPlaying(),"voicemail is playing");
         inboxPage.clickToMarkAsReadButton();
+        inboxPage.clickToCloseButton();
     }
 
     @Test(description = "SQE-13 Voicemail tab - Change Folder")
