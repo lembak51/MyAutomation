@@ -25,11 +25,11 @@
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-2 | | | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-16 | | | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-13 | | | | | 
-|User Panel section |Phonebook tab - User Listing: find user by Name|Ready to Review|https://kerauno.atlassian.net/browse/SQE-39 |Kristian|04.02.2019 | | | 
-|User Panel section |https://kerauno.atlassian.net/browse/SQE-40|Ready to Review|https://kerauno.atlassian.net/browse/SQE-40 |Kristian|04.02.2019 | | | 
-|User Panel section |https://kerauno.atlassian.net/browse/SQE-41|Ready to Review|https://kerauno.atlassian.net/browse/SQE-41 |Kristian|04.02.2019 | | | 
-|User Panel section |https://kerauno.atlassian.net/browse/SQE-42|Ready to Review|https://kerauno.atlassian.net/browse/SQE-42 |Kristian|04.02.2019 | | | 
-|User Panel section |Calls tab - View calls with Incoming Type|Ready to Review|https://kerauno.atlassian.net/browse/SQE-48 |Kristian|04.02.2019 | | | 
+|User Panel section |Phonebook tab - User Listing: find user by Name|Done|https://kerauno.atlassian.net/browse/SQE-39 |Kristian|04.02.2019 | | | 
+|User Panel section |https://kerauno.atlassian.net/browse/SQE-40|Done|https://kerauno.atlassian.net/browse/SQE-40 |Kristian|04.02.2019 | | | 
+|User Panel section |https://kerauno.atlassian.net/browse/SQE-41|Done|https://kerauno.atlassian.net/browse/SQE-41 |Kristian|04.02.2019 | | | 
+|User Panel section |https://kerauno.atlassian.net/browse/SQE-42|Done|https://kerauno.atlassian.net/browse/SQE-42 |Kristian|04.02.2019 | | | 
+|User Panel section |Calls tab - View calls with Incoming Type|Done|https://kerauno.atlassian.net/browse/SQE-48 |Kristian|04.02.2019 | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-49 | | | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-50 | | | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-51 | | | | | 
