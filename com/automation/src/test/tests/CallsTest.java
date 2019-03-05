@@ -8,8 +8,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class CallsTest extends BaseTest {
-    String numberForInternalCall = "1001";
-    String numberForDestinationCall = "3175229430";
+    private  String numberForInternalCall = "1001";
+    private  String numberForDestinationCall = "3175229430";
+    String typeOfCall = "Incoming";
+    String fromCallNumber = "3175229431";
+    String selectUser = "Kristian Gombosh";
 
     @BeforeMethod
     public void loginBeforeTest(){
@@ -19,7 +22,7 @@ public class CallsTest extends BaseTest {
         dashboardPage.pageIsDisplayed();
     }
 
-    @Test(description = "depends methods for SQE-41 Calls tab - Users search")
+    @Test(description = "SQE-11 Calls should be present in calls list of the preconditions test cases for SQE-41")
     public void makeInternalCall(){
         switchToDesktop();
         desktopLoginPage.makeLogin(Config.BASE_USERNAME_FOR_BOLT, Config.BASE_PASSWORD_FOR_BOLT);
@@ -30,13 +33,13 @@ public class CallsTest extends BaseTest {
     public void callsTabUsersSearch(){
         dashboardPage.openCallsPage();
         Assert.assertTrue(callsPage.pageIsDisplayed(), "Calls page should be displayed");
-        callsPage.selectUser("Kristian Gombosh");
+        callsPage.selectUser(selectUser);
         CallsDataObject expectedDataObject = new CallsDataObject().getCalsDateAndTime(numberForInternalCall);
         CallsDataObject actualDataObject = callsPage.getValuesFromTheTable();
         Assert.assertTrue(actualDataObject.isCallDataSame(expectedDataObject));
     }
 
-    @Test(description = "depends methods for SQE-42 Calls tab - Destination and SQE-48 Calls tab - View calls with Incoming Type",dependsOnMethods = "callsTabUsersSearch")
+    @Test(description = "SQE-11 Calls should be present in calls list of the preconditions test cases for SQE-41",dependsOnMethods ="callsTabUsersSearch")
     public void makeCallToDestination(){
         switchToDesktop();
         desktopLoginPage.makeLogin(Config.BASE_USERNAME_FOR_BOLT, Config.BASE_PASSWORD_FOR_BOLT);
@@ -56,12 +59,10 @@ public class CallsTest extends BaseTest {
 
     @Test(description = "SQE-48 Calls tab - View calls with Incoming Type", dependsOnMethods = "makeCallToDestination")
     public void viewCallsWithIncomingType(){
-        String typeOfCall = "Incoming";
-        String fromCallNumber = "3175229431";
         dashboardPage.openCallsPage();
         Assert.assertTrue(callsPage.pageIsDisplayed(), "Calls page should be displayed");
-        callsPage.selectUser("Kristian Gombosh");
-        CallsDataObject expectedDataObject = new CallsDataObject().getTypeOfCall(numberForDestinationCall, typeOfCall, fromCallNumber);
+        callsPage.selectUser(selectUser);
+        CallsDataObject expectedDataObject = new CallsDataObject().getTypeOfCall(typeOfCall, fromCallNumber);
         CallsDataObject actualDataObject = callsPage.getValuesFromTypeOfCall();
         Assert.assertTrue(actualDataObject.isTypeOfCallSame(expectedDataObject));
 

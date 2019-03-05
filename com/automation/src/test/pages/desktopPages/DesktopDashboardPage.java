@@ -1,10 +1,26 @@
 package pages.desktopPages;
 
 
+import common.DesktopElement;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.windows.WindowsDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class DesktopDashboardPage extends BasePage {
+    private static final DesktopElement numberFld = new DesktopElement(
+            "Number Field",
+            MobileBy.AccessibilityId("DialNumberTextBox"),
+            false);
+    private static final DesktopElement callBtn = new DesktopElement(
+            "Call button",
+            MobileBy.AccessibilityId("CallButton"),
+            false);
+    private static final DesktopElement endCallBtn = new DesktopElement(
+            "End Call button",
+            MobileBy.AccessibilityId("EndCall"),
+            false);
+
 
 
     public DesktopDashboardPage(WindowsDriver driver){
@@ -12,18 +28,17 @@ public class DesktopDashboardPage extends BasePage {
     }
 
     private void fillNumberFld(String userNumber){
-        WebElement numberFld = desktop_driver.findElementByAccessibilityId("DialNumberTextBox");
-        numberFld.sendKeys(userNumber);
+       enterText(numberFld,userNumber);
     }
 
     private void clickCallBtn(){
-        WebElement callBtn = desktop_driver.findElementByAccessibilityId("CallButton");
-        callBtn.click();
+        waitToBeClickable(callBtn);
+        click(callBtn);
     }
 
     private void clickEndCallBtn(){
-        WebElement callBtn = desktop_driver.findElementByAccessibilityId("EndCall");
-        callBtn.click();
+      waitToBeClickable(endCallBtn);
+      click(endCallBtn);
     }
 
     public void makeCallToUser(String userNumber){

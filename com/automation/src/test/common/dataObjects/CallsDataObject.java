@@ -32,11 +32,11 @@ public class CallsDataObject extends BaseDataObject {
         this.ToNumber = toNumber;
         return this;
     }
-    public CallsDataObject getTypeOfCall(String toNumber,String typeOfCall, String fromNumber){
+    public CallsDataObject getTypeOfCall(String typeOfCall, String fromNumber){
         this.DateTime = getCurrentDateTime();
         this.TypeOfCall = typeOfCall;
         this.FromNumber = fromNumber;
-        this.ToNumber = toNumber;
+        this.ToNumber ="1001";
         return this;
     }
 
