@@ -49,16 +49,11 @@
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-91 | | | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-93 | | | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-98 | | | | | 
-|Interaction Routing |Blacklist tab - Add Number to Blacklist | |https://kerauno.atlassian.net/browse/SQE-115 | | | | |
-|Interaction Routing |Blacklist tab - Add Incorrect Number to Blacklist | |https://kerauno.atlassian.net/browse/SQE-116 | | | | |
-|Interaction Routing |Blacklist tab - Add Number to Blacklist without Outbound | |https://kerauno.atlassian.net/browse/SQE-121 | | | | |
-|Interaction Routing |Blacklist tab - Add Number to Blacklist with Reason | |https://kerauno.atlassian.net/browse/SQE-123 | | | | |
-|Interaction Routing |Blacklist tab - Add Number to Blacklist without Inbound | |https://kerauno.atlassian.net/browse/SQE-120 | | | | |
-|Interaction Routing |Blacklist tab - Add Number to Blacklist with exist number in list | |https://kerauno.atlassian.net/browse/SQE-124 | | | | |
-|Interaction Routing |Blacklist tab - Remove from Blacklist | |https://kerauno.atlassian.net/browse/SQE-128 | | | | |
-|Interaction Routing |Blacklist tab - Add Blacklist number as route for in your system | |https://kerauno.atlassian.net/browse/SQE-190 | | | | |
-|Interaction Routing |Holiday List tab - Add Holiday List | |https://kerauno.atlassian.net/browse/SQE-142 | | | | |
-|Interaction Routing |Holiday List tab - Add Holiday List with Set Holiday Work Hours | |https://kerauno.atlassian.net/browse/SQE-148 | | | | |
+|Interaction Routing |Blacklist tab - Add Number to Blacklist |To Do |https://kerauno.atlassian.net/browse/SQE-115 | | | | |
+|Interaction Routing |Blacklist tab - Add Number to Blacklist with exist number in list |To Do |https://kerauno.atlassian.net/browse/SQE-124 || | | |
+|Interaction Routing |Blacklist tab - Remove from Blacklist |To Do |https://kerauno.atlassian.net/browse/SQE-128 | | | | |
+|Interaction Routing |Blacklist tab - Add Blacklist number as route for in your system |To Do |https://kerauno.atlassian.net/browse/SQE-190 || | | |
+|Interaction Routing |Holiday List tab - Add Holiday List with Set Holiday Work Hours |To Do |https://kerauno.atlassian.net/browse/SQE-148 | | | | |
 |Interaction Routing |Holiday List tab - Add Holiday List with two Days | |https://kerauno.atlassian.net/browse/SQE-149 | | | | |
 |Interaction Routing |Holiday List tab - Add Holiday List with delete actions | |https://kerauno.atlassian.net/browse/SQE-151 | | | | |
 |Interaction Routing |Holiday List tab - Edit Holiday list | |https://kerauno.atlassian.net/browse/SQE-153 | | | | |
