@@ -105,10 +105,16 @@ public class AddUsersPage extends BasePage {
     }
 
     public void createNewUser(UserDataObject userDataObject){
+        PageElement findAvailable = new PageElement(
+                "Find Available number",
+                By.cssSelector("a[id='helpfulArrow']"));
         waitToBeClickable(homeBtn);
         fillFirstName(userDataObject.Username);
         fillLastName(userDataObject.Username);
         fillPrimaryExtensionFld(userDataObject.PrimaryExtension);
+        waitUntilPageLoad();
+        if(isElementPresent(findAvailable)){
+            click(findAvailable);}
         fillUserEmailFld(userDataObject.UserEmail);
         fillJobTitleFld(userDataObject.JobTitle);
         fillMobilenumberFld(userDataObject.MobileNumber);
