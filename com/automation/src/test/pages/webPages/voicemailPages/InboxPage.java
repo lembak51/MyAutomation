@@ -26,35 +26,31 @@ public class InboxPage extends BasePage {
             true);
     private static final PageElement firstVoicemailInTableBtn = new PageElement(
             "First Voicemail in table",
-            By.xpath("//*[@id=\"voicemail\"]/tbody[1]/tr/td[2]"),
-            true);
+            By.xpath("//*[@id='voicemail']/tbody[1]/tr"),
+            false);
     private static final PageElement dateInVoicemailTableMsb = new PageElement(
             "Date in voicemail table",
-            By.xpath("//*[@id=\"voicemail\"]/tbody[1]/tr/td[4]"),
+            By.cssSelector("#voicemail > tbody:nth-child(1) > tr[class='mail-unread'] > td:nth-child(4)"),
             false);
     private static final PageElement durationInVoicemailTableMsb = new PageElement(
             "Duration   in voicemail table",
-            By.xpath("//*[@id=\"voicemail\"]/tbody[1]/tr/td[3]"),
+            By.cssSelector("#voicemail > tbody:nth-child(1) > tr[class='mail-unread'] > td:nth-child(3)"),
             false);
     private static final PageElement folderInVoicemailTableMsb = new PageElement(
             "Folder in voicemail table",
-            By.xpath("//*[@id=\"voicemail\"]/tbody[1]/tr/td[5]/i[1]"),
+            By.cssSelector("#voicemail > tbody:nth-child(1) > tr[class='mail-unread'] > td:nth-child(5) > i.fa.fa-circle.color-danger.pull-right"),
             false);
-    private static final PageElement dateInSingleVoicemailMsb = new PageElement(
-            "Date in single voicemail",
-            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[2]"),
-            false);
-    private static final PageElement durationInSingleVoicemailMsb = new PageElement(
-            "Duration single in voicemail",
-            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[2]"),
-            false);
-    private static final PageElement folderInSingleVoicemailMsb = new PageElement(
-            "Folder in single voicemail",
-            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[2]"),
+    private static final PageElement dataInSingleVoicemailMsb = new PageElement(
+            "Data in single voicemail",
+            By.cssSelector("div[class=modal-body]"),
             false);
     private static final PageElement markAsReadBtn = new PageElement(
             "Mark As Read button",
-            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[3]/div[3]/span/button"),
+            By.xpath("button[ng-click='changeBox('Old');']"),
+            false);
+    private static final PageElement closeModalBtn = new PageElement(
+            "Close modal button",
+            By.linkText("Close"),
             false);
 
     public InboxPage(WebDriver driver){
@@ -95,15 +91,15 @@ public class InboxPage extends BasePage {
     }
 
     private String getDateFromSingleVoicemail(){
-        return getText(dateInSingleVoicemailMsb).substring(6, getText(dateInSingleVoicemailMsb).indexOf('\n'));
+        return getText(dataInSingleVoicemailMsb).substring(6, getText(dataInSingleVoicemailMsb).indexOf('\n'));
     }
 
     private String getDurationFromSingleVoicemail(){
-        return getText(durationInSingleVoicemailMsb).substring(39, getText(durationInSingleVoicemailMsb).indexOf('\n') + 16);
+        return getText(dataInSingleVoicemailMsb).substring(40, getText(dataInSingleVoicemailMsb).indexOf('\n') + 16);
     }
 
     private String getFolderFromSingleVoicemail(){
-        return getText(folderInSingleVoicemailMsb).substring(53, getText(folderInSingleVoicemailMsb).indexOf('\n') + 30).toLowerCase();
+        return getText(dataInSingleVoicemailMsb).substring(54, getText(dataInSingleVoicemailMsb).indexOf('\n') + 30).toLowerCase();
     }
 
     public VoicemailDataObject getValuesFromTable(){

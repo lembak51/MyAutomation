@@ -13,7 +13,7 @@ public class VoicemailTest extends BaseTest {
         Assert.assertTrue(loginPage.pageIsDisplayed());
         loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);
         dashboardPage.pageIsDisplayed();
-      //  createNewVoicemail();
+        //createNewVoicemail();
     }
 
     @Test(description = "SQE-2 Voicemail tab - Mark as Read")
