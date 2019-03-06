@@ -2,17 +2,17 @@ package tests;
 
 
 import common.Config;
-import org.testng.Assert;
 import common.dataObjects.CallsDataObject;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class CallsTest extends BaseTest {
-    private  String numberForInternalCall = "1001";
-    private  String numberForDestinationCall = "3175229430";
-    String typeOfCall = "Incoming";
-    String fromCallNumber = "3175229431";
-    String selectUser = "Kristian Gombosh";
+    private String numberForInternalCall = "1001";
+    private String numberForDestinationCall = "3175229430";
+    private String typeOfCall = "Incoming";
+    private String fromCallNumber = "3175229431";
+    private String selectUser = "Kristian Gombosh";
 
     @BeforeMethod
     public void loginBeforeTest(){
@@ -39,7 +39,7 @@ public class CallsTest extends BaseTest {
         Assert.assertTrue(actualDataObject.isCallDataSame(expectedDataObject));
     }
 
-    @Test(description = "SQE-11 Calls should be present in calls list of the preconditions test cases for SQE-41",dependsOnMethods ="callsTabUsersSearch")
+    @Test(description = "SQE-11 Calls should be present in calls list of the preconditions test cases for SQE-41", dependsOnMethods = "callsTabUsersSearch")
     public void makeCallToDestination(){
         switchToDesktop();
         desktopLoginPage.makeLogin(Config.BASE_USERNAME_FOR_BOLT, Config.BASE_PASSWORD_FOR_BOLT);

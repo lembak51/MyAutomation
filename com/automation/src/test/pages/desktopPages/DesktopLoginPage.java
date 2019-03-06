@@ -41,5 +41,12 @@ public class DesktopLoginPage extends BasePage {
         fillFieldUsername(userEmail);
         fillFieldPassword(userPassword);
         clickToSignInButton();
+        if (isSignInButtonDisplayed()) clickToSignInButton();
     }
+
+    private boolean isSignInButtonDisplayed(){
+        waitUntilLoad();
+        return isElementPresent(signInBtn);
+    }
+
 }
