@@ -19,20 +19,34 @@ public class VoicemailTest extends BaseTest {
     @Test(description = "SQE-2 Voicemail tab - Mark as Read")
     public void voicemailTabMarkAsRead(){
         dashboardPage.switchToVoiceMailTab();
-        Assert.assertTrue(inboxPage.pageIsDisplayed()," Inbox tab is opened");
-        inboxPage.clickToUnreadButton();
+        Assert.assertTrue(inboxPage.pageIsDisplayed(),"Inbox tab is opened");
+        inboxPage.openUnreadSection();
         VoicemailDataObject expectedDataObject = inboxPage.getValuesFromTable();
         inboxPage.openFirstVoicemailInTable();
         VoicemailDataObject actualDataObject = inboxPage.getValuesFromModal();
         Assert.assertTrue(actualDataObject.isVoicemailDataSame(expectedDataObject),"Voicemail Data are the same");
         inboxPage.playVoicemail();
-        Assert.assertTrue(inboxPage.isVoicemailIsPlaying(),"voicemail is playing");
-        inboxPage.clickToMarkAsReadButton();
+        Assert.assertTrue(inboxPage.isVoicemailFolderDisappearAfterClick(),"Voicemail should be marked in lists as Read");
         inboxPage.clickToCloseButton();
+//        VoicemailDataObject newActualDataObject = inboxPage.getValuesFromTable();
+//        Assert.assertTrue(actualDataObject.isVoicemailDataSame(newActualDataObject),"Voicemail should be removed from the unread list.");
+
     }
 
     @Test(description = "SQE-13 Voicemail tab - Change Folder")
     public void voicemailTabChangeFolder(){
+        dashboardPage.switchToVoiceMailTab();
+        Assert.assertTrue(inboxPage.pageIsDisplayed(),"Inbox tab is opened");
+        inboxPage.openUnreadSection();
+        VoicemailDataObject expectedDataObject = inboxPage.getValuesFromTable();
+        inboxPage.openFirstVoicemailInTable();
+        VoicemailDataObject actualDataObject = inboxPage.getValuesFromModal();
+        Assert.assertTrue(actualDataObject.isVoicemailDataSame(expectedDataObject),"Voicemail Data are the same");
+        inboxPage.clickToChangeFolderButton();
+        Assert.assertTrue(inboxPage.isMenuItemsDisplayed(),"Menus are the sames");
+        inboxPage.clickToReadButton();
+        inboxPage.clickToCloseButton();
+        inboxPage.openReadSection();
     }
 
     @Test(description = "SQE-16 Voicemail tab - Download Voicemail")

@@ -9,6 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.webPages.BasePage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InboxPage extends BasePage {
     private static final PageElement inboxBtn = new PageElement(
             "Inbox Configuration button",
@@ -25,6 +28,10 @@ public class InboxPage extends BasePage {
     private static final PageElement unreadBtn = new PageElement(
             "Unread button",
             By.cssSelector("a > i[class='fa fa-circle color-danger pull-right']"),
+            true);
+    private static final PageElement readBtn = new PageElement(
+            "Read button",
+            By.cssSelector("a > i[class='fa fa-circle color-grey pull-right']"),
             true);
     private static final PageElement firstVoicemailInTableBtn = new PageElement(
             "First Voicemail in table",
@@ -48,12 +55,37 @@ public class InboxPage extends BasePage {
             false);
     private static final PageElement markAsReadBtn = new PageElement(
             "Mark As Read button",
-            By.xpath("//div[3]/span/button"),
+            By.cssSelector("span[ng-show] > button[ng-click]"),
             false);
     private static final PageElement closeModalBtn = new PageElement(
             "Close modal button",
             By.linkText("Close"),
             false);
+    private static final PageElement changeFolderBtn = new PageElement(
+            "Change folder button",
+            By.cssSelector("div.modal-footer.ng-scope > div[class] > button"),
+            false);
+    private static PageElement firstElementInChangeFolderBtn = new PageElement(
+            "First element in Change folder menu button",
+            By.cssSelector("div.btn-group.open > ul > li[ng-if] > a"),
+            false);
+    private static PageElement readMenuItemBtn = new PageElement(
+            "Read menu item button",
+            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[3]/div[2]/ul/li[1]/a"),
+            false);
+    private static PageElement workMenuItemBtn = new PageElement(
+            "Work menu item button",
+            By.xpath("a[ng-click='changeBox('Work');']"),
+            false);
+    private static PageElement familyMenuItemBtn = new PageElement(
+            "Family menu item button",
+            By.xpath("a[ng-click='changeBox('Family');']"),
+            false);
+    private static PageElement friendsMenuItemBtn = new PageElement(
+            "Friends menu item button",
+            By.xpath("a[ng-click='changeBox('Friends');']"),
+            false);
+
 
     public InboxPage(WebDriver driver){
         super(driver);
@@ -69,9 +101,14 @@ public class InboxPage extends BasePage {
         click(voicemailConfigurationBtn);
     }
 
-    public void clickToUnreadButton(){
+    public void openUnreadSection(){
         waitToBeClickable(unreadBtn);
         click(unreadBtn);
+    }
+
+    public void openReadSection(){
+        waitToBeClickable(readBtn);
+        click(readBtn);
     }
 
     //TODO need to change locator
@@ -99,11 +136,11 @@ public class InboxPage extends BasePage {
     }
 
     private String getDurationFromSingleVoicemail(){
-        return getText(dataInSingleVoicemailMsb).substring(39, getText(dataInSingleVoicemailMsb).indexOf('\n') + 16);
+        return getText(dataInSingleVoicemailMsb).substring(40, getText(dataInSingleVoicemailMsb).indexOf('\n') + 16);
     }
 
     private String getFolderFromSingleVoicemail(){
-        return getText(dataInSingleVoicemailMsb).substring(53, getText(dataInSingleVoicemailMsb).indexOf('\n') + 30).toLowerCase();
+        return getText(dataInSingleVoicemailMsb).substring(54, getText(dataInSingleVoicemailMsb).indexOf('\n') + 30).toLowerCase();
     }
 
     public VoicemailDataObject getValuesFromTable(){
@@ -127,8 +164,9 @@ public class InboxPage extends BasePage {
         click(firstVoicemailInTableBtn);
     }
 
-    public boolean isVoicemailIsPlaying(){
-        return true;
+    public void clickToChangeFolderButton(){
+        waitToBeClickable(changeFolderBtn);
+        click(changeFolderBtn);
     }
 
     public void clickToMarkAsReadButton(){
@@ -139,5 +177,39 @@ public class InboxPage extends BasePage {
     public void clickToCloseButton(){
         waitToBeVisible(closeModalBtn);
         click(closeModalBtn);
+    }
+
+    public boolean isVoicemailDisappearFromTheTable(){
+
+        return true;
+    }
+
+    public boolean isVoicemailFolderDisappearAfterClick(){
+        String s1 = getText(dataInSingleVoicemailMsb);
+        waitToBeClickable(markAsReadBtn);
+        click(markAsReadBtn);
+        String s2 = getText(dataInSingleVoicemailMsb);
+        return s1.equals(s2);
+    }
+
+    public boolean isMenuItemsDisplayed(){
+        ArrayList<String> al = new ArrayList<>();
+        al.add("Read");
+        al.add("Work");
+        al.add("Family");
+        al.add("Friends");
+        ArrayList<String> obtainedList = new ArrayList<>();
+        List<WebElement> elementList = findAll(firstElementInChangeFolderBtn);
+        for (WebElement we : elementList) {
+            obtainedList.add(we.getText());
+        }
+        return al.equals(obtainedList);
+    }
+
+    public void clickToReadButton(){
+        waitToBeClickable(changeFolderBtn);
+        click(changeFolderBtn);
+        waitToBeClickable(readMenuItemBtn);
+        click(readMenuItemBtn);
     }
 }
