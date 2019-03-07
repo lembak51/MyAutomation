@@ -23,6 +23,7 @@ public abstract class BasePage {
     protected BasePage(WebDriver driver){
         PropertyConfigurator.configure(System.getProperty("user.dir") + "/com/automation/src/resources/log4j.properties");
         this.driver = driver;
+        PropertyConfigurator.configure(System.getProperty("user.dir") + "/com/automation/src/resources/log4j.properties");
         log = Logger.getLogger(this.getClass().getCanonicalName());
     }
 

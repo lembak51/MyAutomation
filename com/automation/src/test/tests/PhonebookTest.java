@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 public class PhonebookTest extends BaseTest {
     UserDataObject preconditionUserDate = new UserDataObject();
+
     @BeforeMethod
     public void loginBeforeTest(){
         driver.get(Config.BASE_URL);
@@ -37,7 +38,6 @@ public class PhonebookTest extends BaseTest {
 
     @Test(description = "SQE-29 Phonebook tab - User Listing: sort by DID")
     public void phonebookTabUserListingSortByDid(){
-
         dashboardPage.openPhonebookPage();
         Assert.assertTrue(userListingPage.pageIsDisplayed(), "User Listing page is opened");
         Assert.assertTrue(userListingPage.sortDidElementsByDesc(), "All DID's should be sorted by descending");

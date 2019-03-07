@@ -5,6 +5,7 @@ import common.CommandLineHelper;
 import common.driver.DriverFactory;
 import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.desktopPages.DesktopDashboardPage;
@@ -27,7 +28,7 @@ public class BaseTest {
     public WindowsDriver desktop_driver;
 
     @BeforeMethod
-    public void setupTestRun(){
+    public void setupTestRun() {
         driver = new DriverFactory().getDriver();
         initPages();
     }
@@ -37,6 +38,7 @@ public class BaseTest {
         try {
             if (!loginPage.isLogInButtonDisplayed())
                 dashboardPage.logout();
+        } catch (WebDriverException ignored) {
         } finally {
             if (driver != null) {
                 driver.quit();

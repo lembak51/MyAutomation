@@ -35,7 +35,7 @@ public class UserDataObject {
 
 
     static String getRandomUsername() {
-        return "SwanUser" + Utils.getRandomInt(00, 99);
+        return "SwanUser" + Utils.getRandomInt(10, 99);
     }
 
     static String getRandomPrimaryExtension() {
