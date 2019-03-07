@@ -11,25 +11,25 @@
 |User Panel section | Phonebook tab - User Listing: sort by Departments |Done |https://kerauno.atlassian.net/browse/SQE-31 | Bogdan | | | 
 |User Panel section | Phonebook tab - User Listing: sort by Extensions |Done |https://kerauno.atlassian.net/browse/SQE-32 | Bogdan | | | 
 |User Panel section | Phonebook tab - User Listing: view user information |Done |https://kerauno.atlassian.net/browse/SQE-34 | Bogdan | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-101 | Kristian | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-104 | Kristian | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-105 | Kristian | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-106 | Kristian | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-107 | Kristian | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-108 | Kristian | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-109 | Kristian | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-110 | Kristian | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-113 | Kristian | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-673 | Kristian | | | 
+|User Panel section |Dashboard - Change Voicemail Pin |Done |https://kerauno.atlassian.net/browse/SQE-101 | Kristian |04.02.2019| | 
+|User Panel section |Dashboard - change password: wrong old password |Done |https://kerauno.atlassian.net/browse/SQE-104 | Kristian |04.02.2019| | 
+|User Panel section |Dashboard  - change password: passwords are not the same|Done|https://kerauno.atlassian.net/browse/SQE-105 | Kristian | 04.02.2019| | 
+|User Panel section |Dashboard  - change password: new password without numbers|Done |https://kerauno.atlassian.net/browse/SQE-106 | Kristian | 04.02.2019| | 
+|User Panel section |Dashboard - Change Profile Picture without Upload button|To Do|https://kerauno.atlassian.net/browse/SQE-107 | Kristian | 04.02.2019| | 
+|User Panel section |Dashboard - change password: new password without letters|Done |https://kerauno.atlassian.net/browse/SQE-108 | Kristian | 04.02.2019| | 
+|User Panel section |Dashboard - Check Voicemail Pin  in Voicemail page|Done |https://kerauno.atlassian.net/browse/SQE-109 | Kristian | 04.02.2019| | 
+|User Panel section |Dashboard - My Mobile with incorrect values|Done |https://kerauno.atlassian.net/browse/SQE-110 | Kristian | 04.02.2019| | 
+|User Panel section |Dashboard  - change password: login with new password|Done |https://kerauno.atlassian.net/browse/SQE-113 | Kristian | 04.02.2019| | 
+|User Panel section |Dashboard - Release note in new page|Done |https://kerauno.atlassian.net/browse/SQE-673 | Kristian | 04.02.2019| | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-30 | | | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-2 | | | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-16 | | | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-13 | | | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-39 | | | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-40 | | | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-41 | | | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-42 | | | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-48 | | | | | 
+|User Panel section |Phonebook tab - User Listing: find user by Name|Done|https://kerauno.atlassian.net/browse/SQE-39 |Kristian|04.02.2019 | | | 
+|User Panel section |https://kerauno.atlassian.net/browse/SQE-40|Done|https://kerauno.atlassian.net/browse/SQE-40 |Kristian|04.02.2019 | | | 
+|User Panel section |https://kerauno.atlassian.net/browse/SQE-41|Done|https://kerauno.atlassian.net/browse/SQE-41 |Kristian|04.02.2019 | | | 
+|User Panel section |https://kerauno.atlassian.net/browse/SQE-42|Done|https://kerauno.atlassian.net/browse/SQE-42 |Kristian|04.02.2019 | | | 
+|User Panel section |Calls tab - View calls with Incoming Type|Done|https://kerauno.atlassian.net/browse/SQE-48 |Kristian|04.02.2019 | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-49 | | | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-50 | | | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-51 | | | | | 
@@ -49,16 +49,11 @@
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-91 | | | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-93 | | | | | 
 |User Panel section | | |https://kerauno.atlassian.net/browse/SQE-98 | | | | | 
-|Interaction Routing |Blacklist tab - Add Number to Blacklist | |https://kerauno.atlassian.net/browse/SQE-115 | | | | |
-|Interaction Routing |Blacklist tab - Add Incorrect Number to Blacklist | |https://kerauno.atlassian.net/browse/SQE-116 | | | | |
-|Interaction Routing |Blacklist tab - Add Number to Blacklist without Outbound | |https://kerauno.atlassian.net/browse/SQE-121 | | | | |
-|Interaction Routing |Blacklist tab - Add Number to Blacklist with Reason | |https://kerauno.atlassian.net/browse/SQE-123 | | | | |
-|Interaction Routing |Blacklist tab - Add Number to Blacklist without Inbound | |https://kerauno.atlassian.net/browse/SQE-120 | | | | |
-|Interaction Routing |Blacklist tab - Add Number to Blacklist with exist number in list | |https://kerauno.atlassian.net/browse/SQE-124 | | | | |
-|Interaction Routing |Blacklist tab - Remove from Blacklist | |https://kerauno.atlassian.net/browse/SQE-128 | | | | |
-|Interaction Routing |Blacklist tab - Add Blacklist number as route for in your system | |https://kerauno.atlassian.net/browse/SQE-190 | | | | |
-|Interaction Routing |Holiday List tab - Add Holiday List | |https://kerauno.atlassian.net/browse/SQE-142 | | | | |
-|Interaction Routing |Holiday List tab - Add Holiday List with Set Holiday Work Hours | |https://kerauno.atlassian.net/browse/SQE-148 | | | | |
+|Interaction Routing |Blacklist tab - Add Number to Blacklist |To Do |https://kerauno.atlassian.net/browse/SQE-115 | | | | |
+|Interaction Routing |Blacklist tab - Add Number to Blacklist with exist number in list |To Do |https://kerauno.atlassian.net/browse/SQE-124 || | | |
+|Interaction Routing |Blacklist tab - Remove from Blacklist |To Do |https://kerauno.atlassian.net/browse/SQE-128 | | | | |
+|Interaction Routing |Blacklist tab - Add Blacklist number as route for in your system |To Do |https://kerauno.atlassian.net/browse/SQE-190 || | | |
+|Interaction Routing |Holiday List tab - Add Holiday List with Set Holiday Work Hours |To Do |https://kerauno.atlassian.net/browse/SQE-148 | | | | |
 |Interaction Routing |Holiday List tab - Add Holiday List with two Days | |https://kerauno.atlassian.net/browse/SQE-149 | | | | |
 |Interaction Routing |Holiday List tab - Add Holiday List with delete actions | |https://kerauno.atlassian.net/browse/SQE-151 | | | | |
 |Interaction Routing |Holiday List tab - Edit Holiday list | |https://kerauno.atlassian.net/browse/SQE-153 | | | | |

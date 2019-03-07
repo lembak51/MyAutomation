@@ -96,7 +96,7 @@ public class DashboardTest extends BaseTest {
 
     @Test(description = "SQE-105 Dashboard  - change password: passwords are not the same")
     public void changePasswordAreNotTheSame(){
-        UserDataObject userDataObject = new UserDataObject();
+        UserDataObject userDataObject = new UserDataObject().getPasswordWithNumber();
         UserDataObject userDataObjectForNewPassword = new UserDataObject().getPasswordWithLetters();
         String expectedText = "New Password and Confirm Password must be the same.";
         dashboardPage.changePassword(Config.BASE_PASSWORD, userDataObject.NewPassword, userDataObjectForNewPassword.NewPassword);

@@ -37,4 +37,6 @@ public class DesktopElement {
     public By getLocator(){
         return this.locator;
     }
+
+
 }

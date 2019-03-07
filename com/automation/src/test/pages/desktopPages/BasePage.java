@@ -7,6 +7,7 @@ import common.driver.DriverFactory;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.windows.WindowsDriver;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
@@ -29,11 +30,11 @@ abstract class BasePage {
             "Bolt application button on the ",
             MobileBy.AccessibilityId("Kerauno.Bolt.v2"));
 
-    public BasePage(WindowsDriver driver){
+    BasePage(WindowsDriver driver) {
+        PropertyConfigurator.configure(System.getProperty("user.dir") + "/com/automation/src/resources/log4j.properties");
         this.desktop_driver = driver;
         log = Logger.getLogger(this.getClass().getName());
     }
-
 
     protected WebElement find(By element) {
         return this.desktop_driver.findElement(element);
@@ -86,7 +87,7 @@ abstract class BasePage {
     /**
      * Waits default(1 sec) timeout period
      */
-    protected void waitUntilLoad(){
+    protected void waitUntilLoad() {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -99,7 +100,7 @@ abstract class BasePage {
      *
      * @param timeout the Int object representing the value in second that need to wait
      */
-    protected void waitUntilLoad(int timeout){
+    protected void waitUntilLoad(int timeout) {
         try {
             Thread.sleep(timeout * 1000);
         } catch (InterruptedException e) {

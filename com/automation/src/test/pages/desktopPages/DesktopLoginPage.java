@@ -11,15 +11,14 @@ public class DesktopLoginPage extends BasePage {
             "Sign In button",
             By.name("Sign In"),
             false);
-    private static final DesktopElement usernameTxt = new DesktopElement(
-            "Username field",
+    private static final DesktopElement usernameFld  = new DesktopElement(
+            "Username Field",
             MobileBy.AccessibilityId("UsernameText"),
             false);
-    private static final DesktopElement passwordTxt = new DesktopElement(
-            "Password field",
+    private static final DesktopElement passwordFld  = new DesktopElement(
+            "Username Field",
             MobileBy.AccessibilityId("PasswordText"),
             false);
-
 
     public DesktopLoginPage(WindowsDriver driver){
         super(driver);
@@ -31,14 +30,15 @@ public class DesktopLoginPage extends BasePage {
     }
 
     private void fillFieldUsername(String userEmail){
-        enterText(usernameTxt, userEmail);
+        enterText(usernameFld,userEmail);
     }
 
     private void fillFieldPassword(String userPassword){
-        enterText(passwordTxt, userPassword);
+        enterText(passwordFld,userPassword);
     }
 
     public void makeLogin(String userEmail, String userPassword){
+        waitUntilLoad(2);
         fillFieldUsername(userEmail);
         fillFieldPassword(userPassword);
         clickToSignInButton();
@@ -49,6 +49,5 @@ public class DesktopLoginPage extends BasePage {
         waitUntilLoad();
         return isElementPresent(signInBtn);
     }
-
 
 }

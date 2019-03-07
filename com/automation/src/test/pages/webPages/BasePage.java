@@ -5,6 +5,7 @@ import common.PageElement;
 import common.ProjectConfig;
 import common.Utils;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.*;
@@ -19,7 +20,8 @@ public abstract class BasePage {
     protected Logger log;
     private ProjectConfig projectConfig = new ProjectConfig();
 
-    public BasePage(WebDriver driver){
+    protected BasePage(WebDriver driver){
+        PropertyConfigurator.configure(System.getProperty("user.dir") + "/com/automation/src/resources/log4j.properties");
         this.driver = driver;
         log = Logger.getLogger(this.getClass().getCanonicalName());
     }
@@ -323,8 +325,9 @@ public abstract class BasePage {
 
     /**
      * Waits default(1 sec) timeout period
+     *
      */
-    protected void waitUntilPageLoad(){
+    protected void waitUntilPageLoad() {
         //TODO implementation of JS to that
         try {
             Thread.sleep(1000);
@@ -356,7 +359,7 @@ public abstract class BasePage {
      * @param ie      the Boolean object representing in what browser need wait
      * @param safari  the Boolean object representing in what browser need wait
      */
-    protected void waitUntilPageLoad(int timeout, boolean chrome, boolean firefox, boolean ie, boolean safari){
+    protected void waitUntilPageLoad(int timeout, boolean chrome , boolean firefox, boolean ie, boolean safari) {
         if (projectConfig.getBrowser().contains("Chrome") && chrome)
             waitUntilPageLoad(timeout);
         if (projectConfig.getBrowser().contains("Firefox") && firefox)
