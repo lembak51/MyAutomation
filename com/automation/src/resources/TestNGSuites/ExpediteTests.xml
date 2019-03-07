@@ -23,6 +23,9 @@
         <classes>
             <class name="tests.PhonebookTest">
                 <methods>
+                    <include name="createUserForPhonebook"/>
+                    <include name="userListingFindUserByName"/>
+                    <include name="userListingFindUserByMobile"/>
                     <include name="phonebookTabUserListingSortByMobile"/>
                     <include name="phonebookTabUserListingSortByDid"/>
                     <include name="phonebookTabUserListingSortByExtensions"/>
@@ -52,6 +55,19 @@
                     <exclude name="changeProfilePictureWithoutUploadButton"/>
                     <!-- TODO value can not be get from the HTML tag -->
                     <exclude name="checkVoicemailPinInVoicemailPage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Calls Test">
+        <classes>
+            <class name="tests.CallsTest">
+                <methods>
+                    <include name="makeInternalCall"/>
+                    <include name="makeCallToDestination"/>
+                    <include name="callsTabUsersSearch"/>
+                    <include name="callsTabDestination"/>
+                    <include name="viewCallsWithIncomingType"/>
                 </methods>
             </class>
         </classes>
