@@ -107,6 +107,7 @@ public class InboxPage extends BasePage {
     }
 
     public void openReadSection(){
+        Utils.sleep(3000);
         waitToBeClickable(readBtn);
         click(readBtn);
     }
@@ -209,7 +210,9 @@ public class InboxPage extends BasePage {
     public void clickToReadButton(){
         waitToBeClickable(changeFolderBtn);
         click(changeFolderBtn);
+        Utils.sleep(3000);
         waitToBeClickable(readMenuItemBtn);
         click(readMenuItemBtn);
+        Utils.sleep(3000);
     }
 }
