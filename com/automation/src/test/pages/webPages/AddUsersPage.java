@@ -46,52 +46,55 @@ public class AddUsersPage extends BasePage {
             "Home button",
             By.cssSelector("ng-include > form > button.btn.btn-primary"),
             true);
-    private static final PageElement mobileNumberFld = new  PageElement(
+    private static final PageElement mobileNumberFld = new PageElement(
             "Mobile Number filed",
             By.cssSelector("input[data-ng-model='new_user.phone']"),
             true);
 
 
-    public AddUsersPage(WebDriver driver){
+    public AddUsersPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public boolean pageIsDisplayed(){
+    public boolean pageIsDisplayed() {
         return allRequiredElementDisplayed();
     }
 
 
-    public void fillFirstName(String firstName){
+    public void fillFirstName(String firstName) {
         enterText(firstNameFld, firstName);
     }
 
-    public void fillLastName(String lastName){
+    public void fillLastName(String lastName) {
         enterText(lastNameFld, lastName);
     }
 
-    public void fillPrimaryExtensionFld(String primaryExtension){
+    public void fillPrimaryExtensionFld(String primaryExtension) {
         enterText(primaryExtensionFld, primaryExtension);
     }
 
-    public void fillUserEmailFld(String userEmail){
+    public void fillUserEmailFld(String userEmail) {
         enterText(userEmailFld, userEmail);
     }
 
-    public void fillJobTitleFld(String jobTitle){
+    public void fillJobTitleFld(String jobTitle) {
         enterText(jobTitleFld, jobTitle);
     }
 
-    public void fillPasswordFld(String newPassword){
+    public void fillPasswordFld(String newPassword) {
         enterText(newPasswordFld, newPassword);
     }
 
-    public void fillConfirmPasswordFld(String confirmPassword){
+    public void fillConfirmPasswordFld(String confirmPassword) {
         enterText(confirmPasswordFld, confirmPassword);
     }
-    public void fillMobilenumberFld(String mobileNumber){enterText(mobileNumberFld,mobileNumber);}
 
-    public void selectCheckbox(PageElement element, boolean isNeedToChecked){
+    public void fillMobilenumberFld(String mobileNumber) {
+        enterText(mobileNumberFld, mobileNumber);
+    }
+
+    public void selectCheckbox(PageElement element, boolean isNeedToChecked) {
         PageElement hiddenLyt = new PageElement(
                 "Hidden password layot",
                 By.cssSelector("div[ng-hide='new_user.generate_password']"));
@@ -104,11 +107,18 @@ public class AddUsersPage extends BasePage {
 
     }
 
-    public void createNewUser(UserDataObject userDataObject){
+    public void createNewUser(UserDataObject userDataObject) {
+        PageElement findAvailable = new PageElement(
+                "Find Available number",
+                By.cssSelector("a[id='helpfulArrow']>i"));
         waitToBeClickable(homeBtn);
         fillFirstName(userDataObject.Username);
         fillLastName(userDataObject.Username);
         fillPrimaryExtensionFld(userDataObject.PrimaryExtension);
+        waitUntilPageLoad();
+        if (getAttribute(findAvailable, "aria-hidden").equals("false")) {
+            click(findAvailable);
+        }
         fillUserEmailFld(userDataObject.UserEmail);
         fillJobTitleFld(userDataObject.JobTitle);
         fillMobilenumberFld(userDataObject.MobileNumber);

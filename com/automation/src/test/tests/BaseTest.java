@@ -7,8 +7,9 @@ import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.desktopPages.DesktopDashboardPage;
+import pages.desktopPages.DesktopLoginPage;
 import pages.webPages.*;
-
 import pages.webPages.phonebookPages.UserListingPage;
 
 public class BaseTest {
@@ -19,17 +20,20 @@ public class BaseTest {
     protected AddUsersPage addUsersPage;
     protected VoicemailPage voicemailPage;
     protected UserListingPage userListingPage;
+    protected DesktopLoginPage desktopLoginPage;
+    protected DesktopDashboardPage desktopDashboardPage;
+    protected CallsPage callsPage;
     public WebDriver driver;
     public WindowsDriver desktop_driver;
 
     @BeforeMethod
-    public void setupTestRun() {
+    public void setupTestRun(){
         driver = new DriverFactory().getDriver();
         initPages();
     }
 
     @AfterMethod
-    public void logoutAfterTest() {
+    public void logoutAfterTest(){
         try {
             if (!loginPage.isLogInButtonDisplayed())
                 dashboardPage.logout();
@@ -46,13 +50,13 @@ public class BaseTest {
         }
     }
 
-    protected void switchToDesktop() {
+    protected void switchToDesktop(){
         new AppiumServer().startServer();
         desktop_driver = new DriverFactory().getInstance();
         initDesktopPages();
     }
 
-    private void initPages() {
+    private void initPages(){
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);
         releaseNotesPage = new ReleaseNotesPage(driver);
@@ -60,9 +64,12 @@ public class BaseTest {
         addUsersPage = new AddUsersPage(driver);
         voicemailPage = new VoicemailPage(driver);
         userListingPage = new UserListingPage(driver);
+        callsPage = new CallsPage(driver);
     }
 
-    private void initDesktopPages() {
+    private void initDesktopPages(){
+        desktopLoginPage = new DesktopLoginPage(desktop_driver);
+        desktopDashboardPage = new DesktopDashboardPage(desktop_driver);
     }
 
 }

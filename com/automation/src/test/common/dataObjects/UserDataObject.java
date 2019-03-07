@@ -63,7 +63,7 @@ public class UserDataObject {
     }
 
     static String getRandomNewPassword() {
-        return "Swanteam" + Utils.getRandomInt(000, 999);
+        return "Swanteam" + Utils.getRandomInt(100, 999);
     }
 
     static String getRandomNineMobileNumber() {
@@ -75,11 +75,11 @@ public class UserDataObject {
     }
 
     static String getRandomVoicemailPin() {
-        return String.valueOf(Utils.getRandomInt(0000, 9999));
+        return String.valueOf(Utils.getRandomInt(1000, 9999));
     }
 
     static String getRandomPasswordWithoutLetters() {
-        return String.valueOf(Utils.getRandomInt(00000000, 99999999));
+        return String.valueOf(Utils.getRandomInt(10000000, 99999999));
     }
 
     static String getRandomPasswordWithoutNumbers() {
