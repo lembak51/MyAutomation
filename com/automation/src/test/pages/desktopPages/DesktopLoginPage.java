@@ -38,6 +38,7 @@ public class DesktopLoginPage extends BasePage {
     }
 
     public void makeLogin(String userEmail, String userPassword){
+        waitUntilLoad(2);
         fillFieldUsername(userEmail);
         fillFieldPassword(userPassword);
         clickToSignInButton();

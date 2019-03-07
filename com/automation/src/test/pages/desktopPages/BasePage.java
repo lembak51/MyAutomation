@@ -6,6 +6,7 @@ import common.driver.DriverFactory;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.windows.WindowsDriver;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
@@ -29,6 +30,7 @@ abstract class BasePage {
             MobileBy.AccessibilityId("Kerauno.Bolt.v2"));
 
     BasePage(WindowsDriver driver) {
+        PropertyConfigurator.configure(System.getProperty("user.dir") + "/com/automation/src/resources/log4j.properties");
         this.desktop_driver = driver;
         log = Logger.getLogger(this.getClass().getName());
     }
