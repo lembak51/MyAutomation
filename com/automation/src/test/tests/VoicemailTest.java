@@ -62,6 +62,7 @@ public class VoicemailTest extends BaseTest {
 
     @Test(description = "SQE-30 Voicemail tab - Delete Single Voicemail")
     public void voicemailTabDeleteSingleVoicemail() {
+
         dashboardPage.switchToVoiceMailTab();
         Assert.assertTrue(inboxPage.pageIsDisplayed(), "Inbox tab is opened");
         inboxPage.openReadSection();
