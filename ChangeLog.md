@@ -21,10 +21,10 @@
 |User Panel section |Dashboard - My Mobile with incorrect values|Done |https://kerauno.atlassian.net/browse/SQE-110 | Kristian | 04.02.2019| | 
 |User Panel section |Dashboard  - change password: login with new password|Done |https://kerauno.atlassian.net/browse/SQE-113 | Kristian | 04.02.2019| | 
 |User Panel section |Dashboard - Release note in new page|Done |https://kerauno.atlassian.net/browse/SQE-673 | Kristian | 04.02.2019| | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-30 | | | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-2 | | | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-16 | | | | | 
-|User Panel section | | |https://kerauno.atlassian.net/browse/SQE-13 | | | | | 
+|User Panel section |Voicemail tab - Delete Single Voicemail|Done |https://kerauno.atlassian.net/browse/SQE-30 |Bogdan |3.11.2019 | | |
+|User Panel section |Voicemail tab - Mark as Read |Done |https://kerauno.atlassian.net/browse/SQE-2 |Bogdan |3.11.2019 | | |
+|User Panel section |Voicemail tab - Download Voicemail|Done |https://kerauno.atlassian.net/browse/SQE-16 |Bogdan |3.11.2019 | | |
+|User Panel section |Voicemail tab - Change Folder |Done |https://kerauno.atlassian.net/browse/SQE-13 |Bogdan |3.11.2019 | | |
 |User Panel section |Phonebook tab - User Listing: find user by Name|Done|https://kerauno.atlassian.net/browse/SQE-39 |Kristian|04.02.2019 | | | 
 |User Panel section |https://kerauno.atlassian.net/browse/SQE-40|Done|https://kerauno.atlassian.net/browse/SQE-40 |Kristian|04.02.2019 | | | 
 |User Panel section |https://kerauno.atlassian.net/browse/SQE-41|Done|https://kerauno.atlassian.net/browse/SQE-41 |Kristian|04.02.2019 | | | 

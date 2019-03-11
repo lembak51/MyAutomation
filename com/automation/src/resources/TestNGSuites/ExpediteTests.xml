@@ -72,6 +72,17 @@
             </class>
         </classes>
     </test>
-
+    <test name="Voicemail Test">
+        <classes>
+            <class name="tests.VoicemailTest">
+                <methods>
+                    <include name="voicemailTabMarkAsRead"/>
+                    <include name="voicemailTabChangeFolder"/>
+                    <include name="voicemailTabDownloadVoicemail"/>
+                    <include name="voicemailTabDeleteSingleVoicemail"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 
 </suite>

@@ -134,17 +134,17 @@ public class InboxPage extends BasePage {
         click(readBtn);
     }
 
-    public void openWorkSection(){
+    private void openWorkSection(){
         waitToBeClickable(workBtn);
         click(workBtn);
     }
 
-    public void openFamilySection(){
+    private void openFamilySection(){
         waitToBeClickable(familyBtn);
         click(familyBtn);
     }
 
-    public void openFriendsSection(){
+    private void openFriendsSection(){
         waitToBeClickable(friendsdBtn);
         click(friendsdBtn);
     }
@@ -264,23 +264,23 @@ public class InboxPage extends BasePage {
         return al.equals(obtainedList);
     }
 
-    public void clickToReadButton(){
+    private void clickToReadButton(){
         waitToBeClickable(readMenuItemBtn);
         click(readMenuItemBtn);
     }
 
 
-    public void clickToWorkButton(){
+    private void clickToWorkButton(){
         waitToBeClickable(workMenuItemBtn);
         click(workMenuItemBtn);
     }
 
-    public void clickToFamilyButton(){
+    private void clickToFamilyButton(){
         waitToBeClickable(familyMenuItemBtn);
         click(familyMenuItemBtn);
     }
 
-    public void clickToFriendsButton(){
+    private void clickToFriendsButton(){
         waitToBeClickable(friendsMenuItemBtn);
         click(friendsMenuItemBtn);
     }
