@@ -52,7 +52,7 @@ public class DesktopDashboardPage extends BasePage {
         deployApplicationUsingDriver();
         fillNumberFld(userNumber);
         clickCallBtn();
-        waitUntilLoad(5);
+        waitUntilLoad(15);
         clickEndCallBtn();
     }
 }

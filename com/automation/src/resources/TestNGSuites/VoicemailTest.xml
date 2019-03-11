@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Voicemail Testes" preserve-order="true">
+    <listeners>
+        <listener class-name="common.testHelper.FailureRetryListener"/>
+        <listener class-name="common.testHelper.TestListener"/>
+    </listeners>
+    <test name="Voicemail Test">
+        <classes>
+            <class name="tests.VoicemailTest">
+                <methods>
+                    <include name="voicemailTabMarkAsRead"/>
+                    <include name="voicemailTabChangeFolder"/>
+                    <include name="voicemailTabDownloadVoicemail"/>
+                    <include name="voicemailTabDeleteSingleVoicemail"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
