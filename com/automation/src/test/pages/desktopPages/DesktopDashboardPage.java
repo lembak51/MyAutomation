@@ -20,14 +20,8 @@ public class DesktopDashboardPage extends BasePage {
             "End Call button",
             MobileBy.AccessibilityId("EndCall"),
             false);
-    private static final DesktopElement softponeBtn = new DesktopElement(
-            "Softphone button",
-            By.id("Menu.MenuItem.Softphone"),
-            false);
-    private static final DesktopElement signOutBtn = new DesktopElement(
-            "Sign Out button",
-            By.name("_Sign Out"),
-            false);
+
+
 
     public DesktopDashboardPage(WindowsDriver driver){
         super(driver);

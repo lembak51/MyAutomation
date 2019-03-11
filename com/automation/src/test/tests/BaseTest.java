@@ -38,7 +38,7 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void logoutAfterTest() {
+    public void logoutAfterTest(){
         try {
             if (!loginPage.isLogInButtonDisplayed())
                 dashboardPage.logout();
@@ -56,7 +56,7 @@ public class BaseTest {
         }
     }
 
-    protected void switchToDesktop() {
+    protected void switchToDesktop(){
         new AppiumServer().startServer();
         desktop_driver = new DriverFactory().getInstance();
         initDesktopPages();
