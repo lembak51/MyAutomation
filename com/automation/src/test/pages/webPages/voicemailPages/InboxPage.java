@@ -7,7 +7,9 @@ import org.openqa.selenium.*;
 import pages.webPages.BasePage;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class InboxPage extends BasePage {
@@ -158,12 +160,12 @@ public class InboxPage extends BasePage {
     }
 
     //TODO need to change method
-    public boolean isFileDownloaded(String downloadPath){
+    public boolean isFileDownloaded(){
         waitToBeClickable(downloadBtn);
         click(downloadBtn);
-        File dir = new File(downloadPath);
+        String home = System.getProperty("user.home");
+        File dir = new File(home + "/Downloads/");
         File[] dirContents = dir.listFiles();
-
         for (int i = 0; i < dirContents.length; i++) {
             if (dirContents[i].getName().contains(".mp3")) {
                 dirContents[i].delete();
@@ -247,6 +249,7 @@ public class InboxPage extends BasePage {
         waitToBeClickable(markAsReadBtn);
         click(markAsReadBtn);
         String stringAfterClick = getText(dataInSingleVoicemailMsb);
+        log.info("Word before click is: " + stringBeforeClick + "and value after click is: " + stringAfterClick);
         return stringBeforeClick.equals(stringAfterClick);
     }
 
@@ -262,6 +265,7 @@ public class InboxPage extends BasePage {
         for (WebElement we : elementList) {
             obtainedList.add(we.getText());
         }
+        log.info("List of items are: " + Arrays.toString(al.toArray()) + ". List of items after are: " + Arrays.toString(obtainedList.toArray()));
         return al.equals(obtainedList);
     }
 

@@ -42,7 +42,10 @@ public class DesktopLoginPage extends BasePage {
         fillFieldUsername(userEmail);
         fillFieldPassword(userPassword);
         clickToSignInButton();
-        if (isSignInButtonDisplayed()) clickToSignInButton();
+        if (isSignInButtonDisplayed())
+            waitUntilLoad(1);
+            clickToSignInButton();
+
     }
 
     private boolean isSignInButtonDisplayed(){

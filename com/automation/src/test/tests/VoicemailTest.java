@@ -72,7 +72,7 @@ public class VoicemailTest extends BaseTest {
         inboxPage.openFirstVoicemailInTable();
         VoicemailDataObject actualDataObject = inboxPage.getValuesFromModal();
         Assert.assertTrue(actualDataObject.isVoicemailDataSame(expectedDataObject), "Voicemail Data are the same");
-        Assert.assertTrue(inboxPage.isFileDownloaded(Config.DOWNLOADS_FOLDER), "Voicemail should be download with mp3 format");
+        Assert.assertTrue(inboxPage.isFileDownloaded(), "Voicemail should be download with mp3 format");
     }
 
     //TODO may be failed because of https://kerauno.atlassian.net/browse/SQE-982
