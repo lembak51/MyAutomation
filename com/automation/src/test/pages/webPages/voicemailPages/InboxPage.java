@@ -61,7 +61,7 @@ public class InboxPage extends BasePage {
             false);
     private static final PageElement dataInSingleVoicemailMsb = new PageElement(
             "Data in single voicemail",
-            By.xpath("//*[@id='app']/div[3]/div/div/div[2]"),
+            By.cssSelector("div[class='modal-body ng-binding ng-scope']"),
             false);
     private static final PageElement markAsReadBtn = new PageElement(
             "Mark As Read button",
@@ -129,7 +129,7 @@ public class InboxPage extends BasePage {
     }
 
     public void openReadSection(){
-        Utils.sleep(1000);
+        waitUntilPageLoad(1);
         waitToBeClickable(readBtn);
         click(readBtn);
     }
@@ -154,7 +154,7 @@ public class InboxPage extends BasePage {
         WebElement audio = driver.findElement(By.xpath("//div/audio"));
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].play();", audio);
-        Utils.sleep(7000);
+        waitUntilPageLoad(7);
     }
 
     //TODO need to change method
@@ -238,15 +238,16 @@ public class InboxPage extends BasePage {
                 "VM in list",
                 By.xpath("//td[contains(.,'" + tmp_date + "')]"),
                 false);
+        log.info("Voicemail with following date disappear from the table  " + tmp_date);
         return isElementPresent(voicemail);
     }
 
     public boolean isVoicemailFolderDisappearAfterClick(){
-        String s1 = getText(dataInSingleVoicemailMsb);
+        String stringBeforeClick = getText(dataInSingleVoicemailMsb);
         waitToBeClickable(markAsReadBtn);
         click(markAsReadBtn);
-        String s2 = getText(dataInSingleVoicemailMsb);
-        return s1.equals(s2);
+        String stringAfterClick = getText(dataInSingleVoicemailMsb);
+        return stringBeforeClick.equals(stringAfterClick);
     }
 
     public boolean isMenuItemsDisplayed(boolean isUnread, boolean isRead, boolean isWork, boolean isFamily, boolean isFriends){
@@ -303,40 +304,28 @@ public class InboxPage extends BasePage {
     public void moveVoicemailToReadFolder(){
         clickToReadButton();
         clickToCloseButton();
-        Utils.sleep(1000);
+        waitUntilPageLoad(1);
         openReadSection();
     }
 
     public void moveVoicemailToWorkFolder(){
         clickToWorkButton();
         clickToCloseButton();
-        Utils.sleep(1000);
+        waitUntilPageLoad(1);
         openWorkSection();
     }
 
     public void moveVoicemailToFamilyFolder(){
         clickToFamilyButton();
         clickToCloseButton();
-        Utils.sleep(1000);
+        waitUntilPageLoad(1);
         openFamilySection();
     }
 
     public void moveVoicemailToFriendsFolder(){
         clickToFriendsButton();
         clickToCloseButton();
-        Utils.sleep(1000);
+        waitUntilPageLoad(1);
         openFriendsSection();
-    }
-
-    public boolean isAlertPresent(){
-        boolean presentFlag = false;
-        try {
-            Alert alert = driver.switchTo().alert();
-            presentFlag = true;
-            alert.accept();
-        } catch (NoAlertPresentException ex) {
-            ex.printStackTrace();
-        }
-        return presentFlag;
     }
 }
