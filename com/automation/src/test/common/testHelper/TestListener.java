@@ -18,12 +18,12 @@ import java.util.Date;
 
 public class TestListener implements ITestListener {
 
-    public static final String SCREENSHOT_FOLDER = System.getProperty("user.dir") + File.separator + "logs" + File.separator + "screen" + File.separator + new SimpleDateFormat("MM_dd__hh_mm").format(new Date()) + File.separator;
+    private static final String SCREENSHOT_FOLDER = System.getProperty("user.dir") + File.separator + "logs" + File.separator + "screen" + File.separator + new SimpleDateFormat("MM_dd__hh_mm").format(new Date()) + File.separator;
     protected Logger log = Logger.getLogger(this.getClass().getSimpleName());
-    WebDriver driver = null;
+    private WebDriver driver = new BaseTest().driver;
 
     @Override
-    public void onTestFailure(ITestResult result){
+    public void onTestFailure(ITestResult result) {
         String testClassName = getTestClassName(result.getInstanceName()).trim() + File.separator;
         String tcNumber = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(Test.class).description().split(" ", 2)[0];
         log.info("***** Error " + tcNumber + " - " + result.getName() + " test has failed *****");
@@ -32,16 +32,16 @@ public class TestListener implements ITestListener {
         log.info("Test FAILED: " + result.getName());
     }
 
-    public void onFinish(ITestContext context){
+    public void onFinish(ITestContext context) {
     }
 
-    public void onTestStart(ITestResult result){
+    public void onTestStart(ITestResult result) {
     }
 
-    public void onTestSuccess(ITestResult result){
+    public void onTestSuccess(ITestResult result) {
     }
 
-    public void onTestSkipped(ITestResult result){
+    public void onTestSkipped(ITestResult result) {
         String testClassName = getTestClassName(result.getInstanceName()).trim() + File.separator;
         String tcNumber = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(Test.class).description().split(" ", 2)[0];
         log.info("***** Error " + tcNumber + " - " + result.getName() + " test has failed *****");
@@ -50,7 +50,7 @@ public class TestListener implements ITestListener {
         log.info("Test FAILED: " + result.getName());
     }
 
-    public void onTestFailedButWithinSuccessPercentage(ITestResult result){
+    public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
         String testClassName = getTestClassName(result.getInstanceName()).trim() + File.separator;
         String meatestNumber = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(Test.class).description().split(" ", 2)[0];
         log.info("***** Error " + meatestNumber + " - " + result.getName() + " test has failed *****");
@@ -59,29 +59,34 @@ public class TestListener implements ITestListener {
         log.info("Test FAILED: " + result.getName());
     }
 
-    public void onStart(ITestContext context){
+    public void onStart(ITestContext context) {
     }
 
-    private void takeScreenShot(String tcNumbber, String pathName){
-        driver = new BaseTest().driver;
-        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+    private void takeScreenShot(String tcNumbber, String pathName) {
+        File scrFile;
         try {
+            scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile, new File(pathName));
             log.info("*** Placed screenshot in '" + pathName + "' ***\n\n");
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
+            log.info("File can not be created because driver is not initializate");
             e.printStackTrace();
         }
     }
 
-    private String getTestClassName(String testName){
+    private String getTestClassName(String testName) {
         String[] reqTestClassname = testName.split(File.separator + ".");
         int i = reqTestClassname.length - 1;
         log.info("Test Name : " + reqTestClassname[i]);
         return reqTestClassname[i];
     }
 
-    private byte[] saveScreenshot(ITestResult result){
-        driver = new BaseTest().driver;
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    private byte[] saveScreenshot(ITestResult result) {
+        try {
+            return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        } catch (NullPointerException e) {
+            log.info("Driver is not initializated TestListener can not save screen shot");
+            return null;
+        }
     }
 }

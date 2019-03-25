@@ -54,9 +54,10 @@ public class CallsDataObject extends BaseDataObject {
                 compareStringsWithLog(expectedDataObject.ToNumber, this.ToNumber);
     }
     public String getCurrentDateTime(){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar cal = Calendar.getInstance();
-        dateFormat.setTimeZone(TimeZone.getTimeZone("EST"));
+        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT-4"));
         return dateFormat.format(cal.getTime()).substring(0,15);
+
     }
 }

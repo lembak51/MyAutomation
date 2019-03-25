@@ -4,7 +4,6 @@ package tests;
 import common.Config;
 import common.dataObjects.CallsDataObject;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class CallsTest extends BaseTest {
@@ -13,14 +12,6 @@ public class CallsTest extends BaseTest {
     private String typeOfCall = "Incoming";
     private String fromCallNumber = "3175229431";
     private String selectUser = "Kristian Gombosh";
-
-    @BeforeMethod
-    public void loginBeforeTest(){
-        driver.get(Config.BASE_URL);
-        Assert.assertTrue(loginPage.pageIsDisplayed());
-        loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);
-        dashboardPage.pageIsDisplayed();
-    }
 
     @Test(description = "SQE-11 Calls should be present in calls list of the preconditions test cases for SQE-41")
     public void makeInternalCall(){
@@ -31,6 +22,7 @@ public class CallsTest extends BaseTest {
 
     @Test(description = "SQE-41 Calls tab - Users search", dependsOnMethods = "makeInternalCall")
     public void callsTabUsersSearch(){
+        loginBeforeTest();
         dashboardPage.openCallsPage();
         Assert.assertTrue(callsPage.pageIsDisplayed(), "Calls page should be displayed");
         callsPage.selectUser(selectUser);
@@ -48,6 +40,7 @@ public class CallsTest extends BaseTest {
 
     @Test(description = "SQE-42 Calls tab - Destination", dependsOnMethods = "makeCallToDestination")
     public void callsTabDestination(){
+        loginBeforeTest();
         dashboardPage.openCallsPage();
         Assert.assertTrue(callsPage.pageIsDisplayed(), "Calls page should be displayed");
         callsPage.selectUserUsingDestination(numberForDestinationCall);
@@ -59,6 +52,7 @@ public class CallsTest extends BaseTest {
 
     @Test(description = "SQE-48 Calls tab - View calls with Incoming Type", dependsOnMethods = "makeCallToDestination")
     public void viewCallsWithIncomingType(){
+        loginBeforeTest();
         dashboardPage.openCallsPage();
         Assert.assertTrue(callsPage.pageIsDisplayed(), "Calls page should be displayed");
         callsPage.selectUser(selectUser);

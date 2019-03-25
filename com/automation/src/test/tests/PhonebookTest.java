@@ -1,25 +1,16 @@
 package tests;
 
-import common.Config;
 import common.dataObjects.PhonebookDataObject;
 import common.dataObjects.UserDataObject;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class PhonebookTest extends BaseTest {
     UserDataObject preconditionUserDate = new UserDataObject();
 
-    @BeforeMethod
-    public void loginBeforeTest(){
-        driver.get(Config.BASE_URL);
-        Assert.assertTrue(loginPage.pageIsDisplayed());
-        loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);
-        dashboardPage.pageIsDisplayed();
-    }
-
     @Test(description = "dependent test for SQE-39")
     public void createUserForPhonebook(){
+        loginBeforeTest();
         dashboardPage.openUserTab();
         Assert.assertTrue(usersPage.pageIsDisplayed(), "User page should be displayed");
         usersPage.clickAddUserBtn();
@@ -30,6 +21,7 @@ public class PhonebookTest extends BaseTest {
 
     @Test(description = "SQE-28 Phonebook tab - User Listing: sort by Mobile")
     public void phonebookTabUserListingSortByMobile(){
+        loginBeforeTest();
         dashboardPage.openPhonebookPage();
         Assert.assertTrue(userListingPage.pageIsDisplayed(), "User Listing page is opened");
         Assert.assertTrue(userListingPage.sortNumberElementsByDesc(), "All mobiles should be sorted by descending");
@@ -47,6 +39,7 @@ public class PhonebookTest extends BaseTest {
     //TODO should be failed because of https://kerauno.atlassian.net/browse/KER-2061
     @Test(description = "SQE-31 Phonebook tab - User Listing: sort by Departments")
     public void phonebookTabUserListingSortByDepartments(){
+        loginBeforeTest();
         dashboardPage.openPhonebookPage();
         Assert.assertTrue(userListingPage.pageIsDisplayed(), "User Listing page is opened");
         Assert.assertTrue(userListingPage.sortDepartmentElementsByDesc(), "All Department's should be sorted by descending");
@@ -55,6 +48,7 @@ public class PhonebookTest extends BaseTest {
 
     @Test(description = "SQE-32 Phonebook tab - User Listing: sort by Extensions")
     public void phonebookTabUserListingSortByExtensions(){
+        loginBeforeTest();
         dashboardPage.openPhonebookPage();
         Assert.assertTrue(userListingPage.pageIsDisplayed(), "User Listing page is opened");
         Assert.assertTrue(userListingPage.sortExtensionElementsByDesc(), "All Extensions should be sorted by descending");
@@ -64,6 +58,7 @@ public class PhonebookTest extends BaseTest {
     //TODO should be failed because of issue(extension button is not clickable)
     @Test(description = "SQE-34 Phonebook tab - User Listing: view user information")
     public void phonebookTabUserListingViewUserInformation(){
+        loginBeforeTest();
         dashboardPage.openPhonebookPage();
         Assert.assertTrue(userListingPage.pageIsDisplayed(), "User Listing page is opened");
         PhonebookDataObject expectedDataObject = userListingPage.getValuesFromTheTable();
@@ -73,6 +68,7 @@ public class PhonebookTest extends BaseTest {
 
     @Test(description = "SQE-39 Phonebook tab - User Listing: find user by Name",dependsOnMethods={"createUserForPhonebook"})
     public void userListingFindUserByName(){
+        loginBeforeTest();
         dashboardPage.openPhonebookPage();
         Assert.assertTrue(userListingPage.pageIsDisplayed(),"User Listing page is opened");
         userListingPage.fillUsersSearchFld(preconditionUserDate.Username);
@@ -81,6 +77,7 @@ public class PhonebookTest extends BaseTest {
 
     @Test(description = "SQE-40 Phonebook tab - User Listing: find user by Mobile",dependsOnMethods={"createUserForPhonebook"})
     public void userListingFindUserByMobile(){
+        loginBeforeTest();
         dashboardPage.openPhonebookPage();
         Assert.assertTrue(userListingPage.pageIsDisplayed(),"User Listing page is opened");
         userListingPage.fillUsersSearchFld(preconditionUserDate.MobileNumber);
