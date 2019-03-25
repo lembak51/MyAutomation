@@ -163,8 +163,7 @@ public class InboxPage extends BasePage {
     public boolean isFileDownloaded(){
         waitToBeClickable(downloadBtn);
         click(downloadBtn);
-        String home = System.getProperty("user.home");
-        File dir = new File(home + "/Downloads/");
+        File dir = new File(System.getProperty("user.home") + "/Downloads/");
         File[] dirContents = dir.listFiles();
         for (int i = 0; i < dirContents.length; i++) {
             if (dirContents[i].getName().contains(".mp3")) {
@@ -192,11 +191,11 @@ public class InboxPage extends BasePage {
     }
 
     private String getDurationFromSingleVoicemail(){
-        return getText(dataInSingleVoicemailMsb).substring(41, getText(dataInSingleVoicemailMsb).indexOf('\n') + 16);
+        return getText(dataInSingleVoicemailMsb).substring(40, getText(dataInSingleVoicemailMsb).indexOf('\n') + 16);
     }
 
     private String getFolderFromSingleVoicemail(){
-        return getText(dataInSingleVoicemailMsb).substring(55, getText(dataInSingleVoicemailMsb).indexOf('\n') + 30).toLowerCase();
+        return getText(dataInSingleVoicemailMsb).substring(54, getText(dataInSingleVoicemailMsb).indexOf('\n') + 30).toLowerCase();
     }
 
     public VoicemailDataObject getValuesFromTable(){
@@ -265,7 +264,7 @@ public class InboxPage extends BasePage {
         for (WebElement we : elementList) {
             obtainedList.add(we.getText());
         }
-        log.info("List of items are: " + Arrays.toString(al.toArray()) + ". List of items after are: " + Arrays.toString(obtainedList.toArray()));
+        log.info("List of items are: " + Arrays.toString(al.toArray()) + ". List of items after click are: " + Arrays.toString(obtainedList.toArray()));
         return al.equals(obtainedList);
     }
 
