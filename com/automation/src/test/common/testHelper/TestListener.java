@@ -69,7 +69,7 @@ public class TestListener implements ITestListener {
             FileUtils.copyFile(scrFile, new File(pathName));
             log.info("*** Placed screenshot in '" + pathName + "' ***\n\n");
         } catch (IOException | NullPointerException e) {
-            log.info("File can not be created because driver is not initializate");
+            System.out.println("File can not be created because driver is not initializate");
             e.printStackTrace();
         }
     }
@@ -85,7 +85,7 @@ public class TestListener implements ITestListener {
         try {
             return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
         } catch (NullPointerException e) {
-            log.info("Driver is not initializated TestListener can not save screen shot");
+            System.out.println("File can not be created because driver is not initializate");
             return null;
         }
     }
