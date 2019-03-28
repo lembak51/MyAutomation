@@ -4,20 +4,13 @@ package tests;
 import common.Config;
 import common.dataObjects.UserDataObject;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class DashboardTest extends BaseTest {
-    @BeforeMethod
-    public void loginBeforeTest(){
-        driver.get(Config.BASE_URL);
-        Assert.assertTrue(loginPage.pageIsDisplayed());
-        loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);
-        dashboardPage.pageIsDisplayed();
-    }
 
     @Test(description = "SQE-673 Dashboard - Release note in new page")
     public void releaseNoteInNewPage(){
+        loginBeforeTest();
         dashboardPage.clickReleaseNote();
         Assert.assertTrue(releaseNotesPage.getReleaseHeaderText(), "Release Notes page should be displayed");
     }
@@ -26,6 +19,8 @@ public class DashboardTest extends BaseTest {
     public void changePasswordLoginWithNewPassword(){
         UserDataObject userDataObject = new UserDataObject();
         String expectedText = "You have succesfully changed your password";
+
+        loginBeforeTest();
         dashboardPage.openUserTab();
         Assert.assertTrue(usersPage.pageIsDisplayed(), "User page should be displayed");
         usersPage.clickAddUserBtn();
@@ -49,6 +44,8 @@ public class DashboardTest extends BaseTest {
     public void myMobileWithIncorrectValues(){
         UserDataObject userDataObject = new UserDataObject();
         String expectedText = "Error: Invalid mobile phone number length (please use 10 digit)";
+
+        loginBeforeTest();
         dashboardPage.changeMyMobileNumberWithIncorrectValues(userDataObject.NineDigitsMobileNumber);
         Assert.assertTrue(dashboardPage.isAlertTextAsExpected(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
@@ -63,6 +60,8 @@ public class DashboardTest extends BaseTest {
     @Test(description = "SQE- 109 Dashboard - Check Voicemail Pin  in Voicemail page")
     public void checkVoicemailPinInVoicemailPage(){
         UserDataObject userDataObject = new UserDataObject();
+
+        loginBeforeTest();
         dashboardPage.changeVoiceMailPin(userDataObject.VoicemailPinNumber);//Replace step 2-4
         Assert.assertTrue(dashboardPage.getVoiceMailPinOnDashboard(userDataObject.VoicemailPinNumber), "Voicemail Pin displayed in field with numbers from step 3");
         dashboardPage.switchToVoiceMailTab();
@@ -73,6 +72,8 @@ public class DashboardTest extends BaseTest {
     public void changePasswordNewPasswordWithoutLetters(){
         UserDataObject userDataObject = new UserDataObject().getPasswordWithLetters();
         String expectedText = "Error: Password must include at least one letter!";
+
+        loginBeforeTest();
         dashboardPage.changePassword(Config.BASE_PASSWORD, userDataObject.NewPassword, userDataObject.ConfirmPassword);
         Assert.assertTrue(dashboardPage.isAlertTextAsExpected(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
@@ -84,6 +85,8 @@ public class DashboardTest extends BaseTest {
     public void changePasswordNewPasswordWithoutNumbers(){
         UserDataObject userDataObject = new UserDataObject().getPasswordWithNumber();
         String expectedText = "Error: Password must include at least one number!";
+
+        loginBeforeTest();
         dashboardPage.changePassword(Config.BASE_PASSWORD, userDataObject.NewPassword, userDataObject.ConfirmPassword);
         Assert.assertTrue(dashboardPage.isAlertTextAsExpected(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
@@ -96,6 +99,8 @@ public class DashboardTest extends BaseTest {
         UserDataObject userDataObject = new UserDataObject().getPasswordWithNumber();
         UserDataObject userDataObjectForNewPassword = new UserDataObject().getPasswordWithLetters();
         String expectedText = "New Password and Confirm Password must be the same.";
+
+        loginBeforeTest();
         dashboardPage.changePassword(Config.BASE_PASSWORD, userDataObject.NewPassword, userDataObjectForNewPassword.NewPassword);
         Assert.assertTrue(dashboardPage.isAlertTextAsExpected(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
@@ -107,6 +112,8 @@ public class DashboardTest extends BaseTest {
     public void changePasswordWrongOldPassword(){
         UserDataObject userDataObject = new UserDataObject();
         String expectedText = "Old password must match your current password";
+
+        loginBeforeTest();
         dashboardPage.changePassword(userDataObject.NewPassword, userDataObject.NewPassword, userDataObject.ConfirmPassword);
         Assert.assertTrue(dashboardPage.isAlertTextAsExpected(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
@@ -117,18 +124,21 @@ public class DashboardTest extends BaseTest {
     @Test(description = "SQE-101 Dashboard - Change Voicemail Pin")
     public void changeVoicemailPin(){
         UserDataObject userDataObject = new UserDataObject();
-        UserDataObject userDataObjectForNewVoicEmail = new UserDataObject();
+        UserDataObject userDataObjectForNewVoiceEmail = new UserDataObject();
+
+        loginBeforeTest();
         dashboardPage.changeVoiceMailPin(userDataObject.VoicemailPinNumber);//Replace step 2-4
         Assert.assertTrue(dashboardPage.getVoiceMailPinOnDashboard(userDataObject.VoicemailPinNumber), "Voicemail Pin displayed in field with numbers from step 3");
         dashboardPage.clickHidePinBtn();
         Assert.assertTrue(dashboardPage.getHideStatusVMPin("(Hidden)"));
-        dashboardPage.changeVoicemailPinWithoutSave(userDataObjectForNewVoicEmail.VoicemailPinNumber);
+        dashboardPage.changeVoicemailPinWithoutSave(userDataObjectForNewVoiceEmail.VoicemailPinNumber);
         Assert.assertTrue(dashboardPage.getVoiceMailPinOnDashboard(userDataObject.VoicemailPinNumber), "Voicemail Pin displayed in field with numbers from step 3");
     }
 
     //TODO add method of the screenshoot comparator
     @Test(description = "SQE-107 Dashboard - Change Profile Picture without Upload button")
     public void changeProfilePictureWithoutUploadButton(){
+        loginBeforeTest();
         dashboardPage.uploadProfilePicture();
     }
 }
