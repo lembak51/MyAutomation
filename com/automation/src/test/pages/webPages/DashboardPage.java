@@ -143,6 +143,7 @@ public class DashboardPage extends BasePage {
     }
 
     public void openPhonebookPage() {
+        waitUntilPageLoad();
         waitToBeClickable(phonebookBtn);
         click(phonebookBtn);
     }
@@ -201,7 +202,7 @@ public class DashboardPage extends BasePage {
     }
 
     public void clickAgreeTermOfUseBtn() {
-        waitUntilPageLoad();
+        waitUntilPageLoad(2);
         waitToBeClickable(agreeWithTermOfUseBtn);
         click(agreeWithTermOfUseBtn);
 
