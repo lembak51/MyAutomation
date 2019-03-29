@@ -159,6 +159,7 @@ public class UserListingPage extends BasePage {
                 "Find user using search field ",
                 By.xpath("//strong[contains(text(),'" + firstName + "')]//parent::td//parent::tr")
         );
+        waitUntilPageLoad();
         String attributeIsHide = getAttribute(findName,"class");
         log.info("Class attribute " + attributeIsHide + "User with " + "is find");
         return attributeIsHide.equals("ng-scope");
