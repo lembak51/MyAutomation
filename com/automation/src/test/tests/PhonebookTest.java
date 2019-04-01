@@ -30,6 +30,7 @@ public class PhonebookTest extends BaseTest {
 
     @Test(description = "SQE-29 Phonebook tab - User Listing: sort by DID")
     public void phonebookTabUserListingSortByDid(){
+        loginBeforeTest();
         dashboardPage.openPhonebookPage();
         Assert.assertTrue(userListingPage.pageIsDisplayed(), "User Listing page is opened");
         Assert.assertTrue(userListingPage.sortDidElementsByDesc(), "All DID's should be sorted by descending");

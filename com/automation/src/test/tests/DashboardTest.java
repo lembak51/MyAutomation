@@ -18,6 +18,7 @@ public class DashboardTest extends BaseTest {
     @Test(description = "SQE-113 Dashboard - change password: login with new password")
     public void changePasswordLoginWithNewPassword(){
         UserDataObject userDataObject = new UserDataObject();
+        UserDataObject userDataObjectForNewPassword = new UserDataObject();
         String expectedText = "You have succesfully changed your password";
 
         loginBeforeTest();
@@ -31,12 +32,12 @@ public class DashboardTest extends BaseTest {
         loginPage.makeLogin(userDataObject.UserEmail, userDataObject.NewPassword);//Replace step 2-4 login test
         dashboardPage.clickAgreeTermOfUseBtn();
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
-        dashboardPage.changePassword(userDataObject.NewPassword, userDataObject.NewPassword, userDataObject.ConfirmPassword);
+        dashboardPage.changePassword(userDataObject.NewPassword, userDataObjectForNewPassword.NewPassword, userDataObjectForNewPassword.ConfirmPassword);
         Assert.assertTrue(dashboardPage.isAlertTextAsExpected(expectedText), "Alert with text expected text should present");
         dashboardPage.acceptAlert();
         dashboardPage.logout();
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
-        loginPage.makeLogin(userDataObject.UserEmail, userDataObject.NewPassword);//Replace step 2-4 login test
+        loginPage.makeLogin(userDataObject.UserEmail, userDataObjectForNewPassword.NewPassword);//Replace step 2-4 login test
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
     }
 

@@ -4,6 +4,7 @@ import common.DesktopElement;
 import common.ProjectConfig;
 import common.driver.DriverFactory;
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.windows.WindowsDriver;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -36,6 +37,10 @@ abstract class BasePage {
     }
 
     protected WebElement find(By element) {
+        return this.desktop_driver.findElement(element);
+    }
+
+    protected WebElement find(MobileBy element) {
         return this.desktop_driver.findElement(element);
     }
 
@@ -112,20 +117,14 @@ abstract class BasePage {
     * @param element the By object with element name
      * @return the Boolean object with status of the element
      */
-    public boolean isElementPresent(By element) {
-        boolean elementFound;
-        try {
-            this.find(element);
-            elementFound = true;
-        } catch (NoSuchElementException e) {
-            elementFound = false;
-        }
-        return elementFound;
+   public boolean isElementPresent(By element) {
+       return this.find(element).isDisplayed();
     }
+
 
     /**
      * Check is element present in the desktop
-     * @param element the DestopElement object with element
+     * @param element the DesktopElement object with element
      * @return the Boolean object with status of the element
      */
     public boolean isElementPresent(DesktopElement element) {

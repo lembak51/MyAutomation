@@ -28,10 +28,10 @@ public class CallsTest extends BaseTest {
         callsPage.selectUser(selectUser);
         CallsDataObject expectedDataObject = new CallsDataObject().getCalsDateAndTime(numberForInternalCall);
         CallsDataObject actualDataObject = callsPage.getValuesFromTheTable();
-        Assert.assertTrue(actualDataObject.isCallDataSame(expectedDataObject));
+        Assert.assertTrue(actualDataObject.isCallDataSame(expectedDataObject),"Information about call present in table");
     }
 
-    @Test(description = "SQE-11 Calls should be present in calls list of the preconditions test cases for SQE-41", dependsOnMethods = "callsTabUsersSearch")
+    @Test(description = "SQE-11 Calls should be present in calls list of the preconditions test cases for SQE-41",dependsOnMethods = "callsTabUsersSearch")
     public void makeCallToDestination(){
         switchToDesktop();
         desktopLoginPage.makeLogin(Config.BASE_USERNAME_FOR_BOLT, Config.BASE_PASSWORD_FOR_BOLT);
@@ -46,7 +46,7 @@ public class CallsTest extends BaseTest {
         callsPage.selectUserUsingDestination(numberForDestinationCall);
         CallsDataObject expectedDataObject = new CallsDataObject().getCalsDateAndTime(numberForDestinationCall);
         CallsDataObject actualDataObject = callsPage.getValuesFromTheTable();
-        Assert.assertTrue(actualDataObject.isCallDataSame(expectedDataObject));
+        Assert.assertTrue(actualDataObject.isCallDataSame(expectedDataObject),"Information about call present in table");
 
     }
 
@@ -58,7 +58,7 @@ public class CallsTest extends BaseTest {
         callsPage.selectUser(selectUser);
         CallsDataObject expectedDataObject = new CallsDataObject().getTypeOfCall(typeOfCall, fromCallNumber);
         CallsDataObject actualDataObject = callsPage.getValuesFromTypeOfCall();
-        Assert.assertTrue(actualDataObject.isTypeOfCallSame(expectedDataObject));
+        Assert.assertTrue(actualDataObject.isTypeOfCallSame(expectedDataObject),"Information about call present in table");
 
     }
 }
