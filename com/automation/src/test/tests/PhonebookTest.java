@@ -37,7 +37,6 @@ public class PhonebookTest extends BaseTest {
         Assert.assertTrue(userListingPage.sortDidElementsByAsc(), "All DID's should be sorted by ascending");
     }
 
-    //TODO should be failed because of https://kerauno.atlassian.net/browse/KER-2061
     @Test(description = "SQE-31 Phonebook tab - User Listing: sort by Departments")
     public void phonebookTabUserListingSortByDepartments(){
         loginBeforeTest();

@@ -10,7 +10,7 @@ public class VoicemailTest extends BaseTest {
     private String numberForLeaveVoicemail = "1000";
 
     @BeforeMethod
-    private void loginBeforeTest(){
+    protected void loginBeforeTest(){
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed());
         loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);

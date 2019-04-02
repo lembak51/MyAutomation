@@ -29,7 +29,7 @@ public class UserListingPage extends BasePage {
             true);
     private static final PageElement firstElementInDepartmentColumnMsb = new PageElement(
             "First element in Department(s) column",
-            By.cssSelector("tr:nth-child(1) > td.small"),
+            By.cssSelector("tr[class='ng-scope'] > td:nth-child(5)"),
             true);
     private static final PageElement extensionArrowBtn = new PageElement(
             "Extension(s) Arrow button",
