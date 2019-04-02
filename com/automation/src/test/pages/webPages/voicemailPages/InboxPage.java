@@ -187,15 +187,21 @@ public class InboxPage extends BasePage {
     }
 
     private String getDateFromSingleVoicemail(){
-        return getText(dataInSingleVoicemailMsb).substring(6, getText(dataInSingleVoicemailMsb).indexOf('\n'));
+        String[] lines = getText(dataInSingleVoicemailMsb).split("\\n");
+        String line1 = lines[0];
+        return line1.substring(6,28);
     }
 
     private String getDurationFromSingleVoicemail(){
-        return getText(dataInSingleVoicemailMsb).substring(40, getText(dataInSingleVoicemailMsb).indexOf('\n') + 16);
+        String[] lines = getText(dataInSingleVoicemailMsb).split("\\n");
+        String line2 = lines[1];
+        return line2.substring(10,15);
     }
 
     private String getFolderFromSingleVoicemail(){
-        return getText(dataInSingleVoicemailMsb).substring(54, getText(dataInSingleVoicemailMsb).indexOf('\n') + 30).toLowerCase();
+        String[] lines = getText(dataInSingleVoicemailMsb).split("\\n");
+        String line3 = lines[2];
+        return line3.substring(8,13).toLowerCase();
     }
 
     public VoicemailDataObject getValuesFromTable(){
