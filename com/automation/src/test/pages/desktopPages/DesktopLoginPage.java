@@ -2,6 +2,7 @@ package pages.desktopPages;
 
 import common.DesktopElement;
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,7 @@ import org.openqa.selenium.WebElement;
 public class DesktopLoginPage extends BasePage {
     private static final DesktopElement signInBtn = new DesktopElement(
             "Sign In button",
-            By.name("Sign In"),
+            MobileBy.AccessibilityId("LoginButton"),
             false);
     private static final DesktopElement usernameFld  = new DesktopElement(
             "Username Field",
@@ -42,14 +43,12 @@ public class DesktopLoginPage extends BasePage {
         fillFieldUsername(userEmail);
         fillFieldPassword(userPassword);
         clickToSignInButton();
+        waitUntilLoad(5);
         if (isSignInButtonDisplayed())
-            waitUntilLoad(1);
             clickToSignInButton();
-
     }
 
     private boolean isSignInButtonDisplayed(){
-        waitUntilLoad();
         return isElementPresent(signInBtn);
     }
 

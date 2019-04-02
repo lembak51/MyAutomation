@@ -2,10 +2,12 @@ package tests;
 
 import common.AppiumServer;
 import common.CommandLineHelper;
+import common.Config;
 import common.driver.DriverFactory;
 import io.appium.java_client.windows.WindowsDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.desktopPages.DesktopDashboardPage;
@@ -79,4 +81,10 @@ public class BaseTest {
         desktopDashboardPage = new DesktopDashboardPage(desktop_driver);
     }
 
+    protected void loginBeforeTest(){
+        driver.get(Config.BASE_URL);
+        Assert.assertTrue(loginPage.pageIsDisplayed());
+        loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);
+        dashboardPage.pageIsDisplayed();
+    }
 }

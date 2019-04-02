@@ -188,7 +188,6 @@ public class DriverFactory {
         capabilities = DesiredCapabilities.safari();
 
         SafariOptions safariOptions = new SafariOptions();
-        safariOptions.setUseCleanSession(true);
 
         capabilities.setCapability(SafariOptions.CAPABILITY, safariOptions);
         capabilities.setCapability("autoAcceptAlerts", true);
