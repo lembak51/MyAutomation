@@ -10,16 +10,15 @@ public class VoicemailTest extends BaseTest {
     private String numberForLeaveVoicemail = "1000";
 
     @BeforeMethod
-    protected void loginBeforeTest(){
-        driver.get(Config.BASE_URL);
-        Assert.assertTrue(loginPage.pageIsDisplayed());
-        loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);
-        dashboardPage.pageIsDisplayed();
-      //  createNewVoicemail();
+    private void createNewVoicemail() {
+        switchToDesktop();
+        desktopLoginPage.makeLogin(Config.ANOTHER_USERNAME_FOR_BOLT, Config.ANOTHER_PASSWORD_BOLT_BOLT);
+        desktopDashboardPage.makeCallToUser(numberForLeaveVoicemail);
     }
 
     @Test(description = "SQE-2 Voicemail tab - Mark as Read")
-    public void voicemailTabMarkAsRead(){
+    public void voicemailTabMarkAsRead() {
+        loginBeforeTest();
         dashboardPage.switchToVoiceMailTab();
         Assert.assertTrue(inboxPage.pageIsDisplayed(), "Inbox tab is opened");
         inboxPage.openUnreadSection();
@@ -34,7 +33,8 @@ public class VoicemailTest extends BaseTest {
     }
 
     @Test(description = "SQE-13 Voicemail tab - Change Folder")
-    public void voicemailTabChangeFolder(){
+    public void voicemailTabChangeFolder() {
+        loginBeforeTest();
         dashboardPage.switchToVoiceMailTab();
         Assert.assertTrue(inboxPage.pageIsDisplayed(), "Inbox tab is opened");
         inboxPage.openUnreadSection();
@@ -64,7 +64,8 @@ public class VoicemailTest extends BaseTest {
     }
 
     @Test(description = "SQE-16 Voicemail tab - Download Voicemail")
-    public void voicemailTabDownloadVoicemail(){
+    public void voicemailTabDownloadVoicemail() {
+        loginBeforeTest();
         dashboardPage.switchToVoiceMailTab();
         Assert.assertTrue(inboxPage.pageIsDisplayed(), "Inbox tab is opened");
         inboxPage.openUnreadSection();
@@ -77,7 +78,8 @@ public class VoicemailTest extends BaseTest {
 
     //TODO may be failed because of https://kerauno.atlassian.net/browse/SQE-982
     @Test(description = "SQE-30 Voicemail tab - Delete Single Voicemail")
-    public void voicemailTabDeleteSingleVoicemail(){
+    public void voicemailTabDeleteSingleVoicemail() {
+        loginBeforeTest();
         dashboardPage.switchToVoiceMailTab();
         Assert.assertTrue(inboxPage.pageIsDisplayed(), "Inbox tab is opened");
         inboxPage.openUnreadSection();
@@ -90,11 +92,5 @@ public class VoicemailTest extends BaseTest {
         inboxPage.deleteVoicemail();
         inboxPage.openReadSection();
         Assert.assertTrue(inboxPage.isVoicemailDisappearFromTheTable(expectedDataObject.Date), "VM should be removed from the unread list.");
-    }
-
-    private void createNewVoicemail(){
-        switchToDesktop();
-        desktopLoginPage.makeLogin(Config.ANOTHER_USERNAME_FOR_BOLT, Config.ANOTHER_PASSWORD_BOLT_BOLT);
-        desktopDashboardPage.makeCallToUser(numberForLeaveVoicemail);
     }
 }
