@@ -17,7 +17,7 @@ public class CallsTest extends BaseTest {
     public void makeInternalCall(){
         switchToDesktop();
         desktopLoginPage.makeLogin(Config.BASE_USERNAME_FOR_BOLT, Config.BASE_PASSWORD_FOR_BOLT);
-        desktopDashboardPage.makeCallToUser(numberForInternalCall);
+        desktopDashboardPage.makeCallToUser(numberForInternalCall,5);
     }
 
     @Test(description = "SQE-41 Calls tab - Users search", dependsOnMethods = "makeInternalCall")
@@ -35,7 +35,7 @@ public class CallsTest extends BaseTest {
     public void makeCallToDestination(){
         switchToDesktop();
         desktopLoginPage.makeLogin(Config.BASE_USERNAME_FOR_BOLT, Config.BASE_PASSWORD_FOR_BOLT);
-        desktopDashboardPage.makeCallToUser(numberForDestinationCall);
+        desktopDashboardPage.makeCallToUser(numberForDestinationCall,5);
     }
 
     @Test(description = "SQE-42 Calls tab - Destination", dependsOnMethods = "makeCallToDestination")

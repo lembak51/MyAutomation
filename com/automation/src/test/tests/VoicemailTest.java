@@ -13,7 +13,7 @@ public class VoicemailTest extends BaseTest {
     private void createNewVoicemail() {
         switchToDesktop();
         desktopLoginPage.makeLogin(Config.ANOTHER_USERNAME_FOR_BOLT, Config.ANOTHER_PASSWORD_BOLT_BOLT);
-        desktopDashboardPage.makeCallToUser(numberForLeaveVoicemail);
+        desktopDashboardPage.makeCallToUser(numberForLeaveVoicemail,15);
     }
 
     @Test(description = "SQE-2 Voicemail tab - Mark as Read")

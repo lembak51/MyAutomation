@@ -4,8 +4,6 @@ package pages.desktopPages;
 import common.DesktopElement;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.windows.WindowsDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class DesktopDashboardPage extends BasePage {
     private static final DesktopElement numberFld = new DesktopElement(
@@ -41,12 +39,12 @@ public class DesktopDashboardPage extends BasePage {
       click(endCallBtn);
     }
 
-    public void makeCallToUser(String userNumber){
+    public void makeCallToUser(String userNumber, int callDuration){
         waitUntilLoad(2);
         deployApplicationUsingDriver();
         fillNumberFld(userNumber);
         clickCallBtn();
-        waitUntilLoad(15);
+        waitUntilLoad(callDuration);
         clickEndCallBtn();
     }
 }
