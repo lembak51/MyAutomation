@@ -3,13 +3,13 @@ package pages.webPages.voicemailPages;
 import common.PageElement;
 import common.Utils;
 import common.dataObjects.VoicemailDataObject;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import pages.webPages.BasePage;
 
+import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class InboxPage extends BasePage {
@@ -33,6 +33,18 @@ public class InboxPage extends BasePage {
             "Read button",
             By.cssSelector("a > i[class='fa fa-circle color-grey pull-right']"),
             true);
+    private static final PageElement workBtn = new PageElement(
+            "Work button",
+            By.cssSelector("a > i[class='fa fa-circle color-warning pull-right']"),
+            true);
+    private static final PageElement familyBtn = new PageElement(
+            "Family button",
+            By.cssSelector("a > i[class='fa fa-circle color-success pull-right']"),
+            true);
+    private static final PageElement friendsdBtn = new PageElement(
+            "Friends button",
+            By.cssSelector("a > i[class='fa fa-circle color-primary pull-right']"),
+            true);
     private static final PageElement firstVoicemailInTableBtn = new PageElement(
             "First Voicemail in table",
             By.xpath("//*[@id='voicemail']/tbody[1]/tr"),
@@ -51,7 +63,7 @@ public class InboxPage extends BasePage {
             false);
     private static final PageElement dataInSingleVoicemailMsb = new PageElement(
             "Data in single voicemail",
-            By.xpath("//*[@id='app']/div[3]/div/div/div[2]"),
+            By.cssSelector("div[class='modal-body ng-binding ng-scope']"),
             false);
     private static final PageElement markAsReadBtn = new PageElement(
             "Mark As Read button",
@@ -71,88 +83,128 @@ public class InboxPage extends BasePage {
             false);
     private static PageElement readMenuItemBtn = new PageElement(
             "Read menu item button",
-            By.xpath("//*[@id=\"app\"]/div[3]/div/div/div[3]/div[2]/ul/li[1]/a"),
+            By.cssSelector("a[ng-click=\"changeBox('Old');\"]"),
             false);
     private static PageElement workMenuItemBtn = new PageElement(
             "Work menu item button",
-            By.xpath("a[ng-click='changeBox('Work');']"),
+            By.cssSelector("a[ng-click=\"changeBox('Work');\"]"),
             false);
     private static PageElement familyMenuItemBtn = new PageElement(
             "Family menu item button",
-            By.xpath("a[ng-click='changeBox('Family');']"),
+            By.cssSelector("a[ng-click=\"changeBox('Family');\"]"),
             false);
     private static PageElement friendsMenuItemBtn = new PageElement(
             "Friends menu item button",
-            By.xpath("a[ng-click='changeBox('Friends');']"),
+            By.cssSelector("a[ng-click=\"changeBox('Friends');\"]"),
+            false);
+    private static PageElement deleteVoicemailBtn = new PageElement(
+            "Delete Voicemail button",
+            By.cssSelector("a[ng-click=\"delete();\"]"),
+            false);
+    private static PageElement confirmBtn = new PageElement(
+            "Confirm button",
+            By.cssSelector("button[ng-click=\"confirm()\"]"),
+            false);
+    private static PageElement downloadBtn = new PageElement(
+            "Download Voicemail button",
+            By.cssSelector("a[class=\"btn btn-success btn-sm\"]"),
             false);
 
 
-    public InboxPage(WebDriver driver) {
+    public InboxPage(WebDriver driver){
         super(driver);
     }
 
     @Override
-    public boolean pageIsDisplayed() {
+    public boolean pageIsDisplayed(){
         return allRequiredElementDisplayed();
     }
 
-    public void openVoicemailConfigurationPage() {
+    public void openVoicemailConfigurationPage(){
         waitToBeClickable(voicemailConfigurationBtn);
         click(voicemailConfigurationBtn);
     }
 
-    public void openUnreadSection() {
+    public void openUnreadSection(){
         waitToBeClickable(unreadBtn);
         click(unreadBtn);
     }
 
-    public void openReadSection() {
-        Utils.sleep(3000);
+    public void openReadSection(){
+        waitUntilPageLoad(1);
         waitToBeClickable(readBtn);
         click(readBtn);
     }
 
-    public void playVoicemail() {
+    private void openWorkSection(){
+        waitToBeClickable(workBtn);
+        click(workBtn);
+    }
+
+    private void openFamilySection(){
+        waitToBeClickable(familyBtn);
+        click(familyBtn);
+    }
+
+    private void openFriendsSection(){
+        waitToBeClickable(friendsdBtn);
+        click(friendsdBtn);
+    }
+
+
+    public void playVoicemail(){
         WebElement audio = driver.findElement(By.xpath("//div/audio"));
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].play();", audio);
-        Utils.sleep(7000);
+        waitUntilPageLoad(7);
     }
 
     //TODO need to change method
-    public boolean downloadVoicemail() {
-        WebElement audio = driver.findElement(By.xpath("//div/audio"));
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].download();", audio);
-        Utils.sleep(7000);
-        return true;
+    public boolean isFileDownloaded(){
+        waitToBeClickable(downloadBtn);
+        click(downloadBtn);
+        File dir = new File(System.getProperty("user.home") + "/Downloads/");
+        File[] dirContents = dir.listFiles();
+        for (int i = 0; i < dirContents.length; i++) {
+            if (dirContents[i].getName().contains(".mp3")) {
+                dirContents[i].delete();
+                return true;
+            }
+        }
+        return false;
     }
 
-    private String getDateFromTable() {
+    private String getDateFromTable(){
         return getText(dateInVoicemailTableMsb);
     }
 
-    private String getDurationFromTable() {
+    private String getDurationFromTable(){
         return getText(durationInVoicemailTableMsb);
     }
 
-    private String getFolderFromTable() {
+    private String getFolderFromTable(){
         return getAttribute(folderInVoicemailTableMsb, "ng-show").substring(16, 21).toLowerCase();
     }
 
-    private String getDateFromSingleVoicemail() {
-        return getText(dataInSingleVoicemailMsb).substring(6, getText(dataInSingleVoicemailMsb).indexOf('\n'));
+    private String getDateFromSingleVoicemail(){
+        String[] lines = getText(dataInSingleVoicemailMsb).split("\\n");
+        String line1 = lines[0];
+        return line1.substring(6,28);
     }
 
-    private String getDurationFromSingleVoicemail() {
-        return getText(dataInSingleVoicemailMsb).substring(40, getText(dataInSingleVoicemailMsb).indexOf('\n') + 16);
+    private String getDurationFromSingleVoicemail(){
+        String[] lines = getText(dataInSingleVoicemailMsb).split("\\n");
+        String line2 = lines[1];
+        return line2.substring(10,15);
     }
 
-    private String getFolderFromSingleVoicemail() {
-        return getText(dataInSingleVoicemailMsb).substring(54, getText(dataInSingleVoicemailMsb).indexOf('\n') + 30).toLowerCase();
+    private String getFolderFromSingleVoicemail(){
+        String[] lines = getText(dataInSingleVoicemailMsb).split("\\n");
+        String line3 = lines[2];
+        return line3.substring(8,13).toLowerCase();
     }
 
-    public VoicemailDataObject getValuesFromTable() {
+    public VoicemailDataObject getValuesFromTable(){
         VoicemailDataObject expectedDataObject = new VoicemailDataObject();
         expectedDataObject.Date = getDateFromTable();
         expectedDataObject.Duration = getDurationFromTable();
@@ -160,7 +212,7 @@ public class InboxPage extends BasePage {
         return expectedDataObject;
     }
 
-    public VoicemailDataObject getValuesFromModal() {
+    public VoicemailDataObject getValuesFromModal(){
         VoicemailDataObject actualDataObject = new VoicemailDataObject();
         actualDataObject.Date = getDateFromSingleVoicemail();
         actualDataObject.Duration = getDurationFromSingleVoicemail();
@@ -168,62 +220,121 @@ public class InboxPage extends BasePage {
         return actualDataObject;
     }
 
-    public void openFirstVoicemailInTable() {
+    public void openFirstVoicemailInTable(){
         waitToBeClickable(firstVoicemailInTableBtn);
         click(firstVoicemailInTableBtn);
     }
 
-    public void clickToChangeFolderButton() {
+    public void clickToChangeFolderButton(){
         waitToBeClickable(changeFolderBtn);
         click(changeFolderBtn);
     }
 
-    public void clickToMarkAsReadButton() {
+    public void clickToMarkAsReadButton(){
         waitToBeClickable(markAsReadBtn);
         click(markAsReadBtn);
     }
 
-    public void clickToCloseButton() {
+    public void clickToCloseButton(){
         waitToBeVisible(closeModalBtn);
         click(closeModalBtn);
     }
 
-    public boolean isVoicemailDisappearFromTheTable(String tmp_date) {
+    public boolean isVoicemailDisappearFromTheTable(String tmp_date){
         PageElement voicemail = new PageElement(
-                "Voicemail in list",
+                "VM in list",
                 By.xpath("//td[contains(.,'" + tmp_date + "')]"),
                 false);
+        log.info("Voicemail with following date disappear from the table  " + tmp_date);
         return isElementPresent(voicemail);
     }
 
-    public boolean isVoicemailFolderDisappearAfterClick() {
-        String s1 = getText(dataInSingleVoicemailMsb);
+    public boolean isVoicemailFolderDisappearAfterClick(){
+        String stringBeforeClick = getText(dataInSingleVoicemailMsb);
         waitToBeClickable(markAsReadBtn);
         click(markAsReadBtn);
-        String s2 = getText(dataInSingleVoicemailMsb);
-        return s1.equals(s2);
+        String stringAfterClick = getText(dataInSingleVoicemailMsb);
+        log.info("Word before click is: " + stringBeforeClick + "and value after click is: " + stringAfterClick);
+        return stringBeforeClick.equals(stringAfterClick);
     }
 
-    public boolean isMenuItemsDisplayed() {
+    public boolean isMenuItemsDisplayed(boolean isUnread, boolean isRead, boolean isWork, boolean isFamily, boolean isFriends){
         ArrayList<String> al = new ArrayList<>();
-        al.add("Read");
-        al.add("Work");
-        al.add("Family");
-        al.add("Friends");
+        if (isUnread) al.add("Unread");
+        if (isRead) al.add("Read");
+        if (isWork) al.add("Work");
+        if (isFamily) al.add("Family");
+        if (isFriends) al.add("Friends");
         ArrayList<String> obtainedList = new ArrayList<>();
         List<WebElement> elementList = findAll(firstElementInChangeFolderBtn);
         for (WebElement we : elementList) {
             obtainedList.add(we.getText());
         }
+        log.info("List of items are: " + Arrays.toString(al.toArray()) + ". List of items after click are: " + Arrays.toString(obtainedList.toArray()));
         return al.equals(obtainedList);
     }
 
-    public void clickToReadButton() {
-        waitToBeClickable(changeFolderBtn);
-        click(changeFolderBtn);
-        Utils.sleep(3000);
+    private void clickToReadButton(){
         waitToBeClickable(readMenuItemBtn);
         click(readMenuItemBtn);
-        Utils.sleep(3000);
+    }
+
+
+    private void clickToWorkButton(){
+        waitToBeClickable(workMenuItemBtn);
+        click(workMenuItemBtn);
+    }
+
+    private void clickToFamilyButton(){
+        waitToBeClickable(familyMenuItemBtn);
+        click(familyMenuItemBtn);
+    }
+
+    private void clickToFriendsButton(){
+        waitToBeClickable(friendsMenuItemBtn);
+        click(friendsMenuItemBtn);
+    }
+
+    public void deleteVoicemail(){
+        waitToBeClickable(deleteVoicemailBtn);
+        click(deleteVoicemailBtn);
+        waitToBeClickable(confirmBtn);
+        click(confirmBtn);
+    }
+
+    public void openSelectedVoicemail(String tmp_date){
+        PageElement voicemail = new PageElement(
+                "VM in list",
+                By.xpath("//td[contains(.,'" + tmp_date + "')]"),
+                false);
+        click(voicemail);
+    }
+
+    public void moveVoicemailToReadFolder(){
+        clickToReadButton();
+        clickToCloseButton();
+        waitUntilPageLoad(1);
+        openReadSection();
+    }
+
+    public void moveVoicemailToWorkFolder(){
+        clickToWorkButton();
+        clickToCloseButton();
+        waitUntilPageLoad(1);
+        openWorkSection();
+    }
+
+    public void moveVoicemailToFamilyFolder(){
+        clickToFamilyButton();
+        clickToCloseButton();
+        waitUntilPageLoad(1);
+        openFamilySection();
+    }
+
+    public void moveVoicemailToFriendsFolder(){
+        clickToFriendsButton();
+        clickToCloseButton();
+        waitUntilPageLoad(1);
+        openFriendsSection();
     }
 }

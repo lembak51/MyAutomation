@@ -325,9 +325,8 @@ public abstract class BasePage {
 
     /**
      * Waits default(1 sec) timeout period
-     *
      */
-    protected void waitUntilPageLoad() {
+    protected void waitUntilPageLoad(){
         //TODO implementation of JS to that
         try {
             Thread.sleep(1000);
@@ -359,7 +358,7 @@ public abstract class BasePage {
      * @param ie      the Boolean object representing in what browser need wait
      * @param safari  the Boolean object representing in what browser need wait
      */
-    protected void waitUntilPageLoad(int timeout, boolean chrome , boolean firefox, boolean ie, boolean safari) {
+    protected void waitUntilPageLoad(int timeout, boolean chrome, boolean firefox, boolean ie, boolean safari){
         if (projectConfig.getBrowser().contains("Chrome") && chrome)
             waitUntilPageLoad(timeout);
         if (projectConfig.getBrowser().contains("Firefox") && firefox)
@@ -382,6 +381,7 @@ public abstract class BasePage {
         List<WebElement> elementList = findAll(element);
         for (WebElement we : elementList) {
             obtainedList.add(we.getText().toUpperCase());
+            obtainedList.removeAll(Arrays.asList("", null));
         }
         if (order.equals("By asc")) {
             waitToBeClickable(arrowButton);
@@ -395,6 +395,7 @@ public abstract class BasePage {
         ArrayList<String> obtainedAfterClickList = new ArrayList<>();
         for (WebElement we : elementList1) {
             obtainedAfterClickList.add(we.getText().toUpperCase());
+            obtainedAfterClickList.removeAll(Arrays.asList("", null));
         }
         ArrayList<String> sortedList = new ArrayList<>();
         sortedList.addAll(obtainedList);
@@ -402,6 +403,7 @@ public abstract class BasePage {
             Collections.sort(sortedList);
         else if (order.equals("By desc")) sortedList.sort(Collections.reverseOrder());
         else System.out.println("Please choose type of sort");
+        log.info("List of items are: " + Arrays.toString(obtainedAfterClickList.toArray()) + ". List of items after click are: " + Arrays.toString(sortedList.toArray()));
         return obtainedAfterClickList.equals(sortedList);
     }
 

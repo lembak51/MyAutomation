@@ -6,6 +6,19 @@
         <listener class-name="common.testHelper.TestListener"/>
     </listeners>
 
+    <test name="Calls Test">
+        <classes>
+            <class name="tests.CallsTest">
+                <methods>
+                    <include name="makeInternalCall"/>
+                    <include name="makeCallToDestination"/>
+                    <include name="callsTabUsersSearch"/>
+                    <include name="callsTabDestination"/>
+                    <include name="viewCallsWithIncomingType"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
     <test name="Login Test">
         <classes>
             <class name="tests.LoginTest">
@@ -29,9 +42,9 @@
                     <include name="phonebookTabUserListingSortByMobile"/>
                     <include name="phonebookTabUserListingSortByDid"/>
                     <include name="phonebookTabUserListingSortByExtensions"/>
-
                     <!--TODO should be failed because of https://kerauno.atlassian.net/browse/KER-2061-->
-                    <exclude name="phonebookTabUserListingSortByDepartments"/>
+                    <include name="phonebookTabUserListingSortByDepartments"/>
+
                     <!--TODO should be failed because of issue(extension button is not clickable)-->
                     <exclude name="phonebookTabUserListingViewUserInformation"/>
                 </methods>
@@ -71,6 +84,17 @@
             </class>
         </classes>
     </test>
-
+    <test name="Voicemail Test">
+        <classes>
+            <class name="tests.VoicemailTest">
+                <methods>
+                    <include name="voicemailTabMarkAsRead"/>
+                    <include name="voicemailTabChangeFolder"/>
+                    <include name="voicemailTabDownloadVoicemail"/>
+                    <include name="voicemailTabDeleteSingleVoicemail"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 
 </suite>

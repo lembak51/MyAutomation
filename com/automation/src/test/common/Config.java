@@ -12,5 +12,4 @@ public class Config {
     public static final String INCORRECT_PASSWORD = "A123456";
     public static final String ANOTHER_USERNAME_FOR_BOLT = "kristian.hombosh@swan-qa2.kerauno.io";
     public static final String ANOTHER_PASSWORD_BOLT_BOLT = "B1234567";
-
 }

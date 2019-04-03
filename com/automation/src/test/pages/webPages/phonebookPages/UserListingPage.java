@@ -29,7 +29,7 @@ public class UserListingPage extends BasePage {
             true);
     private static final PageElement firstElementInDepartmentColumnMsb = new PageElement(
             "First element in Department(s) column",
-            By.cssSelector("tr:nth-child(1) > td.small"),
+            By.cssSelector("tr[class='ng-scope'] > td:nth-child(5)"),
             true);
     private static final PageElement extensionArrowBtn = new PageElement(
             "Extension(s) Arrow button",
@@ -159,6 +159,7 @@ public class UserListingPage extends BasePage {
                 "Find user using search field ",
                 By.xpath("//strong[contains(text(),'" + firstName + "')]//parent::td//parent::tr")
         );
+        waitUntilPageLoad();
         String attributeIsHide = getAttribute(findName,"class");
         log.info("Class attribute " + attributeIsHide + "User with " + "is find");
         return attributeIsHide.equals("ng-scope");
