@@ -24,7 +24,7 @@ public class VoicemailConfigurationPage extends BasePage {
     }
 
     public boolean getVoicemailPin(String pinFromDashboard){
-        String actualPin = getText(voicemailPinFld);
+        String actualPin = getAttribute(voicemailPinFld,"value");
         return actualPin.equals(pinFromDashboard);
     }
 }

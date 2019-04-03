@@ -50,11 +50,10 @@
                     <include name="changePasswordAreNotTheSame"/>
                     <include name="changePasswordWrongOldPassword"/>
                     <include name="changeVoicemailPin"/>
+                    <include name="checkVoicemailPinInVoicemailPage"/>
 
                     <!-- TODO add method of the screenshoot comparator -->
                     <exclude name="changeProfilePictureWithoutUploadButton"/>
-                    <!-- TODO value can not be get from the HTML tag -->
-                    <exclude name="checkVoicemailPinInVoicemailPage"/>
                 </methods>
             </class>
         </classes>

@@ -12,7 +12,7 @@
                     <include name="releaseNoteInNewPage"/>
                     <include name="changePasswordLoginWithNewPassword"/>
                     <include name="myMobileWithIncorrectValues"/>
-                    <exclude name="checkVoicemailPinInVoicemailPage"/>
+                    <include name="checkVoicemailPinInVoicemailPage"/>
                     <include name="changePasswordNewPasswordWithoutLetters"/>
                     <include name="changePasswordNewPasswordWithoutNumbers"/>
                     <include name="changePasswordAreNotTheSame"/>

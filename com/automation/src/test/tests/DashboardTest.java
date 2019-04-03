@@ -59,7 +59,6 @@ public class DashboardTest extends BaseTest {
         Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
     }
 
-    //TODO Bug, in attribute does not change voicemail pin number. But in field pin number is changed
     @Test(description = "SQE- 109 Dashboard - Check Voicemail Pin  in Voicemail page")
     public void checkVoicemailPinInVoicemailPage(){
         UserDataObject userDataObject = new UserDataObject();
