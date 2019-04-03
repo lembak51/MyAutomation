@@ -25,11 +25,11 @@ public class VoicemailTest extends BaseTest {
         VoicemailDataObject expectedDataObject = inboxPage.getValuesFromTable();
         inboxPage.openFirstVoicemailInTable();
         VoicemailDataObject actualDataObject = inboxPage.getValuesFromModal();
-        Assert.assertTrue(actualDataObject.isVoicemailDataSame(expectedDataObject), "Voicemail Data are the same");
+        Assert.assertTrue(actualDataObject.isVoicemailDataSame(expectedDataObject), "Voicemail Data should be the same");
         inboxPage.playVoicemail();
         Assert.assertTrue(inboxPage.isVoicemailFolderDisappearAfterClick(), "Voicemail should be marked in lists as Read");
         inboxPage.clickToCloseButton();
-        Assert.assertTrue(inboxPage.isVoicemailDisappearFromTheTable(expectedDataObject.Date), "VM should be removed from the unread list.");
+        Assert.assertTrue(inboxPage.isVoicemailDisappearFromTheTable(expectedDataObject.Date), "Voicemail should be removed from the unread list.");
     }
 
     @Test(description = "SQE-13 Voicemail tab - Change Folder")
@@ -41,26 +41,26 @@ public class VoicemailTest extends BaseTest {
         VoicemailDataObject expectedDataObject = inboxPage.getValuesFromTable();
         inboxPage.openFirstVoicemailInTable();
         VoicemailDataObject actualDataObject = inboxPage.getValuesFromModal();
-        Assert.assertTrue(actualDataObject.isVoicemailDataSame(expectedDataObject), "Voicemail Data are the same");
+        Assert.assertTrue(actualDataObject.isVoicemailDataSame(expectedDataObject), "Voicemail Data should be the same");
         inboxPage.clickToChangeFolderButton();
-        Assert.assertTrue(inboxPage.isMenuItemsDisplayed(false, true, true, true, true), "Menus are the sames");
+        Assert.assertTrue(inboxPage.isMenuItemsDisplayed(false, true, true, true, true), "Menus should be the same");
         inboxPage.moveVoicemailToReadFolder();
-        Assert.assertTrue(inboxPage.isVoicemailDisappearFromTheTable(expectedDataObject.Date), "VM should be present in the unread list.");
+        Assert.assertTrue(inboxPage.isVoicemailDisappearFromTheTable(expectedDataObject.Date), "Voicemail should be present in the unread list.");
         inboxPage.openSelectedVoicemail(expectedDataObject.Date);
         inboxPage.clickToChangeFolderButton();
-        Assert.assertTrue(inboxPage.isMenuItemsDisplayed(true, false, true, true, true), "Menus are the sames");
+        Assert.assertTrue(inboxPage.isMenuItemsDisplayed(true, false, true, true, true), "Menus should be the same");
         inboxPage.moveVoicemailToWorkFolder();
-        Assert.assertTrue(inboxPage.isVoicemailDisappearFromTheTable(expectedDataObject.Date), "VM should be present in the unread list.");
+        Assert.assertTrue(inboxPage.isVoicemailDisappearFromTheTable(expectedDataObject.Date), "Voicemail should be present in the unread list.");
         inboxPage.openSelectedVoicemail(expectedDataObject.Date);
         inboxPage.clickToChangeFolderButton();
-        Assert.assertTrue(inboxPage.isMenuItemsDisplayed(true, true, false, true, true), "Menus are the sames");
+        Assert.assertTrue(inboxPage.isMenuItemsDisplayed(true, true, false, true, true), "Menus should be the same");
         inboxPage.moveVoicemailToFamilyFolder();
-        Assert.assertTrue(inboxPage.isVoicemailDisappearFromTheTable(expectedDataObject.Date), "VM should be present in the unread list.");
+        Assert.assertTrue(inboxPage.isVoicemailDisappearFromTheTable(expectedDataObject.Date), "Voicemail should be present in the unread list.");
         inboxPage.openSelectedVoicemail(expectedDataObject.Date);
         inboxPage.clickToChangeFolderButton();
-        Assert.assertTrue(inboxPage.isMenuItemsDisplayed(true, true, true, false, true), "Menus are the sames");
+        Assert.assertTrue(inboxPage.isMenuItemsDisplayed(true, true, true, false, true), "Menus should be the same");
         inboxPage.moveVoicemailToFriendsFolder();
-        Assert.assertTrue(inboxPage.isVoicemailDisappearFromTheTable(expectedDataObject.Date), "VM should be present in the unread list.");
+        Assert.assertTrue(inboxPage.isVoicemailDisappearFromTheTable(expectedDataObject.Date), "Voicemail should be present in the unread list.");
     }
 
     @Test(description = "SQE-16 Voicemail tab - Download Voicemail")
@@ -72,7 +72,7 @@ public class VoicemailTest extends BaseTest {
         VoicemailDataObject expectedDataObject = inboxPage.getValuesFromTable();
         inboxPage.openFirstVoicemailInTable();
         VoicemailDataObject actualDataObject = inboxPage.getValuesFromModal();
-        Assert.assertTrue(actualDataObject.isVoicemailDataSame(expectedDataObject), "Voicemail Data are the same");
+        Assert.assertTrue(actualDataObject.isVoicemailDataSame(expectedDataObject), "Voicemail Data should be the same");
         Assert.assertTrue(inboxPage.isFileDownloaded(), "Voicemail should be download with mp3 format");
     }
 
@@ -86,11 +86,11 @@ public class VoicemailTest extends BaseTest {
         VoicemailDataObject expectedDataObject = inboxPage.getValuesFromTable();
         inboxPage.openFirstVoicemailInTable();
         VoicemailDataObject actualDataObject = inboxPage.getValuesFromModal();
-        Assert.assertTrue(actualDataObject.isVoicemailDataSame(expectedDataObject), "Voicemail Data are the same");
+        Assert.assertTrue(actualDataObject.isVoicemailDataSame(expectedDataObject), "Voicemail Data should be the same");
         inboxPage.clickToMarkAsReadButton();
         Assert.assertTrue(inboxPage.isVoicemailFolderDisappearAfterClick(), "Voicemail should be marked in lists as Read");
         inboxPage.deleteVoicemail();
         inboxPage.openReadSection();
-        Assert.assertTrue(inboxPage.isVoicemailDisappearFromTheTable(expectedDataObject.Date), "VM should be removed from the unread list.");
+        Assert.assertTrue(inboxPage.isVoicemailDisappearFromTheTable(expectedDataObject.Date), "Voicemail should be removed from the unread list.");
     }
 }

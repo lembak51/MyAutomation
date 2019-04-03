@@ -17,7 +17,7 @@
 |User Panel section |Dashboard  - change password: new password without numbers|Done |https://kerauno.atlassian.net/browse/SQE-106 | Kristian | 04.02.2019| |
 |User Panel section |Dashboard - Change Profile Picture without Upload button|To Do|https://kerauno.atlassian.net/browse/SQE-107 | Kristian | 04.02.2019| |
 |User Panel section |Dashboard - change password: new password without letters|Done |https://kerauno.atlassian.net/browse/SQE-108 | Kristian | 04.02.2019| |
-|User Panel section |Dashboard - Check Voicemail Pin  in Voicemail page|Done |https://kerauno.atlassian.net/browse/SQE-109 | Kristian | 04.02.2019| |
+|User Panel section |Dashboard - Check Voicemail Pin  in Voicemail page|Done |https://kerauno.atlassian.net/browse/SQE-109 | Kristian | 04.02.2019|Bogdan | 04.03.2019
 |User Panel section |Dashboard - My Mobile with incorrect values|Done |https://kerauno.atlassian.net/browse/SQE-110 | Kristian | 04.02.2019| |
 |User Panel section |Dashboard  - change password: login with new password|Done |https://kerauno.atlassian.net/browse/SQE-113 | Kristian | 04.02.2019| |
 |User Panel section |Dashboard - Release note in new page|Done |https://kerauno.atlassian.net/browse/SQE-673 | Kristian | 04.02.2019| |
