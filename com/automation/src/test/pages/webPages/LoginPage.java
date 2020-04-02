@@ -1,5 +1,6 @@
 package pages.webPages;
 
+import common.Config;
 import common.PageElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,20 +8,27 @@ import org.openqa.selenium.WebDriver;
 public class LoginPage extends BasePage {
     private static final PageElement usernameFld = new PageElement(
             "Email Field ",
-            By.cssSelector("input[data-ng-model='username']"),
+            By.xpath("//*[@id=\"root\"]/div/div/div/div/div/div/div[2]/div/div/div[2]/div/input"),
             true);
     private static final PageElement userPasswordFld = new PageElement(
             "Password Field ",
-            By.cssSelector("input[data-ng-model='password']"),
+            By.xpath("//*[@id=\"root\"]/div/div/div/div/div/div/div[2]/div/div/div[4]/div/input"),
             true);
     private static final PageElement logInBtn = new PageElement(
             "Log in button",
-            By.cssSelector("button[ng-hide='loggingIn']"),
+            By.xpath("//*[@id=\"root\"]/div/div/div/div/div/div/div[2]/div/div/button"),
             true);
-    private static final PageElement rememberMeChb = new PageElement(
+
+    private static final PageElement alertInvalidCredential = new PageElement(
+            "Alert",
+            By.cssSelector("#root > div.MuiSnackbar-root.MuiSnackbar-anchorOriginTopCenter.notification > div"),
+            false);
+  /*  private static final PageElement rememberMeChb = new PageElement(
             "Remember Me Checkbox",
             By.cssSelector("label[class='ui-checkbox']"),
-            true);
+              true);
+              //*[@id="root"]/div[1]/div
+*/
 
     public LoginPage(WebDriver driver){
         super(driver);
@@ -57,15 +65,16 @@ public class LoginPage extends BasePage {
     public void makeLoginWithRememberME(String userEmail, String userPassword){
         fillFieldUsername(userEmail);
         fillFieldPassword(userPassword);
-        click(rememberMeChb);
         clickLogIn();
     }
-
-    public void loginWithEmptyField(){
-        waitToBeClickable(logInBtn);
-        clickLogIn();
-    }
-
+//
+//public void loginWithinvalidusername
+    //      waitToBeClickable(logInBtn);
+    //      fillFieldUsername(Config.INCORRECT_USERNAME)
+//     fillFieldPassword(userPassword);
+    //    clickLogIn();
+// }
+    //
     public String getTextFromEmailField(){
         waitToBeVisible(usernameFld);
         return getAttribute(usernameFld, "value");
@@ -75,4 +84,28 @@ public class LoginPage extends BasePage {
         waitUntilPageLoad();
         return isElementPresent(logInBtn);
     }
+    public boolean isErrormMesegWhenLogin(String expectedText){
+        waitToBeVisible(alertInvalidCredential,4);
+        waitToBeVisible(alertInvalidCredential,4);
+        waitToBeVisible(alertInvalidCredential,4);
+        String actualText = getText(alertInvalidCredential);
+        log.info("Actual Alert Text: " + actualText + ".Expected: " + expectedText);
+        return actualText.equals(expectedText);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

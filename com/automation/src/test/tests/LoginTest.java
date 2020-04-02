@@ -2,57 +2,55 @@ package tests;
 
 
 import common.Config;
+import common.dataObjects.UserDataObject;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
-    private String alertErrorText = "Error: Email / Password Combination is not correct!";
+    private String alertErrorText = "Invalid username or password. Please try again.";
 
-    @Test(description = "SQE-292 Log in (without Remember Me option")
+    @Test(description = "C91052 Log with valid credential", priority = 0)
     public void logInWithoutRememberME(){
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
         loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4
-        Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
+        Assert.assertTrue(dashboardPage.pageIsDisplayed());
     }
+    //INCORRECT_USERNAME
+   // @Test(description = "C91018 Log in with invalid username")
+    // public void loginWithInvalidUsername(){
+    //      driver.get(Config.BASE_URL);
+    //     Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
+    //    loginPage.makeLogin(Config.INCORRECT_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4
+    //     Assert.assertTrue(loginPage.alertInvalidCredential());
+    //  }
 
-    @Test(description = "SQE-298 Log in, (Empty fields)")
-    public void loginEmptyFields(){
+    @Test(description = "SQE-297 Log in (incorrect username)", priority = 1)
+    public void logInIncorrectUserName(){
         driver.get(Config.BASE_URL);
-        Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
-        loginPage.loginWithEmptyField();
-        Assert.assertTrue(loginPage.isAlertTextAsExpected(alertErrorText), "Alert should be present with text");
-        loginPage.acceptAlert();
-        Assert.assertTrue(loginPage.pageIsDisplayed(),"Login page should be displayed");
-    }
-
-    @Test(description = "SQE-297 Log in (incorrect email)")
-    public void logInIncorrectEmail(){
-        driver.get(Config.BASE_URL);
-        Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
         loginPage.makeLogin(Config.INCORRECT_USERNAME, Config.BASE_PASSWORD);//Replace step
-        Assert.assertTrue(loginPage.isAlertTextAsExpected(alertErrorText), "Alert should be present with text");
-        loginPage.acceptAlert();
+        Assert.assertTrue(loginPage.isErrormMesegWhenLogin(alertErrorText), "Alert should be present with text");
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login page should be displayed");
     }
 
-    @Test(description = "SQE-296 Log in (incorrect password)")
+    @Test(description = "SQE-296 Log in (incorrect password)", priority = 2)
     public void logInIncorrectPassword(){
         driver.get(Config.BASE_URL);
-        Assert.assertTrue(loginPage.pageIsDisplayed());
-        loginPage.makeLogin(Config.BASE_USERNAME, Config.INCORRECT_PASSWORD);//Replace step
-        Assert.assertTrue(loginPage.isAlertTextAsExpected(alertErrorText), "Alert should be present with text");
-        loginPage.acceptAlert();
+        loginPage.makeLogin(Config.BASE_USERNAME, Config.INCORRECT_PASSWORD );//Replace step
+        Assert.assertTrue(loginPage.isErrormMesegWhenLogin(alertErrorText), "Alert should be present with text");
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login page should be displayed");
-    }
 
-    @Test(description = "SQE-293 Log in (via Remember Me option")
-    public void logInViaRememberME(){
+    }
+    @Test(description = "C91052 Log with - Log out", priority = 3)
+    public void logInLogout(){
         driver.get(Config.BASE_URL);
         Assert.assertTrue(loginPage.pageIsDisplayed(), "Login Page should be displayed ");
-        loginPage.makeLoginWithRememberME(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-5
-        Assert.assertTrue(dashboardPage.pageIsDisplayed(), "Dashboard Page should be displayed ");
+        loginPage.makeLogin(Config.BASE_USERNAME, Config.BASE_PASSWORD);//Replace step 2-4
+        Assert.assertTrue(dashboardPage.pageIsDisplayed());
         dashboardPage.logout();
-        Assert.assertEquals(Config.BASE_USERNAME, loginPage.getTextFromEmailField(), "Email field should be contains the credential of the previous user who was logged in");
+        Assert.assertTrue(loginPage.pageIsDisplayed());
     }
+
 }

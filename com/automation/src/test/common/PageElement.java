@@ -1,6 +1,7 @@
 package common;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 public class PageElement {
 
@@ -25,5 +26,8 @@ public class PageElement {
      */
     public By getLocator(){
         return this.locator;
+    }
+
+    public void sendKeys(Keys aReturn) {
     }
 }

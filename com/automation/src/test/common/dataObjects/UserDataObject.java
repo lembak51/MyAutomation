@@ -14,9 +14,12 @@ public class UserDataObject {
     public String NineDigitsMobileNumber;
     public String ElevenDigitsMobileNumber;
     public String VoicemailPinNumber;
+    public String EmailCoach;
+    public String SchoolName;
+    public String RandomNumber;
 
 
-    public UserDataObject(String username, String primaryExtension, String userEmail, String mobileNumber, String NewPassword, String nineDigitsMobileNumber, String elevenDigitsMobileNumber, String voicemailPinNumber) {
+    public UserDataObject(String username, String primaryExtension, String userEmail, String mobileNumber, String NewPassword, String nineDigitsMobileNumber, String elevenDigitsMobileNumber, String voicemailPinNumber,String emailCoach,String schoolName,  String randomNumber) {
         this.Username = username;
         this.PrimaryExtension = primaryExtension;
         this.UserEmail = userEmail;
@@ -27,10 +30,13 @@ public class UserDataObject {
         this.NineDigitsMobileNumber = nineDigitsMobileNumber;
         this.ElevenDigitsMobileNumber = elevenDigitsMobileNumber;
         this.VoicemailPinNumber = voicemailPinNumber;
+        this.EmailCoach = emailCoach;
+        this.SchoolName = schoolName;
+        this.RandomNumber = randomNumber;
     }
 
     public UserDataObject() {
-        this(getRandomUsername(), getRandomPrimaryExtension(), getRandomUserEmail(), getRandomMobileNumber(), getRandomNewPassword(), getRandomNineMobileNumber(), getRandomElevenMobileNumber(), getRandomVoicemailPin());
+        this(getRandomUsername(), getRandomPrimaryExtension(),  getRandomUserEmail(), getRandomMobileNumber(), getRandomNewPassword(), getRandomNineMobileNumber(), getRandomElevenMobileNumber(), getRandomVoicemailPin(), getRandomEmailCoach(), getRandomSchoolName(), getRandomNumber());
     }
 
 
@@ -42,13 +48,14 @@ public class UserDataObject {
         return String.valueOf(Utils.getRandomInt(1000, 1200));
     }
 
-    static String getRandomUserEmail() {
-        return "Swanteams" + Utils.getRandomInt(100, 999) + "@swanteams.com";
-    }
 
+    static String getRandomUserEmail() {
+        return "Swanteams+" + Utils.getRandomInt(100, 999) + "@swanteams.com";
+    }
     static String getRandomMobileNumber() {
         return String.valueOf(Utils.getRandomInt(1000000000, 2000000000));
     }
+    static String getRandomNumber(){return String.valueOf(Utils.getRandomInt(1000, 1200));}
 
     public UserDataObject getPasswordWithLetters() {
         this.NewPassword = getRandomPasswordWithoutLetters();
@@ -77,6 +84,10 @@ public class UserDataObject {
     static String getRandomVoicemailPin() {
         return String.valueOf(Utils.getRandomInt(1000, 9999));
     }
+    static String getRandomEmailCoach() {return "volodymyr.lembak+" + Utils.getRandomInt(100, 999) + "@swanlogic.com"; }
+    static String getRandomSchoolName() {
+        return "QA_Auto_Test" + Utils.getRandomInt(10, 90000);
+    }
 
     static String getRandomPasswordWithoutLetters() {
         return String.valueOf(Utils.getRandomInt(10000000, 99999999));
@@ -85,4 +96,5 @@ public class UserDataObject {
     static String getRandomPasswordWithoutNumbers() {
         return Utils.getRandomString(8);
     }
+
 }

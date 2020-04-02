@@ -9,10 +9,13 @@ import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.*;
-
+import org.testng.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
 
@@ -137,6 +140,8 @@ public abstract class BasePage {
         return elementFound;
     }
 
+
+
     public boolean isElementPresent(PageElement element){
         return this.isElementPresent(element.getLocator());
     }
@@ -159,6 +164,8 @@ public abstract class BasePage {
         });
     }
 
+
+
     public void waitToBeVisible(By element){
         this.waitToBeVisible(element, 30);
     }
@@ -170,6 +177,7 @@ public abstract class BasePage {
     public void waitToBeVisible(PageElement element){
         this.waitToBeVisible(element.getLocator(), 30);
     }
+
 
     /**
      * Waits for the specified timeout period for an element to be invisible.
@@ -442,5 +450,33 @@ public abstract class BasePage {
         String actualText = getTextFromAlert();
         log.info("Actual Alert Text: " + actualText + ".Expected: " + expectedText);
         return actualText.equals(expectedText);
+    }
+
+
+//public void waitJsLoad(WebDriver driver) {
+//    ExpectedCondition<Boolean> pageLoadCondition = new
+//            ExpectedCondition<Boolean>() {
+//                public Boolean apply(WebDriver driver) {
+//                    return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
+//                }
+//            };
+//    WebDriverWait wait = new WebDriverWait(driver, 30);
+//    wait.until(pageLoadCondition);
+//}
+
+    public void waitJsLoad() {
+        ExpectedCondition<Boolean> expectation = new
+                ExpectedCondition<Boolean>() {
+                    public Boolean apply(WebDriver driver) {
+                        return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+                    }
+                };
+        try {
+            Thread.sleep(1000);
+            WebDriverWait wait = new WebDriverWait(driver, 30);
+            wait.until(expectation);
+        } catch (Throwable error) {
+            Assert.fail("Timeout waiting for Page Load Request to complete.");
+        }
     }
 }

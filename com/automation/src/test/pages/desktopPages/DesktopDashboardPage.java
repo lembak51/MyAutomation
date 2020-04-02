@@ -18,9 +18,6 @@ public class DesktopDashboardPage extends BasePage {
             "End Call button",
             MobileBy.AccessibilityId("EndCall"),
             false);
-
-
-
     public DesktopDashboardPage(WindowsDriver driver){
         super(driver);
     }
@@ -28,7 +25,14 @@ public class DesktopDashboardPage extends BasePage {
     private void fillNumberFld(String userNumber){
        enterText(numberFld,userNumber);
     }
-
+    public void makeCallToUser(String userNumber, int callDuration){
+        waitUntilLoad(2);
+        deployApplicationUsingDriver();
+        fillNumberFld(userNumber);
+        clickCallBtn();
+        waitUntilLoad(callDuration);
+        clickEndCallBtn();
+    }
     private void clickCallBtn(){
         waitToBeClickable(callBtn);
         click(callBtn);
@@ -39,12 +43,5 @@ public class DesktopDashboardPage extends BasePage {
       click(endCallBtn);
     }
 
-    public void makeCallToUser(String userNumber, int callDuration){
-        waitUntilLoad(2);
-        deployApplicationUsingDriver();
-        fillNumberFld(userNumber);
-        clickCallBtn();
-        waitUntilLoad(callDuration);
-        clickEndCallBtn();
-    }
+
 }

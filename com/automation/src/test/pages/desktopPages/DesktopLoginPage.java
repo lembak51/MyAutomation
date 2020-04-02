@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 public class DesktopLoginPage extends BasePage {
     private static final DesktopElement signInBtn = new DesktopElement(
             "Sign In button",
-            MobileBy.AccessibilityId("LoginButton"),
+            By.className("Sign_in"),
             false);
     private static final DesktopElement usernameFld  = new DesktopElement(
             "Username Field",
